@@ -1,3 +1,64 @@
 [gd_scene format=3 uid="uid://c5je5ft2lbwi5"]
 
-[node name="Node3D" type="Node3D" unique_id=1606295164]
+[ext_resource type="Shader" uid="uid://clppbgcnsd18h" path="res://Assets/Shaders/water.gdshader" id="1_8gbba"]
+[ext_resource type="Texture2D" uid="uid://c3q2jjeblr1d7" path="res://Assets/Shaders/wave.tres" id="2_jjvhh"]
+[ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://Scripts/water.gd" id="3_jjvhh"]
+[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="3_kry3j"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
+render_priority = 0
+shader = ExtResource("1_8gbba")
+shader_parameter/albedo = Color(0, 0.32156864, 0.44313726, 1)
+shader_parameter/albedo2 = Color(0, 0.47843137, 0.77254903, 1)
+shader_parameter/color_deep = Color(0.10980392, 0.29411766, 0.32941177, 1)
+shader_parameter/color_shallow = Color(0.003921569, 0.5529412, 0.64705884, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/texture_normal = ExtResource("2_jjvhh")
+shader_parameter/texture_normal2 = ExtResource("2_jjvhh")
+shader_parameter/wave = ExtResource("2_jjvhh")
+shader_parameter/wave_time = 0.0
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_2_direction = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/wave_speed = 0.2
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 2.0
+shader_parameter/beers_law = 0.089
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 0.5
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sugp2"]
+material = SubResource("ShaderMaterial_0wfyh")
+size = Vector2(500, 500)
+subdivide_width = 500
+subdivide_depth = 500
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+
+[node name="Main" type="Node3D" unique_id=1606295164]
+
+[node name="Water" type="MeshInstance3D" parent="." unique_id=2535595]
+mesh = SubResource("PlaneMesh_sugp2")
+script = ExtResource("3_jjvhh")
+
+[node name="Cube" type="RigidBody3D" parent="." unique_id=433229527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9056568, 0)
+script = ExtResource("3_kry3j")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=2114723493]
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube" unique_id=246594490]
+shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=103273347]
+transform = Transform3D(0.8091196, -0.1929078, 0.55507845, 0, 0.9445828, 0.3282732, -0.58764404, -0.26561227, 0.76428044, 2.8314457, 2.570302, 4.148778)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1260809518]
+transform = Transform3D(1, 0, 0, 0, 0.61665124, 0.78723645, 0, -0.78723645, 0.61665124, 0, 7.8566227, 0)

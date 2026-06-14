@@ -1,0 +1,10 @@
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://c3q2jjeblr1d7"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ptwaq"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+
+[resource]
+noise = SubResource("FastNoiseLite_ptwaq")
+seamless = true
