@@ -4,6 +4,7 @@ render_mode depth_draw_always;
 uniform sampler2D SCREEN_TEXTURE: hint_screen_texture, filter_linear_mipmap;
 uniform sampler2D DEPTH_TEXTURE: hint_depth_texture, filter_linear_mipmap;
 
+// fragment settings (the coloring)
 uniform vec3 albedo : source_color;
 uniform vec3 albedo2 : source_color;
 uniform vec4 color_deep : source_color;
@@ -14,6 +15,8 @@ uniform float roughness : hint_range(0.0, 1.0) = 0.02;
 
 uniform sampler2D texture_normal;
 uniform sampler2D texture_normal2;
+
+// vertex settings (the actual geometry changes)
 uniform sampler2D wave;
 
 uniform float wave_time = 0;
@@ -46,7 +49,8 @@ float edge(float depth) {
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_pos.xz / noise_scale + TIME * wave_speed).r;
-	height = texture(wave, world_pos.xz / noise_scale + wave_time * wave_speed).r;
+	//height = texture(wave, world_pos.xz / noise_scale + wave_time * wave_speed).r;
+	//height = texture(wave, vec2(world_pos.xz * 0.1 + wave_time * vec2(0.1, 0.1))).r;
 	VERTEX.y += height * height_scale;
 }
 
@@ -75,7 +79,7 @@ void fragment() {
 	vec3 depth_color_adj = mix(edge_color, color, step(edge_scale, z_dif));
 	
 	ALBEDO = clamp(surface_color + depth_color_adj,vec3(0),vec3(1.0));
-	ALPHA = 1.0;
+	ALPHA = 1.0; // control transparency here
 	METALLIC = metallic;
 	ROUGHNESS = roughness;
 	NORMAL_MAP = normal_blend;
