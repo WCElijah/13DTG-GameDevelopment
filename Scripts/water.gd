@@ -29,4 +29,4 @@ func get_height(world_pos):
 	var uv_y = wrapf(world_pos.z / noise_scale + time * wave_speed, 0, 1)
 	
 	var pixel_pos = Vector2(uv_x * noise.get_width(), uv_y * noise.get_height())
-	return noise.get_pixelv(pixel_pos).r * height_scale
+	return global_position.y + noise.get_pixelv(pixel_pos).r * height_scale

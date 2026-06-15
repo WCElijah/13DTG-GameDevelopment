@@ -1,7 +1,5 @@
 extends RigidBody3D
 
-const water_height := 0.0
-
 @export var float_force := 1.0
 @export var water_drag := 0.05
 @export var water_angular_drag := 0.05
