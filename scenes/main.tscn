@@ -5,6 +5,15 @@
 [ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://Scripts/water.gd" id="3_jjvhh"]
 [ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="3_kry3j"]
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ptwaq"]
+noise_type = 2
+fractal_type = 0
+cellular_distance_function = 1
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jyhfs"]
+noise = SubResource("FastNoiseLite_ptwaq")
+seamless = true
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 render_priority = 0
 shader = ExtResource("1_8gbba")
@@ -16,7 +25,7 @@ shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.02
 shader_parameter/texture_normal = ExtResource("2_jjvhh")
 shader_parameter/texture_normal2 = ExtResource("2_jjvhh")
-shader_parameter/wave = ExtResource("2_jjvhh")
+shader_parameter/wave = SubResource("NoiseTexture2D_jyhfs")
 shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_2_direction = Vector2(0, 1)

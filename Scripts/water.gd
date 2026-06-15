@@ -24,6 +24,7 @@ func _process(delta: float) -> void:
 	time += delta
 	material.set_shader_parameter("wave_time",time)
 
+
 func get_height(world_pos):
 	var uv_x = wrapf(world_pos.x / noise_scale + time * wave_speed, 0, 1)
 	var uv_y = wrapf(world_pos.z / noise_scale + time * wave_speed, 0, 1)
