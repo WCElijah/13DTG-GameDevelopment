@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://bb0tv78eyi2ek"]
+
+[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="1_7pk0i"]
+[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://Assets/Blender Models/ModelTestShip.glb" id="2_cnapg"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+size = Vector3(5, 1, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
+size = Vector3(5, 1, 5)
+
+[node name="Cube" type="RigidBody3D" unique_id=232953914]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+script = ExtResource("1_7pk0i")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1554663075]
+visible = false
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178788028]
+shape = SubResource("BoxShape3D_0wfyh")
+
+[node name="ProbeContainer" type="Node3D" parent="." unique_id=942861942]
+
+[node name="Marker3D" type="Marker3D" parent="ProbeContainer" unique_id=1400017060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.180489, -0.5, 0.6025574)
+
+[node name="Marker3D2" type="Marker3D" parent="ProbeContainer" unique_id=587758844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.18, -0.5, -0.89056355)
+
+[node name="Marker3D3" type="Marker3D" parent="ProbeContainer" unique_id=194897697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.618289, -0.5, -0.41488934)
+
+[node name="Marker3D4" type="Marker3D" parent="ProbeContainer" unique_id=945902085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.618289, -0.5, 0.35153103)
+
+[node name="ModelTestShip" parent="." unique_id=1024580313 instance=ExtResource("2_cnapg")]

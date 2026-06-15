@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://c5je5ft2lbwi5"]
 
 [ext_resource type="Shader" uid="uid://clppbgcnsd18h" path="res://Assets/Shaders/water.gdshader" id="1_8gbba"]
+[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://Scripts/main.gd" id="1_tipki"]
 [ext_resource type="Texture2D" uid="uid://dowl0gdhb7w7g" path="res://Assets/Shaders/YtNormalA.tres" id="2_tefeu"]
 [ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://Scripts/water.gd" id="3_jjvhh"]
-[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="3_kry3j"]
 [ext_resource type="Texture2D" uid="uid://ddtthle642acf" path="res://Assets/Shaders/YtNormalB.tres" id="3_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://Assets/Shaders/yt_wave_bouyancy.tres" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 render_priority = 0
@@ -24,10 +25,10 @@ shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_2_direction = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
-shader_parameter/wave_speed = 0.2
+shader_parameter/wave_speed = 1.0
 shader_parameter/noise_scale = 10.0
 shader_parameter/height_scale = 1.0
-shader_parameter/beers_law = 0.089
+shader_parameter/beers_law = 2.0
 shader_parameter/depth_offset = -0.75
 shader_parameter/edge_scale = 0.1
 shader_parameter/near = 0.5
@@ -40,12 +41,6 @@ size = Vector2(500, 500)
 subdivide_width = 500
 subdivide_depth = 500
 
-[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
-size = Vector3(5, 1, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
-size = Vector3(5, 1, 5)
-
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("7_o6xl0")
 
@@ -57,37 +52,12 @@ background_mode = 2
 sky = SubResource("Sky_85g3d")
 
 [node name="Main" type="Node3D" unique_id=1606295164]
+script = ExtResource("1_tipki")
 
 [node name="Water" type="MeshInstance3D" parent="." unique_id=2535595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012958527, 0.13973618, -0.17112303)
 mesh = SubResource("PlaneMesh_sugp2")
 script = ExtResource("3_jjvhh")
-
-[node name="Cube" type="RigidBody3D" parent="." unique_id=433229527]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9056568, 0)
-script = ExtResource("3_kry3j")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=2114723493]
-mesh = SubResource("BoxMesh_o5qli")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Cube" unique_id=246594490]
-shape = SubResource("BoxShape3D_0wfyh")
-
-[node name="ProbeContainer" type="Node3D" parent="Cube" unique_id=2111336235]
-
-[node name="Marker3D" type="Marker3D" parent="Cube/ProbeContainer" unique_id=1716134236]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, 2.5)
-
-[node name="Marker3D2" type="Marker3D" parent="Cube/ProbeContainer" unique_id=82371163]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, -0.5, -2.5)
-
-[node name="Marker3D3" type="Marker3D" parent="Cube/ProbeContainer" unique_id=2003476222]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.5, -2.5)
-
-[node name="Marker3D4" type="Marker3D" parent="Cube/ProbeContainer" unique_id=1394525954]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, -0.5, 2.5)
-
-[node name="Camera3D" type="Camera3D" parent="." unique_id=103273347]
-transform = Transform3D(1, 0, 0, 0, 0.94579667, 0.32475942, 0, -0.32475942, 0.94579667, 0, 8.014313, 18.344847)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1260809518]
 transform = Transform3D(1, 0, 0, 0, 0.873509, 0.48680806, 0, -0.48680806, 0.873509, 0, 0, 0)
@@ -95,3 +65,9 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=691040596]
 environment = SubResource("Environment_choun")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=362630676 groups=["cameras"]]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 19.844938, 7.5145426, 1.5699139)
+
+[node name="Cube" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 6.18202, 0)
