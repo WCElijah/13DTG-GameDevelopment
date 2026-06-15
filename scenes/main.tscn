@@ -50,6 +50,7 @@ script = ExtResource("3_jjvhh")
 [node name="Cube" type="RigidBody3D" parent="." unique_id=433229527]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.9056568, 0)
 script = ExtResource("3_kry3j")
+float_force = 3.0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Cube" unique_id=2114723493]
 mesh = SubResource("BoxMesh_o5qli")
