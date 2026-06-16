@@ -6,10 +6,10 @@
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
 size = Vector3(5, 1, 5)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0wfyh"]
-size = Vector3(5, 1, 5)
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p0ws"]
+height = 7.9472656
 
-[node name="Cube" type="RigidBody3D" unique_id=232953914]
+[node name="Ship" type="RigidBody3D" unique_id=232953914]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_7pk0i")
 
@@ -18,7 +18,8 @@ visible = false
 mesh = SubResource("BoxMesh_o5qli")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178788028]
-shape = SubResource("BoxShape3D_0wfyh")
+transform = Transform3D(-1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0, 3, -0.5309448, 0.01181221, 8.881784e-15)
+shape = SubResource("CapsuleShape3D_7p0ws")
 
 [node name="ProbeContainer" type="Node3D" parent="." unique_id=942861942]
 
@@ -35,3 +36,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.618289, -0.5, -0.41488934)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.618289, -0.5, 0.35153103)
 
 [node name="ModelTestShip" parent="." unique_id=1024580313 instance=ExtResource("2_cnapg")]
+
+[node name="Cameras" type="Node3D" parent="." unique_id=839286275]
+
+[node name="BackView" type="Camera3D" parent="Cameras" unique_id=198863922]
+transform = Transform3D(-4.371139e-08, 0.13154706, -0.99130994, 0, 0.99130994, 0.13154706, 1, 5.750105e-09, -4.3331532e-08, -16.840162, 9.09987, -7.3610687e-07)
+
+[node name="TopDownView" type="Camera3D" parent="Cameras" unique_id=251749706]
+transform = Transform3D(-4.371139e-08, 0.29252192, -0.9562589, 0, 0.9562589, 0.29252192, 1, 1.278654e-08, -4.1799403e-08, -45.00389, 27.78962, -1.9671825e-06)
+
+[node name="FrontHullView" type="Camera3D" parent="Cameras" unique_id=1545643845]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.17003588, 3.374332, 4.45816)

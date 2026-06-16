@@ -21,7 +21,14 @@ func _physics_process(delta: float) -> void:
 			submerged = true
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 
-	# We create a local variable to store the input direction.
+	if Input.is_action_just_pressed("ui_accept"):
+		var cameras = $Cameras.get_children()
+		if $Cameras/BackView.current == true:
+			$Cameras/FrontHullView.current = true
+			$Cameras/BackView.current = false
+		else:
+			$Cameras/FrontHullView.current = false
+			$Cameras/BackView.current = true
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
