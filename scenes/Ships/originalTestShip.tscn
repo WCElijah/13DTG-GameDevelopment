@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bb0tv78eyi2ek"]
 
-[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="1_7pk0i"]
-[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://Assets/Blender Models/ModelTestShip.glb" id="2_cnapg"]
+[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://scripts/cube.gd" id="1_7pk0i"]
+[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://assets/Blender Models/ModelTestShip.glb" id="2_cnapg"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
 size = Vector3(5, 1, 5)
