@@ -56,18 +56,3 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var force_to_apply = velocity_diff * acceleration
 
 	apply_force(force_to_apply)
-	
-	if input_dir.length_squared() > 0.001:
-		# 1. Calculate the angle the character should face based on input_dir
-		var target_angle = atan2(-input_dir.x, -input_dir.z)
-		var target_rotation = Quaternion(Vector3.UP, target_angle)
-		
-		# 2. Smoothly interpolate (SLERP) from current rotation to target rotation
-		var current_rotation = state.transform.basis.get_rotation_quaternion()
-		var next_rotation = current_rotation.slerp(target_rotation, rotation_speed * state.step)
-		
-		# 3. Reconstruct the physics transform basis so it rotates safely
-		var x_axis = next_rotation * Vector3.RIGHT
-		var y_axis = next_rotation * Vector3.UP
-		var z_axis = next_rotation * Vector3.BACK
-		state.transform.basis = Basis(x_axis, y_axis, z_axis)
