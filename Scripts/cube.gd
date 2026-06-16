@@ -50,7 +50,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		state.angular_velocity *= 1 - water_angular_drag
 	
 	var target_velocity = input_dir * move_speed
-	target_velocity.y = state.linear_velocity.y
+	target_velocity.y = state.linear_velocity.y  # inehreint y velocity from previous
 	
 	var velocity_diff = target_velocity - state.linear_velocity
 	var force_to_apply = velocity_diff * acceleration

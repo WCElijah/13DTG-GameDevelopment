@@ -49,7 +49,7 @@ float edge(float depth) {
 void vertex() {
 	world_pos = (MODEL_MATRIX * vec4(VERTEX, 1.0)).xyz;
 	height = texture(wave, world_pos.xz / noise_scale + TIME * wave_speed).r;
-	//height = texture(wave, world_pos.xz / noise_scale + wave_time * wave_speed).r;
+	height = texture(wave, world_pos.xz / noise_scale + wave_time * wave_speed).r;
 	//height = texture(wave, vec2(world_pos.xz * 0.1 + wave_time * vec2(0.1, 0.1))).r;
 	VERTEX.y += height * height_scale;
 }
