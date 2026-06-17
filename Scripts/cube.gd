@@ -11,9 +11,10 @@ var submerged := false
 
 @export var move_speed: float = 300
 @export var acceleration: float = 50
-@export var rotation_speed: float = 50
+@export var rotation_speed: float = 2
 
 var input_dir = Vector3.ZERO
+var last_direction = Vector3.FORWARD
 
 var cameras: Array
 var current_camera_index = 0
@@ -30,11 +31,15 @@ func _process(delta: float) -> void:
 		for i in cameras.size():
 			cameras[i].current  = (i == current_camera_index)
 
-
 func _physics_process(delta: float) -> void:
 	var input_x = Input.get_axis("left", "right")
 	var input_z = Input.get_axis("forward", "back")
 	input_dir = Vector3(input_x, 0, input_z).normalized()
+	#if input_dir != Vector3.ZERO:
+		#last_direction = input_dir
+		##$Pivot.basis = Basis.looking_at(input_dir)
+#
+	#rotation.y = lerp_angle(rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
 
 	submerged = false
 	for probe in probes:
@@ -43,6 +48,7 @@ func _physics_process(delta: float) -> void:
 			submerged = true
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 
+	look_at(input_dir)
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if submerged:
@@ -54,5 +60,6 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	
 	var velocity_diff = target_velocity - state.linear_velocity
 	var force_to_apply = velocity_diff * acceleration
+	
 
 	apply_force(force_to_apply)

@@ -1,21 +1,15 @@
 [gd_scene format=3 uid="uid://bb0tv78eyi2ek"]
 
-[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://scripts/cube.gd" id="1_7pk0i"]
-[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://assets/Blender Models/ModelTestShip.glb" id="2_cnapg"]
-
-[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
-size = Vector3(5, 1, 5)
+[ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="1_7pk0i"]
+[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://Assets/Blender Models/ModelTestShip.glb" id="2_cnapg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7p0ws"]
+radius = 0.75
 height = 7.9472656
 
 [node name="Ship" type="RigidBody3D" unique_id=232953914]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 script = ExtResource("1_7pk0i")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1554663075]
-visible = false
-mesh = SubResource("BoxMesh_o5qli")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178788028]
 transform = Transform3D(-1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0, 3, -0.5309448, 0.01181221, 8.881784e-15)
@@ -35,8 +29,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.618289, -0.5, -0.41488934)
 [node name="Marker3D4" type="Marker3D" parent="ProbeContainer" unique_id=945902085]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.618289, -0.5, 0.35153103)
 
-[node name="ModelTestShip" parent="." unique_id=1024580313 instance=ExtResource("2_cnapg")]
-
 [node name="Cameras" type="Node3D" parent="." unique_id=839286275]
 
 [node name="BackView" type="Camera3D" parent="Cameras" unique_id=198863922]
@@ -47,3 +39,5 @@ transform = Transform3D(-4.371139e-08, 0.29252192, -0.9562589, 0, 0.9562589, 0.2
 
 [node name="FrontHullView" type="Camera3D" parent="Cameras" unique_id=1545643845]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.17003588, 3.374332, 4.45816)
+
+[node name="ModelTestShip" parent="." unique_id=1024580313 instance=ExtResource("2_cnapg")]
