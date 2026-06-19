@@ -77,13 +77,13 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 6
 mass = 1000.0
 float_force = 800.0
 
-[node name="Node" type="Node" parent="." unique_id=134698378]
+[node name="POI" type="Node" parent="." unique_id=134698378]
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Node" unique_id=1318152490]
+[node name="StaticBody3D" type="StaticBody3D" parent="POI" unique_id=1318152490]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.058069, -50.387253)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Node/StaticBody3D" unique_id=628192003]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="POI/StaticBody3D" unique_id=628192003]
 mesh = SubResource("BoxMesh_344ge")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/StaticBody3D" unique_id=1098404145]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="POI/StaticBody3D" unique_id=1098404145]
 shape = SubResource("BoxShape3D_ynf5e")

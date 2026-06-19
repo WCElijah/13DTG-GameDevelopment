@@ -64,5 +64,4 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	var velocity_diff = target_velocity - state.linear_velocity
 	var force_to_apply = velocity_diff * acceleration
 	
-
 	apply_force(force_to_apply)
