@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://ddtthle642acf" path="res://Assets/Shaders/YtNormalB.tres" id="3_o6xl0"]
 [ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://Assets/Shaders/yt_wave_bouyancy.tres" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://Scenes/Ships/originalTestShip.tscn" id="7_tipki"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 render_priority = 0
@@ -37,9 +37,9 @@ shader_parameter/edge_color = Color(0, 0, 0, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_sugp2"]
 material = SubResource("ShaderMaterial_0wfyh")
-size = Vector2(100, 100)
-subdivide_width = 100
-subdivide_depth = 100
+size = Vector2(1000, 1000)
+subdivide_width = 1000
+subdivide_depth = 1000
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("7_o6xl0")
@@ -50,6 +50,12 @@ sky_material = SubResource("PanoramaSkyMaterial_tipki")
 [sub_resource type="Environment" id="Environment_choun"]
 background_mode = 2
 sky = SubResource("Sky_85g3d")
+
+[sub_resource type="BoxMesh" id="BoxMesh_344ge"]
+size = Vector3(5, 100, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynf5e"]
+size = Vector3(5, 100, 5)
 
 [node name="Main" type="Node3D" unique_id=1606295164]
 script = ExtResource("1_tipki")
@@ -70,3 +76,14 @@ environment = SubResource("Environment_choun")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 6.18202, 0)
 mass = 1000.0
 float_force = 800.0
+
+[node name="Node" type="Node" parent="." unique_id=134698378]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Node" unique_id=1318152490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.058069, -50.387253)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Node/StaticBody3D" unique_id=628192003]
+mesh = SubResource("BoxMesh_344ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Node/StaticBody3D" unique_id=1098404145]
+shape = SubResource("BoxShape3D_ynf5e")
