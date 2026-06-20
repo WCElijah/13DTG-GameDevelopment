@@ -9,7 +9,9 @@ height = 7.9472656
 
 [node name="Ship" type="RigidBody3D" unique_id=232953914]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
+mass = 1000.0
 script = ExtResource("1_7pk0i")
+float_force = 800.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178788028]
 transform = Transform3D(-1.3113416e-07, -3, 0, 3, -1.3113416e-07, 0, 0, 0, 3, -0.5309448, 0.01181221, 8.881784e-15)

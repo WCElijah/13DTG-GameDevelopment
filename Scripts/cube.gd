@@ -34,15 +34,16 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	var input_x = Input.get_axis("left", "right")
-	var input_z = Input.get_axis("forward", "back")
-	input_dir = Vector3(input_x, 0, input_z).normalized()
-	#if input_dir != Vector3.ZERO:
-		#last_direction = input_dir
-		##$Pivot.basis = Basis.looking_at(input_dir)
-
-	#rotation.y = lerp_angle(rotation.y, atan2(-last_direction.x, -last_direction.z), delta * rotation_speed)
-
+	# movement
+	if Input.is_action_pressed("left"):
+		apply_torque(acceleration * mass * Vector3.UP)
+	if Input.is_action_pressed("right"):
+		apply_torque(acceleration * mass * Vector3.DOWN)
+		
+	if Input.is_action_pressed("forward"):
+		apply_force(acceleration * mass * global_transform.basis.x)
+	
+	# boyouancy effect
 	submerged = false
 	for probe in probes:
 		var depth = water.get_height(probe.global_position) - probe.global_position.y
@@ -50,18 +51,8 @@ func _physics_process(delta: float) -> void:
 			submerged = true
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 
-	#look_at(input_dir)
-
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if submerged:
 		state.linear_velocity *= 1 - water_drag
 		state.angular_velocity *= 1 - water_angular_drag
-	
-	var target_velocity = input_dir * move_speed
-	target_velocity.y = state.linear_velocity.y  # inehreint y velocity from previous
-	
-	var velocity_diff = target_velocity - state.linear_velocity
-	var force_to_apply = velocity_diff * acceleration
-	
-	apply_force(force_to_apply)
