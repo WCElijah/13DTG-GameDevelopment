@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://Assets/Shaders/yt_wave_bouyancy.tres" id="4_tipki"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 render_priority = 0
@@ -25,7 +26,7 @@ shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_2_direction = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
-shader_parameter/wave_speed = 0.25
+shader_parameter/wave_speed = 0.1
 shader_parameter/noise_scale = 10.0
 shader_parameter/height_scale = 1.0
 shader_parameter/beers_law = 0.01
@@ -41,6 +42,12 @@ size = Vector2(1000, 1000)
 subdivide_width = 1000
 subdivide_depth = 1000
 
+[sub_resource type="BoxMesh" id="BoxMesh_344ge"]
+size = Vector3(5, 100, 5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ynf5e"]
+size = Vector3(5, 100, 5)
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("7_o6xl0")
 
@@ -51,26 +58,16 @@ sky_material = SubResource("PanoramaSkyMaterial_tipki")
 background_mode = 2
 sky = SubResource("Sky_85g3d")
 
-[sub_resource type="BoxMesh" id="BoxMesh_344ge"]
-size = Vector3(5, 100, 5)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ynf5e"]
-size = Vector3(5, 100, 5)
-
 [node name="Main" type="Node3D" unique_id=1606295164]
 script = ExtResource("1_tipki")
 
-[node name="Water" type="MeshInstance3D" parent="." unique_id=2535595]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012958527, 0.13973618, -0.17112303)
+[node name="Water" type="MeshInstance3D" parent="." unique_id=2535595 groups=["waters"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8832245, -0.21195221, -1.1761284)
 mesh = SubResource("PlaneMesh_sugp2")
 script = ExtResource("3_jjvhh")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1260809518]
-transform = Transform3D(1, 0, 0, 0, 0.873509, 0.48680806, 0, -0.48680806, 0.873509, 0, 0, 0)
-shadow_enabled = true
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=691040596]
-environment = SubResource("Environment_choun")
+[node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.841545, 0)
 
 [node name="POI" type="Node3D" parent="." unique_id=2054701369]
 
@@ -83,4 +80,14 @@ mesh = SubResource("BoxMesh_344ge")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="POI/StaticBody3D" unique_id=1098404145]
 shape = SubResource("BoxShape3D_ynf5e")
 
-[node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
+[node name="TestCube" parent="POI" unique_id=1895738824 instance=ExtResource("8_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.478806, 14.451193, -30.902702)
+
+[node name="Enviroment" type="Node" parent="." unique_id=1112978692]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment" unique_id=1260809518]
+transform = Transform3D(1, 0, 0, 0, 0.873509, 0.48680806, 0, -0.48680806, 0.873509, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment" unique_id=691040596]
+environment = SubResource("Environment_choun")

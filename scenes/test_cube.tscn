@@ -1,0 +1,30 @@
+[gd_scene format=3 uid="uid://bhk20vqcals3"]
+
+[ext_resource type="Script" uid="uid://btvnaefxvecp0" path="res://Scripts/test_cube.gd" id="1_bf4sv"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fxgoe"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_nvumc"]
+
+[node name="TestCube" type="RigidBody3D" unique_id=1895738824]
+script = ExtResource("1_bf4sv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=730204065]
+shape = SubResource("BoxShape3D_fxgoe")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2090894747]
+mesh = SubResource("BoxMesh_nvumc")
+
+[node name="Probes" type="Node3D" parent="." unique_id=1246682539]
+
+[node name="Marker3D" type="Marker3D" parent="Probes" unique_id=717846792]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, -0.5)
+
+[node name="Marker3D2" type="Marker3D" parent="Probes" unique_id=545867513]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, -0.5, 0.5)
+
+[node name="Marker3D3" type="Marker3D" parent="Probes" unique_id=2140571026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.5)
+
+[node name="Marker3D4" type="Marker3D" parent="Probes" unique_id=1856714709]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.5)

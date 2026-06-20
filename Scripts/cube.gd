@@ -5,13 +5,12 @@ extends RigidBody3D
 @export var water_angular_drag := 0.05
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var water = $"../Water"
-@onready var probes = $ProbeContainer.get_children()
+@onready var water
+@onready var probes = $Probes.get_children()
 var submerged := false
 
-@export var move_speed: float = 300
-@export var acceleration: float = 50
-@export var rotation_speed: float = 2
+
+@export var acceleration: float = 100
 
 var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
@@ -21,6 +20,7 @@ var current_camera_index = 0
 
 
 func _ready() -> void:
+	water = get_tree().get_first_node_in_group("waters")
 	cameras = $Cameras.get_children()
 	for i in cameras.size():
 		cameras[i].current = (i == 0)
@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 		apply_torque(acceleration * mass * Vector3.DOWN)
 		
 	if Input.is_action_pressed("forward"):
-		apply_force(acceleration * mass * global_transform.basis.x)
+		apply_force(acceleration * mass * -global_transform.basis.z)
 	
 	# boyouancy effect
 	submerged = false
