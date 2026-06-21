@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://cplk3yw2w0xkx"]
+
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/majestic_voyage_ship.gd" id="1_oufoa"]
+[ext_resource type="PackedScene" uid="uid://l66ryw2w1c6e" path="res://Assets/Blender Models/majestic_voyager_ship.glb" id="2_oufoa"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7pk0i"]
+radius = 1.1259766
+height = 12.561523
+
+[node name="Ship" type="RigidBody3D" unique_id=232953914]
+mass = 1000.0
+script = ExtResource("1_oufoa")
+float_force = 800.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178788028]
+transform = Transform3D(5.7320566e-15, 1.3113416e-07, 2.9999998, 3, -1.3113416e-07, 0, 1.3113416e-07, 2.9999998, -1.3113416e-07, 1.3747317e-07, 0.26758274, 3.1450195)
+shape = SubResource("CapsuleShape3D_7pk0i")
+
+[node name="Probes" type="Node3D" parent="." unique_id=942861942]
+
+[node name="FrontRight" type="Marker3D" parent="Probes" unique_id=1400017060]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, -8)
+
+[node name="FrontLeft" type="Marker3D" parent="Probes" unique_id=587758844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.5, -8)
+
+[node name="BackLeft" type="Marker3D" parent="Probes" unique_id=194897697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, -0.5, 18)
+
+[node name="BackRight" type="Marker3D" parent="Probes" unique_id=945902085]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, -0.5, 18)
+
+[node name="majestic_voyager_ship" parent="." unique_id=720096127 instance=ExtResource("2_oufoa")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 15.10124, 0)

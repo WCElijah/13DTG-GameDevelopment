@@ -15,18 +15,13 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
-	print(global_position.y)
 	# boyouancy effect
 	submerged = false
-	#for probe in probes:
-		#var depth = water.get_height(probe.global_position) - probe.global_position.y
-		#if depth > 0:
-			#submerged = true
-			#apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
-	var depth = water.get_height(global_position) - global_position.y
-	if depth > 0.5:
-		submerged = true
-		apply_central_force(Vector3.UP * float_force * gravity * depth)
+	for probe in probes:
+		var depth = water.get_height(probe.global_position) - probe.global_position.y
+		if depth > 0:
+			submerged = true
+			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:

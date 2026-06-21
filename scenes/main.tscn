@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://scenes/player.tscn" id="10_choun"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 render_priority = 0
@@ -83,6 +85,9 @@ shape = SubResource("BoxShape3D_ynf5e")
 [node name="TestCube" parent="POI" unique_id=1895738824 instance=ExtResource("8_85g3d")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.478806, 14.451193, -30.902702)
 
+[node name="Ship" parent="POI" unique_id=977846744 instance=ExtResource("9_ya4ey")]
+transform = Transform3D(-0.9869064, 0, -0.16129385, 0, 1, 0, 0.16129385, 0, -0.9869064, 38.985603, 43.9091, -106.94809)
+
 [node name="Enviroment" type="Node" parent="." unique_id=1112978692]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment" unique_id=1260809518]
@@ -91,3 +96,6 @@ shadow_enabled = true
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment" unique_id=691040596]
 environment = SubResource("Environment_choun")
+
+[node name="Player" parent="." unique_id=1519985126 instance=ExtResource("10_choun")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, -33)

@@ -28,3 +28,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, 0.5)
 
 [node name="Marker3D4" type="Marker3D" parent="Probes" unique_id=1856714709]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, -0.5, -0.5)
+
+[node name="Marker3D5" type="Marker3D" parent="Probes" unique_id=867633362]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, -0.5)
+
+[node name="Marker3D6" type="Marker3D" parent="Probes" unique_id=1556897542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.5, 0.5)
+
+[node name="Marker3D7" type="Marker3D" parent="Probes" unique_id=714653257]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, 0.5)
+
+[node name="Marker3D8" type="Marker3D" parent="Probes" unique_id=730519808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.5, -0.5)

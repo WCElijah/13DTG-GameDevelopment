@@ -9,7 +9,6 @@ height = 8.564453
 
 [node name="Ship" type="RigidBody3D" unique_id=232953914]
 mass = 1000.0
-center_of_mass_mode = 1
 script = ExtResource("1_7pk0i")
 float_force = 800.0
 
