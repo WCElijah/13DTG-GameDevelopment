@@ -9,13 +9,12 @@ extends RigidBody3D
 @onready var probes = $Probes.get_children()
 var submerged := false
 
+
 func _ready() -> void:
 	water = get_tree().get_first_node_in_group("waters")
 
 
 func _physics_process(delta: float) -> void:
-
-
 	# boyouancy effect
 	submerged = false
 	for probe in probes:
