@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://ffedgrnwubn1"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[sub_resource type="Shader" id="Shader_fbhhr"]
+code = "// Based on https://youtu.be/7L6ZUYj1hs8?si=H4XmDMifrR0EQtV3
+
+shader_type spatial;
+
+uniform vec3 albedo : source_color;
+uniform float metallic : hint_range(0.0, 1.0);
+uniform float roughness : hint_range(0.0, 1.0);
+uniform sampler2D texture_normal;
+uniform sampler2D texture_normal2;
+
+
+void vertex() {
+	// Called for every vertex the material is visible on.
+}
+
+void fragment() {
+	// Called for every pixel the material is visible on.
+}
+
+//void light() {
+//	// Called for every pixel for every light affecting the material.
+//	// Uncomment to replace the default light processing function with this one.
+//}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_loxa5"]
+render_priority = 0
+shader = SubResource("Shader_fbhhr")
+shader_parameter/albedo = Color(0, 0, 0, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.0
+
+[node name="WaterPlane" type="MeshInstance3D" unique_id=286029142]
+mesh = SubResource("QuadMesh_fbhhr")
+surface_material_override/0 = SubResource("ShaderMaterial_loxa5")

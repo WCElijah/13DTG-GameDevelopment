@@ -1,48 +1,12 @@
 [gd_scene format=3 uid="uid://c5je5ft2lbwi5"]
 
-[ext_resource type="Shader" uid="uid://clppbgcnsd18h" path="res://Assets/Shaders/water.gdshader" id="1_8gbba"]
 [ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://Scripts/main.gd" id="1_tipki"]
-[ext_resource type="Texture2D" uid="uid://dowl0gdhb7w7g" path="res://Assets/Shaders/YtNormalA.tres" id="2_tefeu"]
-[ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://Scripts/water.gd" id="3_jjvhh"]
-[ext_resource type="Texture2D" uid="uid://ddtthle642acf" path="res://Assets/Shaders/YtNormalB.tres" id="3_o6xl0"]
-[ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://Assets/Shaders/yt_wave_bouyancy.tres" id="4_tipki"]
+[ext_resource type="PackedScene" uid="uid://d0kyqvcx8x5fq" path="res://Scenes/water.tscn" id="2_6bp64"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://Scenes/Ships/originalTestShip.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://Scenes/test_cube.tscn" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://Scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://Scenes/player.tscn" id="10_choun"]
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
-render_priority = 0
-shader = ExtResource("1_8gbba")
-shader_parameter/albedo = Color(0, 0.32156864, 0.44313726, 1)
-shader_parameter/albedo2 = Color(0, 0.47843137, 0.77254903, 1)
-shader_parameter/color_deep = Color(0.10980392, 0.29411766, 0.32941177, 1)
-shader_parameter/color_shallow = Color(0.003921569, 0.5529412, 0.64705884, 1)
-shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.02
-shader_parameter/texture_normal = ExtResource("2_tefeu")
-shader_parameter/texture_normal2 = ExtResource("3_o6xl0")
-shader_parameter/wave = ExtResource("4_tipki")
-shader_parameter/wave_time = 0.0
-shader_parameter/wave_direction = Vector2(2, 0)
-shader_parameter/wave_2_direction = Vector2(0, 1)
-shader_parameter/time_scale = 0.025
-shader_parameter/wave_speed = 0.1
-shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 1.0
-shader_parameter/beers_law = 0.01
-shader_parameter/depth_offset = -0.75
-shader_parameter/edge_scale = 0.1
-shader_parameter/near = 0.5
-shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(0, 0, 0, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_sugp2"]
-material = SubResource("ShaderMaterial_0wfyh")
-size = Vector2(1000, 1000)
-subdivide_width = 1000
-subdivide_depth = 1000
 
 [sub_resource type="BoxMesh" id="BoxMesh_344ge"]
 size = Vector3(5, 100, 5)
@@ -63,10 +27,8 @@ sky = SubResource("Sky_85g3d")
 [node name="Main" type="Node3D" unique_id=1606295164]
 script = ExtResource("1_tipki")
 
-[node name="Water" type="MeshInstance3D" parent="." unique_id=2535595 groups=["waters"]]
+[node name="Water" parent="." unique_id=776597805 instance=ExtResource("2_6bp64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8832245, -0.21195221, -1.1761284)
-mesh = SubResource("PlaneMesh_sugp2")
-script = ExtResource("3_jjvhh")
 
 [node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.841545, 0)

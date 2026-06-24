@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://d0kyqvcx8x5fq"]
+
+[ext_resource type="Shader" uid="uid://clppbgcnsd18h" path="res://Assets/Shaders/water.gdshader" id="1_rqihb"]
+[ext_resource type="Texture2D" uid="uid://dowl0gdhb7w7g" path="res://Assets/Shaders/YtNormalA.tres" id="2_jf7k4"]
+[ext_resource type="Texture2D" uid="uid://ddtthle642acf" path="res://Assets/Shaders/YtNormalB.tres" id="3_mkv50"]
+[ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://Assets/Shaders/yt_wave_bouyancy.tres" id="4_tosn6"]
+[ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://Scripts/water.gd" id="5_bwbb5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
+render_priority = 0
+shader = ExtResource("1_rqihb")
+shader_parameter/albedo = Color(0, 0.32156864, 0.44313726, 1)
+shader_parameter/albedo2 = Color(0, 0.47843137, 0.77254903, 1)
+shader_parameter/color_deep = Color(0.10980392, 0.29411766, 0.32941177, 1)
+shader_parameter/color_shallow = Color(0.003921569, 0.5529412, 0.64705884, 1)
+shader_parameter/metallic = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/texture_normal = ExtResource("2_jf7k4")
+shader_parameter/texture_normal2 = ExtResource("3_mkv50")
+shader_parameter/wave = ExtResource("4_tosn6")
+shader_parameter/wave_time = 0.0
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_2_direction = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/wave_speed = 0.1
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 1.0
+shader_parameter/beers_law = 0.01
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 0.5
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_sugp2"]
+material = SubResource("ShaderMaterial_0wfyh")
+size = Vector2(1000, 1000)
+subdivide_width = 1000
+subdivide_depth = 1000
+
+[node name="Water" type="MeshInstance3D" unique_id=776597805 groups=["waters"]]
+mesh = SubResource("PlaneMesh_sugp2")
+script = ExtResource("5_bwbb5")
