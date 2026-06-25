@@ -7,33 +7,58 @@ subdivide_width = 200
 subdivide_depth = 200
 orientation = 1
 
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_rjqxt"]
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_loxa5"]
+noise_type = 3
+fractal_type = 2
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_rjqxt"]
+noise = SubResource("FastNoiseLite_loxa5")
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_b465q"]
 noise_type = 3
 seed = 10
 fractal_type = 2
 
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_loxa5"]
-noise = SubResource("FastNoiseLite_rjqxt")
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ryueu"]
+noise = SubResource("FastNoiseLite_b465q")
 seamless = true
 as_normal_map = true
-bump_strength = 1.5
+bump_strength = 5.7
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rjqxt"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b465q"]
 noise = SubResource("FastNoiseLite_rjqxt")
 seamless = true
-as_normal_map = true
-bump_strength = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_loxa5"]
 render_priority = 0
 shader = ExtResource("1_loxa5")
 shader_parameter/albedo = Color(0, 0.32156864, 0.43137255, 1)
+shader_parameter/albedo2 = Color(0, 0.4745098, 0.7647059, 1)
 shader_parameter/metallic = 0.0
 shader_parameter/roughness = 0.02
-shader_parameter/texture_normal = SubResource("NoiseTexture2D_loxa5")
-shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_b465q")
+shader_parameter/wave = SubResource("NoiseTexture2D_b465q")
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_rjqxt")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_ryueu")
+shader_parameter/wave_direction = Vector2(2, 0)
+shader_parameter/wave_direction2 = Vector2(0, 1)
+shader_parameter/time_scale = 0.025
+shader_parameter/noise_scale = 10.0
+shader_parameter/height_scale = 0.15
+shader_parameter/color_deep = Color(0, 0.32156864, 0.43137255, 1)
+shader_parameter/color_shallow = Color(0, 0.4745098, 0.7647059, 1)
+shader_parameter/beers_law = 2.0
+shader_parameter/depth_offset = -0.75
+shader_parameter/edge_scale = 0.1
+shader_parameter/near = 1.0
+shader_parameter/far = 100.0
+shader_parameter/edge_color = Color(0, 0, 0, 1)
 
 [node name="WaterPlane" type="MeshInstance3D" unique_id=286029142]
-visible = false
+cast_shadow = 0
 mesh = SubResource("QuadMesh_fbhhr")
 surface_material_override/0 = SubResource("ShaderMaterial_loxa5")
