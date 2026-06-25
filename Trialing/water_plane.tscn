@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ffedgrnwubn1"]
 
 [ext_resource type="Shader" uid="uid://fr1csikkelm6" path="res://Trialing/water_plane.gdshader" id="1_loxa5"]
+[ext_resource type="Script" uid="uid://dfnu40h44eegq" path="res://Trialing/water_plane.gd" id="2_rjqxt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
 subdivide_width = 200
@@ -37,6 +38,7 @@ seamless = true
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_loxa5"]
 render_priority = 0
 shader = ExtResource("1_loxa5")
+shader_parameter/wave_time = 0.0
 shader_parameter/albedo = Color(0, 0.32156864, 0.43137255, 1)
 shader_parameter/albedo2 = Color(0, 0.4745098, 0.7647059, 1)
 shader_parameter/metallic = 0.0
@@ -62,3 +64,4 @@ shader_parameter/edge_color = Color(1, 1, 1, 1)
 cast_shadow = 0
 mesh = SubResource("QuadMesh_fbhhr")
 surface_material_override/0 = SubResource("ShaderMaterial_loxa5")
+script = ExtResource("2_rjqxt")
