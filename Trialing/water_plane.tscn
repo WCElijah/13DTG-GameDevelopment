@@ -1,43 +1,39 @@
 [gd_scene format=3 uid="uid://ffedgrnwubn1"]
 
+[ext_resource type="Shader" uid="uid://fr1csikkelm6" path="res://Trialing/water_plane.gdshader" id="1_loxa5"]
+
 [sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
 subdivide_width = 200
 subdivide_depth = 200
 orientation = 1
 
-[sub_resource type="Shader" id="Shader_fbhhr"]
-code = "// Based on https://youtu.be/7L6ZUYj1hs8?si=H4XmDMifrR0EQtV3
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_rjqxt"]
+noise_type = 3
+seed = 10
+fractal_type = 2
 
-shader_type spatial;
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_loxa5"]
+noise = SubResource("FastNoiseLite_rjqxt")
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
 
-uniform vec3 albedo : source_color;
-uniform float metallic : hint_range(0.0, 1.0);
-uniform float roughness : hint_range(0.0, 1.0);
-uniform sampler2D texture_normal;
-uniform sampler2D texture_normal2;
-
-
-void vertex() {
-	// Called for every vertex the material is visible on.
-}
-
-void fragment() {
-	// Called for every pixel the material is visible on.
-}
-
-//void light() {
-//	// Called for every pixel for every light affecting the material.
-//	// Uncomment to replace the default light processing function with this one.
-//}
-"
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_b465q"]
+noise = SubResource("FastNoiseLite_rjqxt")
+seamless = true
+as_normal_map = true
+bump_strength = 1.5
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_loxa5"]
 render_priority = 0
-shader = SubResource("Shader_fbhhr")
-shader_parameter/albedo = Color(0, 0, 0, 1)
+shader = ExtResource("1_loxa5")
+shader_parameter/albedo = Color(0, 0.32156864, 0.43137255, 1)
 shader_parameter/metallic = 0.0
-shader_parameter/roughness = 0.0
+shader_parameter/roughness = 0.02
+shader_parameter/texture_normal = SubResource("NoiseTexture2D_loxa5")
+shader_parameter/texture_normal2 = SubResource("NoiseTexture2D_b465q")
 
 [node name="WaterPlane" type="MeshInstance3D" unique_id=286029142]
+visible = false
 mesh = SubResource("QuadMesh_fbhhr")
 surface_material_override/0 = SubResource("ShaderMaterial_loxa5")
