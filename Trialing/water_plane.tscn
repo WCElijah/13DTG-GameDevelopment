@@ -49,14 +49,14 @@ shader_parameter/wave_direction2 = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
 shader_parameter/noise_scale = 10.0
 shader_parameter/height_scale = 0.15
-shader_parameter/color_deep = Color(0, 0.32156864, 0.43137255, 1)
+shader_parameter/color_deep = Color(1.0348111e-06, 0.2692092, 0.3637456, 1)
 shader_parameter/color_shallow = Color(0, 0.4745098, 0.7647059, 1)
 shader_parameter/beers_law = 2.0
 shader_parameter/depth_offset = -0.75
 shader_parameter/edge_scale = 0.1
 shader_parameter/near = 1.0
 shader_parameter/far = 100.0
-shader_parameter/edge_color = Color(0, 0, 0, 1)
+shader_parameter/edge_color = Color(1, 1, 1, 1)
 
 [node name="WaterPlane" type="MeshInstance3D" unique_id=286029142]
 cast_shadow = 0

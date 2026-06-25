@@ -39,7 +39,7 @@ float fresnel(float amount, vec3 normal, vec3 view){ // refernece to the fresnel
 	return pow((1.0 - clamp(dot(normalize(normal), normalize(view)), 0.0, 1.0)), amount);
 }
 float edge(float depth){ // figres out how near and far water is to other meshes
-	depth = 2.0 * depth - 1.0;
+	depth = 1.0 - 2.0 * depth;
 	return near * far / (far + depth * (near - far));
 }
 
