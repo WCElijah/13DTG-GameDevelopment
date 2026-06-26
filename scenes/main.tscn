@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://c5je5ft2lbwi5"]
 
-[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://scripts/main.gd" id="1_tipki"]
-[ext_resource type="PackedScene" uid="uid://d0kyqvcx8x5fq" path="res://scenes/water.tscn" id="2_6bp64"]
-[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
-[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
-[ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://scenes/player.tscn" id="10_choun"]
+[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://Scripts/main.gd" id="1_tipki"]
+[ext_resource type="PackedScene" uid="uid://d0kyqvcx8x5fq" path="res://Scenes/water.tscn" id="2_6bp64"]
+[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://Scenes/Ships/originalTestShip.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://Scenes/test_cube.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://Scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://Scenes/player.tscn" id="10_choun"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_344ge"]
-size = Vector3(5, 100, 5)
+size = Vector3(100, 20, 5)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ynf5e"]
-size = Vector3(5, 100, 5)
+size = Vector3(100, 20, 5)
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("7_o6xl0")
@@ -29,7 +29,6 @@ script = ExtResource("1_tipki")
 
 [node name="Water" parent="." unique_id=776597805 instance=ExtResource("2_6bp64")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8832245, -0.21195221, -1.1761284)
-visible = false
 
 [node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.841545, 0)
@@ -37,7 +36,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.841545, 0)
 [node name="POI" type="Node3D" parent="." unique_id=2054701369]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="POI" unique_id=1318152490]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.058069, -50.387253)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -76.54137, 9.058069, -50.387253)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="POI/StaticBody3D" unique_id=628192003]
 mesh = SubResource("BoxMesh_344ge")

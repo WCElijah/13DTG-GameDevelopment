@@ -15,6 +15,14 @@ run/main_scene="uid://c5je5ft2lbwi5"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+DebugMenu="*uid://cggqb75a8w8r"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
+
 [global_group]
 
 cameras=""
