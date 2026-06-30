@@ -4,8 +4,8 @@ extends Node3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	generate_water() # Replace with function body.
-
+	#generate_water() # Replace with function body.
+	pass
 func generate_water():
 	var length = 10
 	var width = 10

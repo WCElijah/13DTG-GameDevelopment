@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://cbr3woyk8x6hb" path="res://Trialing/temp_main.gd" id="1_mdtfl"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_pql2q"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="3_xqpmi"]
+[ext_resource type="Material" uid="uid://csfroplqda1is" path="res://Trialing/new_shader_material.tres" id="4_8iy7c"]
+[ext_resource type="Script" uid="uid://bl7oqsdcjsvm7" path="res://Trialing/multi_mesh_instance_3d.gd" id="5_vb4cv"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8iy7c"]
 panorama = ExtResource("3_xqpmi")
@@ -13,6 +15,18 @@ sky_material = SubResource("PanoramaSkyMaterial_8iy7c")
 [sub_resource type="Environment" id="Environment_1gk3j"]
 background_mode = 2
 sky = SubResource("Sky_vb4cv")
+
+[sub_resource type="QuadMesh" id="QuadMesh_vb4cv"]
+material = ExtResource("4_8iy7c")
+subdivide_width = 200
+subdivide_depth = 200
+orientation = 1
+
+[sub_resource type="MultiMesh" id="MultiMesh_1gk3j"]
+transform_format = 1
+instance_count = 10
+mesh = SubResource("QuadMesh_vb4cv")
+buffer = PackedFloat32Array(0.5, 3.9999998, 0.10787, 0.10787, 0.10787, 1, 0.012, 0.16129032, 0.7664218, 2.660608, 0.10787, 0.10787, 0.10787, 1, 0.014131375, 0.11808413, 1.525126, 1.5251265, 0.10787, 0.10787, 0.10787, 1, 0.020201009, 0.08145569, 2.6606073, 0.7664218, 0.10787, 0.10787, 0.10787, 1, 0.02928486, 0.056981348, 4, 0.5, 0.10787, 0.10787, 0.10787, 1, 0.04, 0.048387095, 119, 0.5, 0.10787, 0.10787, 0.10787, 1, 0.96, 0.048387095, 120.33939, 0.76642203, 0.10787, 0.10787, 0.10787, 1, 0.97071517, 0.056981355, 121.47488, 1.525126, 0.10787, 0.10787, 0.10787, 1, 0.97979903, 0.08145568, 122.23358, 2.660608, 0.10787, 0.10787, 0.10787, 1, 0.98586863, 0.11808413, 122.5, 4.0000005, 0.10787, 0.10787, 0.10787, 1, 0.988, 0.16129033, 122.5, 25, 0.10787, 0.10787, 0.10787, 1, 0.988, 0.83870965, 122.23358, 26.339394, 0.10787, 0.10787, 0.10787, 1, 0.98586863, 0.8819159, 121.47488, 27.474874, 0.10787, 0.10787, 0.10787, 1, 0.97979903, 0.91854435, 120.33939, 28.233578, 0.10787, 0.10787, 0.10787, 1, 0.97071517, 0.9430186, 119, 28.5, 0.10787, 0.10787, 0.10787, 1, 0.96, 0.9516129)
 
 [node name="TempMain" type="Node3D" unique_id=1601968634]
 script = ExtResource("1_mdtfl")
@@ -26,3 +40,7 @@ environment = SubResource("Environment_1gk3j")
 
 [node name="Camera3D" type="Camera3D" parent="." unique_id=2067609746]
 transform = Transform3D(-0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071068, 0, 0.51206136, 0)
+
+[node name="MultiMeshInstance3D" type="MultiMeshInstance3D" parent="." unique_id=1784767993]
+multimesh = SubResource("MultiMesh_1gk3j")
+script = ExtResource("5_vb4cv")

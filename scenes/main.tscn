@@ -61,5 +61,3 @@ environment = SubResource("Environment_choun")
 
 [node name="Player" parent="." unique_id=1519985126 instance=ExtResource("10_choun")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, -33)
-
-[node name="WaterTiles" type="Node3D" parent="." unique_id=1632160969]
