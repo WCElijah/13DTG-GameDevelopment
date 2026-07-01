@@ -6,6 +6,7 @@ extends Node3D
 func _ready() -> void:
 	#generate_water() # Replace with function body.
 	pass
+
 func generate_water():
 	var length = 10
 	var width = 10
