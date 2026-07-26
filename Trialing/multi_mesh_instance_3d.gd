@@ -8,13 +8,11 @@ var custom_width = 10
 func _ready() -> void:
 	for mesh_index in range(count):
 		var width_count = 0
-		#if mesh_index <= custom_width:
-			#var transform = Transform3D()
-			#transform.origin = Vector3(width_count, 0, 0)
-			#multimesh.set_instance_transform(mesh_index, transform)
-		var transform = Transform3D()
-		transform.origin = Vector3(mesh_index, 0, 0)
-		multimesh.set_instance_transform(mesh_index, transform)
+		if mesh_index <= custom_width:
+			var transform = Transform3D()
+			transform.origin = Vector3(width_count, 0, 0)
+			multimesh.set_instance_transform(mesh_index, transform)
+
 
 
 func reduce(value):
