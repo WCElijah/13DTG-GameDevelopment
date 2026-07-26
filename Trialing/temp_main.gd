@@ -1,19 +1,22 @@
 extends Node3D
 
-@export var water_tile : PackedScene
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	#generate_water() # Replace with function body.
-	pass
+	for i in range(10):
+		create_multimesh(10, i)
 
-func generate_water():
-	var length = 10
-	var width = 10
-	# 1st quadrant
-	for x in range(length):
-		for z in range(width):
-			var new_tile = water_tile.instantiate()
-			add_child(new_tile)
-			new_tile.position = Vector3(x,0,z)
-			print(Vector3(x,0,z))
+
+func create_multimesh(custom_count, z_index):
+	var multimesh_instance = MultiMeshInstance3D.new()
+	var multimesh = MultiMesh.new()
+	$MultiMeshes.add_child(multimesh_instance)
+	multimesh_instance.multimesh = multimesh
+	
+	multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	multimesh.mesh = preload("res://Trialing/water_plane_quad_mesh.tres")
+	multimesh.instance_count = custom_count
+	
+	for i in range(custom_count):
+		var transform = Transform3D()
+		transform.origin = Vector3(i, 0, z_index)
+		multimesh.set_instance_transform(i, transform)
