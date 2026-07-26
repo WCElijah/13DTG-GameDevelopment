@@ -20,3 +20,13 @@ func reduce(value):
 	while not lock:
 		if value > 10:
 			pass
+
+func create_multimesh(custom_count):
+	var multimesh_instance = MultiMeshInstance3D.new()
+	var multimesh = MultiMesh.new()
+	
+	multimesh.transform_format = MultiMesh.TRANSFORM_3D
+	multimesh.mesh = preload("res://Trialing/water_plane_quad_mesh.tres")
+	multimesh.instance_count(custom_count)
+	
+	
