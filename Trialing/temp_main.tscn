@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dhpvr0po4mpc1"]
 
 [ext_resource type="Script" uid="uid://cbr3woyk8x6hb" path="res://Trialing/temp_main.gd" id="1_mdtfl"]
+[ext_resource type="Material" uid="uid://csfroplqda1is" path="res://Trialing/new_shader_material.tres" id="2_8iy7c"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="3_xqpmi"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8iy7c"]
@@ -15,6 +16,7 @@ sky = SubResource("Sky_vb4cv")
 
 [node name="TempMain" type="Node3D" unique_id=1601968634]
 script = ExtResource("1_mdtfl")
+material = ExtResource("2_8iy7c")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1431778761]
 transform = Transform3D(1, 0, 0, 0, 0.7760794, 0.6306352, 0, -0.6306352, 0.7760794, 0, 0, 0)
@@ -22,11 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 0.7760794, 0.6306352, 0, -0.6306352, 0.77607
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1683120412]
 environment = SubResource("Environment_1gk3j")
 
-[node name="Camera3D" type="Camera3D" parent="." unique_id=2067609746]
-transform = Transform3D(-0.7071068, 0, -0.7071068, 0, 1, 0, 0.7071068, 0, -0.7071068, 0, 0.51206136, 0)
-current = true
-
 [node name="MultiMeshes" type="Node3D" parent="." unique_id=629875815]
 
-[node name="Camera3D2" type="Camera3D" parent="." unique_id=422501257]
-transform = Transform3D(1, 0, 0, 0, -4.3711385e-08, 0.99999994, 0, -0.99999994, -4.3711385e-08, 0, 10, 0)
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1018447853]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 10, 0)

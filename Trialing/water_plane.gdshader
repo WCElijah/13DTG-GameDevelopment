@@ -1,5 +1,4 @@
 // Based on https://youtu.be/7L6ZUYj1hs8?si=H4XmDMifrR0EQtV3
-
 shader_type spatial;
 
 // Boyounancy adujstments
