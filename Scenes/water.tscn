@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://d0kyqvcx8x5fq"]
 
-[ext_resource type="Shader" uid="uid://clppbgcnsd18h" path="res://assets/Shaders/water.gdshader" id="1_rqihb"]
-[ext_resource type="Texture2D" uid="uid://dowl0gdhb7w7g" path="res://assets/Shaders/YtNormalA.tres" id="2_jf7k4"]
-[ext_resource type="Texture2D" uid="uid://ddtthle642acf" path="res://assets/Shaders/YtNormalB.tres" id="3_mkv50"]
-[ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://assets/Shaders/yt_wave_bouyancy.tres" id="4_tosn6"]
-[ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://scripts/water.gd" id="5_bwbb5"]
+[ext_resource type="Shader" uid="uid://clppbgcnsd18h" path="res://Assets/Shaders/water.gdshader" id="1_rqihb"]
+[ext_resource type="Texture2D" uid="uid://dowl0gdhb7w7g" path="res://Assets/Shaders/YtNormalA.tres" id="2_jf7k4"]
+[ext_resource type="Texture2D" uid="uid://ddtthle642acf" path="res://Assets/Shaders/YtNormalB.tres" id="3_mkv50"]
+[ext_resource type="Texture2D" uid="uid://di74gmtu0dp75" path="res://Assets/Shaders/yt_wave_bouyancy.tres" id="4_tosn6"]
+[ext_resource type="Script" uid="uid://cm5aq02kesg4k" path="res://Scripts/water.gd" id="5_bwbb5"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_0wfyh"]
 render_priority = 0
@@ -22,10 +22,9 @@ shader_parameter/wave_time = 0.0
 shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_2_direction = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
-shader_parameter/wave_speed = 0.1
 shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 1.0
-shader_parameter/beers_law = 0.01
+shader_parameter/height_scale = 0.15
+shader_parameter/beers_law = 2.0
 shader_parameter/depth_offset = -0.75
 shader_parameter/edge_scale = 0.1
 shader_parameter/near = 0.5

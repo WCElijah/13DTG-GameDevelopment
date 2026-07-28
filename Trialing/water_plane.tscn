@@ -4,8 +4,9 @@
 [ext_resource type="Script" uid="uid://dfnu40h44eegq" path="res://Trialing/water_plane.gd" id="2_rjqxt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
-subdivide_width = 200
-subdivide_depth = 200
+size = Vector2(1000, 1000)
+subdivide_width = 2000
+subdivide_depth = 2000
 orientation = 1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_loxa5"]
@@ -60,7 +61,7 @@ shader_parameter/near = 1.0
 shader_parameter/far = 100.0
 shader_parameter/edge_color = Color(1, 1, 1, 1)
 
-[node name="WaterPlane" type="MeshInstance3D" unique_id=286029142]
+[node name="WaterPlane" type="MeshInstance3D" unique_id=286029142 groups=["waters"]]
 cast_shadow = 0
 mesh = SubResource("QuadMesh_fbhhr")
 surface_material_override/0 = SubResource("ShaderMaterial_rjqxt")
