@@ -14,6 +14,17 @@ size = Vector3(100, 20, 5)
 [sub_resource type="BoxShape3D" id="BoxShape3D_ynf5e"]
 size = Vector3(100, 20, 5)
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_6bp64"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_344ge"]
+height = 10.0
+radius = 1.5
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_ynf5e"]
+top_radius = 1.0
+bottom_radius = 1.5
+height = 10.0
+
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_tipki"]
 panorama = ExtResource("7_o6xl0")
 
@@ -28,7 +39,6 @@ sky = SubResource("Sky_85g3d")
 script = ExtResource("1_tipki")
 
 [node name="WaterPlane" parent="." unique_id=286029142 instance=ExtResource("2_344ge")]
-visible = false
 
 [node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.841545, 0)
@@ -50,6 +60,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.478806, 14.451193, -30.90
 [node name="Ship" parent="POI" unique_id=977846744 instance=ExtResource("9_ya4ey")]
 transform = Transform3D(-0.9869064, 0, -0.16129385, 0, 1, 0, 0.16129385, 0, -0.9869064, 38.985603, 43.9091, -106.94809)
 
+[node name="StaticBody3D2" type="StaticBody3D" parent="POI" unique_id=980417746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.748767, -20.726477)
+physics_material_override = SubResource("PhysicsMaterial_6bp64")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="POI/StaticBody3D2" unique_id=2042510757]
+shape = SubResource("CylinderShape3D_344ge")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="POI/StaticBody3D2" unique_id=1116257750]
+mesh = SubResource("CylinderMesh_ynf5e")
+
 [node name="Enviroment" type="Node" parent="." unique_id=1112978692]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment" unique_id=1260809518]
@@ -60,4 +80,4 @@ shadow_enabled = true
 environment = SubResource("Environment_choun")
 
 [node name="Player" parent="." unique_id=1519985126 instance=ExtResource("10_choun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, -33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, 3.0360737)

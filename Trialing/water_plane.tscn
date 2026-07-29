@@ -4,9 +4,9 @@
 [ext_resource type="Script" uid="uid://dfnu40h44eegq" path="res://Trialing/water_plane.gd" id="2_rjqxt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
-size = Vector2(1000, 1000)
-subdivide_width = 2000
-subdivide_depth = 2000
+size = Vector2(500, 500)
+subdivide_width = 1000
+subdivide_depth = 1000
 orientation = 1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_loxa5"]
@@ -51,7 +51,7 @@ shader_parameter/wave_direction = Vector2(2, 0)
 shader_parameter/wave_direction2 = Vector2(0, 1)
 shader_parameter/time_scale = 0.025
 shader_parameter/noise_scale = 10.0
-shader_parameter/height_scale = 0.15
+shader_parameter/height_scale = 0.7
 shader_parameter/color_deep = Color(1.0348111e-06, 0.2692092, 0.3637456, 1)
 shader_parameter/color_shallow = Color(0, 0.4745098, 0.7647059, 1)
 shader_parameter/beers_law = 2.0
