@@ -3,19 +3,20 @@
 [ext_resource type="Script" uid="uid://boycrmm5dnn30" path="res://Scripts/cube.gd" id="1_7pk0i"]
 [ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://Assets/Blender Models/ModelTestShip.glb" id="2_cnapg"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7pk0i"]
-radius = 0.6225586
-height = 4.8588867
+[sub_resource type="BoxShape3D" id="BoxShape3D_7pk0i"]
+size = Vector3(3, 14, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cnapg"]
 
 [node name="Ship" type="RigidBody3D" unique_id=232953914]
-mass = 200.0
+mass = 1000.0
 script = ExtResource("1_7pk0i")
 float_force = 200.0
 acceleration = 10.0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1178788028]
-transform = Transform3D(5.7320566e-15, 1.3113416e-07, 2.9999998, 3, -1.3113416e-07, 0, 1.3113416e-07, 2.9999998, -1.3113416e-07, 4.0659245e-09, 0.81612694, 0.09301758)
-shape = SubResource("CapsuleShape3D_7pk0i")
+transform = Transform3D(3.821371e-15, 8.742278e-08, 2, 2, -8.742278e-08, 0, 8.742278e-08, 2, -8.742278e-08, 0, -1.1838729, -0.6014405)
+shape = SubResource("BoxShape3D_7pk0i")
 
 [node name="Probes" type="Node3D" parent="." unique_id=942861942]
 
@@ -43,4 +44,10 @@ transform = Transform3D(1, 0, 0, 0, 0.9563048, 0.2923717, 0, -0.2923717, 0.95630
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1221275, 1.7624016, -1.1934344)
 
 [node name="ModelTestShip" parent="." unique_id=1024580313 instance=ExtResource("2_cnapg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.13665253, 0, 0)
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 0.13665253, 0, 0)
+
+[node name="Collisions" type="Node3D" parent="." unique_id=1684560965]
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=1575716818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.718449, 0, 0)
+shape = SubResource("BoxShape3D_cnapg")

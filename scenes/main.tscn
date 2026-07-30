@@ -3,10 +3,10 @@
 [ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://Scripts/main.gd" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_344ge"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://Scenes/Ships/originalTestShip.tscn" id="7_tipki"]
-[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://Scenes/test_cube.tscn" id="8_85g3d"]
-[ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://Scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://Scenes/player.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
+[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://scenes/player.tscn" id="10_choun"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_344ge"]
 size = Vector3(100, 20, 5)
@@ -41,7 +41,7 @@ script = ExtResource("1_tipki")
 [node name="WaterPlane" parent="." unique_id=286029142 instance=ExtResource("2_344ge")]
 
 [node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 15.841545, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.488859, 0)
 
 [node name="POI" type="Node3D" parent="." unique_id=2054701369]
 

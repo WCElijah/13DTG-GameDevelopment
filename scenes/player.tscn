@@ -3,8 +3,12 @@
 [ext_resource type="Script" uid="uid://dhs8ywgd1npyu" path="res://Scripts/player.gd" id="1_3vyb7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
+radius = 0.25
+height = 1.6
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_3vyb7"]
+radius = 0.25
+height = 1.6
 
 [node name="Player" type="CharacterBody3D" unique_id=1519985126]
 script = ExtResource("1_3vyb7")
