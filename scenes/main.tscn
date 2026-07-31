@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/originalTestShip.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://scenes/Ships/majestic_voyage_ship.tscn" id="9_ya4ey"]
 [ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://scenes/player.tscn" id="10_choun"]
 
@@ -41,7 +42,7 @@ script = ExtResource("1_tipki")
 [node name="WaterPlane" parent="." unique_id=286029142 instance=ExtResource("2_344ge")]
 
 [node name="Ship" parent="." unique_id=232953914 instance=ExtResource("7_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.488859, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 58.2489, 22.911882, 0)
 
 [node name="POI" type="Node3D" parent="." unique_id=2054701369]
 
@@ -61,7 +62,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.478806, 14.451193, -30.90
 transform = Transform3D(-0.9869064, 0, -0.16129385, 0, 1, 0, 0.16129385, 0, -0.9869064, 38.985603, 43.9091, -106.94809)
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="POI" unique_id=980417746]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.748767, -20.726477)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.766323, 4.748767, -20.726477)
 physics_material_override = SubResource("PhysicsMaterial_6bp64")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="POI/StaticBody3D2" unique_id=2042510757]
@@ -80,4 +81,9 @@ shadow_enabled = true
 environment = SubResource("Environment_choun")
 
 [node name="Player" parent="." unique_id=1519985126 instance=ExtResource("10_choun")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 22, 3.0360737)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.935093, 0)
+float_force = null
+water_drag = null
+
+[node name="sloop" parent="." unique_id=1430013140 instance=ExtResource("8_tipki")]
+transform = Transform3D(-2.1855695e-07, 0, 5, 0, 5, 0, -5, 0, -2.1855695e-07, -54.216843, 0, 0)

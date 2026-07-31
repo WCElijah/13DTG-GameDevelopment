@@ -1,21 +1,33 @@
 # Credts to: https://youtu.be/v4IEPi1c0eE?si=s-a95XTROJM22NDR 
 extends CharacterBody3D
 
-@export var float_force := 1.0
-@export var water_drag := 0.05
-@export var water_angular_drag := 0.05
+@export var float_force := 2.5
+@export var water_drag := 0.15  # stops bouncing faster
+
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 # movement settings
-const SPEED = 5.0
+const WALK_SPEED = 5.0
+const SPRINT_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
 @onready var pivot := $Pivot
-@onready var camera := $Pivot/Camera3D
+@onready var cameras = $Pivot.get_children()
+var current_camera_index = 0
 var sensitivity = 0.01
 
 # water settings
 var water
 var submerged := false
+
+
+func _ready() -> void:
+	for i in cameras.size():
+		if i == current_camera_index:
+			cameras[i].current = true
+		else:
+			cameras[i].current = false
+
+	water = get_tree().get_first_node_in_group("waters")
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -27,37 +39,59 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
 		if event is InputEventMouseMotion:
 			pivot.rotate_y(-event.relative.x * sensitivity)
-			camera.rotate_x(-event.relative.y * sensitivity)
-			camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-30), deg_to_rad(60))
-
-func _ready() -> void:
-	water = get_tree().get_first_node_in_group("waters")
+			cameras[get_current_camera_index()].rotate_x(-event.relative.y * sensitivity)
+			cameras[get_current_camera_index()].rotation.x = clamp(cameras[get_current_camera_index()].rotation.x, deg_to_rad(-30), deg_to_rad(60))
 
 
 func _physics_process(delta: float) -> void:
+	var current_speed = WALK_SPEED
+	
+	# handle ship mounting
+	if Global.canMount == true and Global.isMounted == false:
+		
+	
+	# handle bouyancy
 	submerged = false
-	var depth = water.get_height(self.global_position) - self.global_position.y
+	var depth = water.get_height(global_position) - global_position.y
 	if depth > 0:
 		submerged = true
-		velocity.y += gravity * depth 
-
-	# Add the gravity.
-	if not is_on_floor():
-		velocity += get_gravity() * delta
-
+		velocity.y += float_force * gravity * depth * delta
+		#velocity.y = min(velocity.y, WALK_SPEED)  # stops launches into air
+		velocity.x *= (1.0 - water_drag)
+		velocity.y *= (1.0 - water_drag)
+		velocity.z *= (1.0 - water_drag)
+	else:
+		# Add the gravity.
+		if not is_on_floor():
+			velocity += get_gravity() * delta
+			
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	# handle sprint
+	if Input.is_action_pressed("pressed_shift"):
+		current_speed = SPRINT_SPEED
+	# handle camera change
+	if Input.is_action_just_pressed("pressed_f5"):
+		cameras[get_current_camera_index()].current = false
+		current_camera_index = (current_camera_index + 1) % cameras.size()
+		cameras[current_camera_index].current = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir := Input.get_vector("left", "right", "forward", "back")
 	var direction = (pivot.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity.x = direction.x * current_speed
+		velocity.z = direction.z * current_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, current_speed)
+		velocity.z = move_toward(velocity.z, 0, current_speed)
 
 	move_and_slide()
+
+
+func get_current_camera_index():
+	for i in range(len(cameras)):
+		if cameras[i].current == true:
+			return i

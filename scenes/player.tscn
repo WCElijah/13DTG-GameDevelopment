@@ -24,3 +24,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.44346023, 0)
 
 [node name="Camera3D" type="Camera3D" parent="Pivot" unique_id=1740088029]
 current = true
+
+[node name="Camera3D2" type="Camera3D" parent="Pivot" unique_id=1437785364]
+transform = Transform3D(1, 0, 0, 0, 0.9573094, 0.2890652, 0, -0.2890652, 0.9573094, 0, 1.1445447, 2.0470128)
+current = true

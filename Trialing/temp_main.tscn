@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cbr3woyk8x6hb" path="res://Trialing/temp_main.gd" id="1_mdtfl"]
 [ext_resource type="Material" uid="uid://csfroplqda1is" path="res://Trialing/new_shader_material.tres" id="2_8iy7c"]
-[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="3_xqpmi"]
+[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="3_xqpmi"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_8iy7c"]
 panorama = ExtResource("3_xqpmi")

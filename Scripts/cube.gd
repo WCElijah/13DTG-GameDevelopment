@@ -7,6 +7,7 @@ extends RigidBody3D
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var water
 @onready var probes = $Probes.get_children()
+@onready var cameras = $Cameras.get_children()
 var submerged := false
 
 
@@ -15,13 +16,11 @@ var submerged := false
 var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
 
-var cameras: Array
 var current_camera_index = 0
 
 
 func _ready() -> void:
 	water = get_tree().get_first_node_in_group("waters")
-	cameras = $Cameras.get_children()
 	#for i in cameras.size():
 		#cameras[i].current = (i == 0)
 

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://1nuuyhqh6od0"
-path="res://.godot/imported/ModelTestShip.glb-391a1448832d2c38a89054096cac336f.scn"
+uid="uid://bvbsearg4xhel"
+path="res://.godot/imported/sloop.glb-79b08a8558b2e380e134b46a0c18f22c.scn"
 
 [deps]
 
-source_file="res://Assets/Blender Models/ModelTestShip.glb"
-dest_files=["res://.godot/imported/ModelTestShip.glb-391a1448832d2c38a89054096cac336f.scn"]
+source_file="res://Assets/Blender Model Exports/sloop.glb"
+dest_files=["res://.godot/imported/sloop.glb-79b08a8558b2e380e134b46a0c18f22c.scn"]
 
 [params]
 

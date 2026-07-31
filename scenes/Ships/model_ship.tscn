@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dlty6fmo32uli"]
 
-[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://Assets/Blender Models/ModelTestShip.glb" id="1_gs28v"]
+[ext_resource type="PackedScene" uid="uid://1nuuyhqh6od0" path="res://Assets/Blender Model Exports/ModelTestShip.glb" id="1_gs28v"]
 [ext_resource type="Script" uid="uid://stkqiitd8ic6" path="res://Scripts/model_ship.gd" id="1_jskdb"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jskdb"]
