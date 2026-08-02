@@ -2,4 +2,4 @@ extends Node
 
 var canMount = false
 var isMounted = false
-var canMountShipBodyName = null
+var canMountShipBody = null
