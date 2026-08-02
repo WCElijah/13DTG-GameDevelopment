@@ -143,6 +143,9 @@ script = ExtResource("1_7pk0i")
 float_force = 200.0
 acceleration = 10.0
 
+[node name="quarterDeck" type="Marker3D" parent="." unique_id=1496796846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8171463, 6.001576)
+
 [node name="Probes" type="Node3D" parent="." unique_id=942861942]
 
 [node name="FrontRight" type="Marker3D" parent="Probes" unique_id=1400017060]

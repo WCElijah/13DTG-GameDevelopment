@@ -72,6 +72,9 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_fs1nh")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_7mach"]
+size = Vector3(8.168098, 8.710133, 3.25)
+
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_7mach"]
 points = PackedVector3Array(2.8198893, 0.24660558, -0.08909449, 3.7872045, 0.7996277, 0.04916106, 4.0635805, 0.6613722, 0.04916106, 2.4048386, 0.24660558, 0.04916106, 2.4048386, 0.7996277, -0.08909449, 4.0635805, 0.6613722, -0.08909449, 2.4048386, 0.7996277, 0.04916106, 3.9253924, 0.3848611, 0.04916106, 3.9253924, 0.3848611, -0.08909449, 2.4048386, 0.24660558, -0.08909449, 3.7872045, 0.7996277, -0.08909449, 2.8198893, 0.24660558, 0.04916106, 4.0635805, 0.52311665, -0.08909449)
 
@@ -84,28 +87,16 @@ points = PackedVector3Array(1.298334, -0.16807988, -0.7803452, -2.8479793, 0.661
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_31aka"]
 points = PackedVector3Array(-4.230643, 0.8003588, -0.08909449, 0.8837298, 8.265428, 0.04916106, 1.0218501, 5.775853, 0.18741661, 3.7866092, 0.8003588, -0.08909449, 1.0218501, 0.8003588, 0.18741661, 0.8837298, 8.265428, -0.08909449, -4.230643, 1.0773029, 0.04916106, 3.7866092, 0.9391961, 0.04916106, -1.1888585, 6.467118, 0.04916106, 0.19234389, 5.222696, 0.18741661, -1.1888585, 6.467118, -0.08909449, -4.230643, 0.8003588, 0.04916106, -4.230643, 1.0773029, -0.08909449, 0.7448248, 8.265428, 0.04916106, 0.8837298, 0.8003588, 0.18741661, 1.0218501, 7.987753, -0.08909449, 1.0218501, 7.987753, 0.04916106, 3.7866092, 0.9391961, -0.08909449, 3.7866092, 0.8003588, 0.04916106, 0.7448248, 8.265428, -0.08909449, 0.7448248, 5.775853, 0.18741661, 0.19234389, 4.9464827, 0.18741661)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_7mach"]
-size = Vector3(8.168098, 8.710133, 3.25)
-
 [node name="sloop" type="RigidBody3D" unique_id=1430013140 groups=["ships"]]
 mass = 500.0
 script = ExtResource("1_7mach")
 float_force = 500.0
 
+[node name="quarterDeck" type="Marker3D" parent="." unique_id=863424705]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.1698225, 0.60414535, 0)
+
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=235035721]
 mesh = SubResource("ArrayMesh_8sa34")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=943579017]
-shape = SubResource("ConvexPolygonShape3D_7mach")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=801704193]
-shape = SubResource("ConvexPolygonShape3D_s0wsv")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=597403489]
-shape = SubResource("ConvexPolygonShape3D_5jgrs")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1125119918]
-shape = SubResource("ConvexPolygonShape3D_31aka")
 
 [node name="Cameras" type="Node3D" parent="." unique_id=1367568048]
 
@@ -130,6 +121,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9106882, -0.25, 0.75)
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="BoundingBoxArea" unique_id=2131227990]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07824755, 3.841271, -0.025489688)
 shape = SubResource("BoxShape3D_7mach")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=943579017]
+shape = SubResource("ConvexPolygonShape3D_7mach")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=801704193]
+shape = SubResource("ConvexPolygonShape3D_s0wsv")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=597403489]
+shape = SubResource("ConvexPolygonShape3D_5jgrs")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1125119918]
+shape = SubResource("ConvexPolygonShape3D_31aka")
 
 [connection signal="body_entered" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_entered"]
 [connection signal="body_exited" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_exited"]

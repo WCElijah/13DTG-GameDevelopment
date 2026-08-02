@@ -47,8 +47,11 @@ func _physics_process(delta: float) -> void:
 	var current_speed = WALK_SPEED
 	
 	# handle ship mounting
-	if Global.canMount == true and Global.isMounted == false:
-		
+	if Global.canMount == true and Global.isMounted == false and Global.canMountShipBodyName != null:
+		global_position = get_node_using_name(Global.canMountShipBodyName).get_node("quarterDeck").global_position
+		Global.canMount = false
+		Global.isMounted = true
+		Global.canMountShipBodyName = null
 	
 	# handle bouyancy
 	submerged = false
@@ -95,3 +98,9 @@ func get_current_camera_index():
 	for i in range(len(cameras)):
 		if cameras[i].current == true:
 			return i
+
+func get_node_using_name(name):
+	var main_node = self.get_parent()
+	for child in main_node.get_children():
+		if child.name == name:
+			return child

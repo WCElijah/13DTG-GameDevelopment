@@ -61,11 +61,14 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func _on_bounding_box_area_body_entered(body: Node3D) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and Global.isMounted == false:
 		Global.canMount = true
-
-
+		Global.isMounted = false
+		Global.canMountShipBodyName = self.name
+		
 func _on_bounding_box_area_body_exited(body: Node3D) -> void:
-	if body.name == "Player":
+	if body.name == "Player" and Global.isMounted == true:
 		Global.canMount = false
-		Global.canMountShipBodyName = body.name
+		Global.isMounted = false
+		Global.canMountShipBodyName = null
+		
