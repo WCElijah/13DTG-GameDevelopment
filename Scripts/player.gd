@@ -43,11 +43,14 @@ func _unhandled_input(event: InputEvent) -> void:
 			cameras[get_current_camera_index()].rotation.x = clamp(cameras[get_current_camera_index()].rotation.x, deg_to_rad(-30), deg_to_rad(60))
 
 
-func _physics_process(delta: float) -> void:
-	var current_speed = WALK_SPEED
-	
+func _process(delta: float) -> void:
+	# handle staying in ship
+	if Global.isMounted == true:
+		$CollisionShape3D.disabled = true
+		global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
+	else:
+		$CollisionShape3D.disabled = false
 	# handle ship mounting
-	
 	if Global.canMount == true and Global.isMounted == false and Global.canMountShipBody != null:
 		var keybind_message = "Press E to enter"
 		# show enter ship keybind
@@ -61,8 +64,22 @@ func _physics_process(delta: float) -> void:
 					global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
 					Global.canMount = false
 					Global.isMounted = true
-					Global.canMountShipBody = null
 					$"../MainUI".hide_keybind_label(keybind_message)
+					
+	# handle water staying with you
+	water.global_position.x = lerp(water.global_position.x, global_position.x, 0.1)
+	water.global_position.z = lerp(water.global_position.z, global_position.z, 0.1)
+
+	# handle ship exit
+	if Global.canMount == false and Global.isMounted == true and Global.canMountShipBody == null:
+		var keybind_message = "Press E to exit"
+		$"../MainUI".show_keybind_label(keybind_message)
+		
+		if Input.is_action_just_pressed("pressed_e"):
+			var ships
+
+func _physics_process(delta: float) -> void:
+	var current_speed = WALK_SPEED
 	
 	# handle bouyancy
 	submerged = false

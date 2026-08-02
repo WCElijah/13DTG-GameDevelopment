@@ -1,3 +1,5 @@
+# x2 looks good subdivisions
+
 extends MeshInstance3D
 
 var material: ShaderMaterial
