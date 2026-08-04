@@ -2,7 +2,6 @@ extends Control
 
 
 func create_keybind_label(message):
-	print('creating')
 	var new_keybind = Label.new()
 	$Keybinds.add_child(new_keybind)
 	new_keybind.text = message

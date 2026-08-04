@@ -50,6 +50,7 @@ func _process(delta: float) -> void:
 		global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
 	else:
 		$CollisionShape3D.disabled = false
+		
 	# handle ship mounting
 	if Global.canMount == true and Global.isMounted == false and Global.canMountShipBody != null:
 		var keybind_message = "Press E to enter"
@@ -65,18 +66,25 @@ func _process(delta: float) -> void:
 					Global.canMount = false
 					Global.isMounted = true
 					$"../MainUI".hide_keybind_label(keybind_message)
-					
-	# handle water staying with you
-	water.global_position.x = lerp(water.global_position.x, global_position.x, 0.1)
-	water.global_position.z = lerp(water.global_position.z, global_position.z, 0.1)
-
+	
 	# handle ship exit
 	if Global.canMount == false and Global.isMounted == true and Global.canMountShipBody == null:
 		var keybind_message = "Press E to exit"
 		$"../MainUI".show_keybind_label(keybind_message)
 		
 		if Input.is_action_just_pressed("pressed_e"):
-			var ships
+			var ships = get_tree().get_nodes_in_group("ships")
+			for ship in ships:
+				if ship == Global.canMountShipBody:
+					global_position = Global.canMountShipBody.get_node("exitPoint").global_position
+					Global.isMounted = false
+					Global.canMountShipBody == null
+
+
+	# handle water staying with you
+	water.global_position.x = lerp(water.global_position.x, global_position.x, 0.1)
+	water.global_position.z = lerp(water.global_position.z, global_position.z, 0.1)
+
 
 func _physics_process(delta: float) -> void:
 	var current_speed = WALK_SPEED
