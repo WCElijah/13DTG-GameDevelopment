@@ -17,22 +17,31 @@ var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
 
 var current_camera_index = 0
-
+var cameras_init = false
+var cameras
 
 func _ready() -> void:
 	water = get_tree().get_first_node_in_group("waters")
-	#if not cameras:
-		#for i in cameras.size():
-			#cameras[i].current = (i == 0)
+	for child in get_children():
+		if child.name == "Cameras" and child is Node3D:
+			cameras = child.get_children()
 
 
 func _process(delta: float) -> void:
-	#if Input.is_action_just_pressed("ui_accept"):
-		#current_camera_index = (current_camera_index + 1) % cameras.size()
-		#for i in cameras.size():
-			#cameras[i].current  = (i == current_camera_index)
-	
-	pass
+	if Global.isMounted == true:
+		# make it uniqe and check for boat node
+		if cameras_init == false:
+			for i in range(len(cameras)):
+				if i == current_camera_index:
+					cameras[i].current = true
+				else:
+					cameras[i].current = false
+
+		else:
+			if Input.is_action_just_pressed("pressed_f5"):
+				current_camera_index = (current_camera_index + 1) % range(len(cameras))
+				for i in range(len(cameras)):
+					cameras[i].current  = (i == current_camera_index)
 
 
 func _physics_process(delta: float) -> void:
@@ -67,10 +76,8 @@ func _on_bounding_box_area_body_entered(body: Node3D) -> void:
 		Global.canMountShipBody = self
 
 
-
 func _on_bounding_box_area_body_exited(body: Node3D) -> void:
 	if body.name == "Player" and Global.isMounted == false:
 		Global.canMount = false
 		Global.isMounted = false
 		Global.canMountShipBody = null
-		

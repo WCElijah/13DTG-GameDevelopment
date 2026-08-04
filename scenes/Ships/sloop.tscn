@@ -104,6 +104,13 @@ mesh = SubResource("ArrayMesh_8sa34")
 [node name="Cameras" type="Node3D" parent="." unique_id=1367568048]
 
 [node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=1175246007]
+transform = Transform3D(-4.1993815e-08, 0.27756616, -0.96070653, 1.2132802e-08, 0.96070653, 0.27756616, 1, 0, -4.371139e-08, -6.783051, 4.271884, 0)
+
+[node name="Camera3D2" type="Camera3D" parent="Cameras" unique_id=1080181616]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.45323777, 1.2378311)
+
+[node name="Camera3D3" type="Camera3D" parent="Cameras" unique_id=1989385031]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.2537272, 0.7308743, 0)
 
 [node name="Probes" type="Node3D" parent="." unique_id=694124379]
 

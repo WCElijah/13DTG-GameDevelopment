@@ -48,9 +48,11 @@ func _process(delta: float) -> void:
 	if Global.isMounted == true:
 		$CollisionShape3D.disabled = true
 		global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
+		toggle_cameras()
 	else:
 		$CollisionShape3D.disabled = false
-		
+		toggle_cameras()
+
 	# handle ship mounting
 	if Global.canMount == true and Global.isMounted == false and Global.canMountShipBody != null:
 		var keybind_message = "Press E to enter"
@@ -111,7 +113,7 @@ func _physics_process(delta: float) -> void:
 	if Input.is_action_pressed("pressed_shift"):
 		current_speed = SPRINT_SPEED
 	# handle camera change
-	if Input.is_action_just_pressed("pressed_f5"):
+	if Input.is_action_just_pressed("pressed_f5") and Global.isMounted == false:
 		cameras[get_current_camera_index()].current = false
 		current_camera_index = (current_camera_index + 1) % cameras.size()
 		cameras[current_camera_index].current = true
@@ -134,3 +136,8 @@ func get_current_camera_index():
 	for i in range(len(cameras)):
 		if cameras[i].current == true:
 			return i
+
+
+func toggle_cameras():
+	for camera in $Pivot.get_children():
+		camera.current = !camera.current
