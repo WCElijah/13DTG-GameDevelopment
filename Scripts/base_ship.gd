@@ -11,7 +11,7 @@ extends RigidBody3D
 var submerged := false
 
 
-@export var acceleration: float = 100
+@export var acceleration: float = 150
 
 var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
@@ -44,14 +44,15 @@ func _process(delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	## movement
-	#if Input.is_action_pressed("left"):
-		#apply_torque(acceleration * mass * Vector3.UP)
-	#if Input.is_action_pressed("right"):
-		#apply_torque(acceleration * mass * Vector3.DOWN)
-		#
-	#if Input.is_action_pressed("forward"):
-		#apply_force(acceleration * mass * -global_transform.basis.z)
+	# movement
+	if Global.isMounted == true and Global.canMountShipBody == self:
+		if Input.is_action_pressed("left"):
+			apply_torque(acceleration * mass * Vector3.UP * delta)
+		if Input.is_action_pressed("right"):
+			apply_torque(acceleration * mass * Vector3.DOWN * delta)
+			
+		if Input.is_action_pressed("forward"):
+			apply_force(acceleration * mass * -global_transform.basis.z * delta)
 	
 	# boyouancy effect
 	submerged = false
