@@ -21,11 +21,7 @@ var submerged := false
 
 
 func _ready() -> void:
-	for i in cameras.size():
-		if i == current_camera_index:
-			cameras[i].current = true
-		else:
-			cameras[i].current = false
+	camera_init()
 
 	water = get_tree().get_first_node_in_group("waters")
 
@@ -141,5 +137,17 @@ func get_current_camera_index():
 
 
 func toggle_cameras():
-	for camera in $Pivot.get_children():
-		camera.current = !camera.current
+	if Global.isMounted:
+		for camera in $Pivot.get_children():
+			if camera is Camera3D:
+				camera.current = false
+	else:
+		camera_init()
+
+
+func camera_init():
+	for i in cameras.size():
+		if i == current_camera_index:
+			cameras[i].current = true
+		else:
+			cameras[i].current = false

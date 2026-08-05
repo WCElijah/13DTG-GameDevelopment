@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://yugqfo0dm6jh"]
 
-[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_ship.gd" id="1_7mach"]
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://scripts/base_ship.gd" id="1_7mach"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qkv"]
 resource_name = "brownWood"
@@ -102,16 +102,21 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)
 mesh = SubResource("ArrayMesh_8sa34")
 
-[node name="Cameras" type="Node3D" parent="." unique_id=1367568048]
+[node name="SpecialCameras" type="Node3D" parent="." unique_id=2001153801]
+
+[node name="GunDeck" type="Camera3D" parent="SpecialCameras" unique_id=171155229]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.16490637, 0.4564395, -0.43404448)
+
+[node name="PerspectiveCameras" type="Node3D" parent="." unique_id=1367568048]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)
 
-[node name="Camera3D" type="Camera3D" parent="Cameras" unique_id=1175246007]
+[node name="ThirdPersonCamera" type="Camera3D" parent="PerspectiveCameras" unique_id=1175246007]
 transform = Transform3D(-4.1993815e-08, 0.27756616, -0.96070653, 1.2132802e-08, 0.96070653, 0.27756616, 1, 0, -4.371139e-08, -6.783051, 4.271884, 0)
 
-[node name="Camera3D2" type="Camera3D" parent="Cameras" unique_id=1080181616]
+[node name="FirstPersonCamera" type="Camera3D" parent="PerspectiveCameras" unique_id=1080181616]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0.45323777, 1.2378311)
 
-[node name="Camera3D3" type="Camera3D" parent="Cameras" unique_id=1989385031]
+[node name="SecondPersonCamera" type="Camera3D" parent="PerspectiveCameras" unique_id=1989385031]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -3.2537272, 0.7308743, 0)
 
 [node name="Probes" type="Node3D" parent="." unique_id=694124379]

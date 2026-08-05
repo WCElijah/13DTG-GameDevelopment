@@ -18,30 +18,50 @@ var last_direction = Vector3.FORWARD
 
 var current_camera_index = 0
 var cameras_init = false
-var cameras
+var perspective_cameras
+var special_cameras
+
+var fire_mode = false
 
 func _ready() -> void:
 	water = get_tree().get_first_node_in_group("waters")
+	# assign variables to cameras
 	for child in get_children():
-		if child.name == "Cameras" and child is Node3D:
-			cameras = child.get_children()
+		if child.name == "PerspectiveCameras" and child is Node3D:
+			perspective_cameras = child.get_children()
+		if child.name == "SpecialCameras":
+			special_cameras = child.get_children()
 
 
 func _process(delta: float) -> void:
-	if Global.isMounted == true and Global.canMountShipBody == self:
+	# handle perspective camera changes
+	if Global.isMounted == true and Global.canMountShipBody == self and fire_mode == false:
 		# make it uniqe and check for boat node
 		if cameras_init == false:
-			for i in range(len(cameras)):
+			for i in range(len(perspective_cameras)):
 				if i == current_camera_index:
-					cameras[i].current = true
+					perspective_cameras[i].current = true
 				else:
-					cameras[i].current = false
+					perspective_cameras[i].current = false
 	
-		if Input.is_action_just_pressed("pressed_f5") and cameras != null:
-			current_camera_index = (current_camera_index + 1) % len(cameras)
-			for i in range(len(cameras)):
-				cameras[i].current  = (i == current_camera_index)
-
+		if Input.is_action_just_pressed("pressed_f5") and perspective_cameras != null:
+			current_camera_index = (current_camera_index + 1) % len(perspective_cameras)
+			for i in range(len(perspective_cameras)):
+				perspective_cameras[i].current  = (i == current_camera_index)
+	
+	# handle gun fire mode
+	if Input.is_action_just_pressed("pressed_f") and Global.isMounted == true and Global.canMountShipBody == self:
+		fire_mode = !fire_mode
+		if fire_mode:
+			# disable all perspective cameras
+			for camera in perspective_cameras:
+				camera.current = false
+			# switch
+			for camera in special_cameras:
+				if camera.name == "GunDeck":
+					camera.current = true
+		else:
+			$SpecialCameras/GunDeck.current = false
 
 func _physics_process(delta: float) -> void:
 	# movement
