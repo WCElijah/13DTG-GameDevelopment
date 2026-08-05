@@ -35,8 +35,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and Global.isMounted == false:
 		if event is InputEventMouseMotion:
 			pivot.rotate_y(-event.relative.x * sensitivity)
 			cameras[get_current_camera_index()].rotate_x(-event.relative.y * sensitivity)
@@ -68,9 +68,10 @@ func _process(delta: float) -> void:
 					Global.canMount = false
 					Global.isMounted = true
 					$"../MainUI".hide_keybind_label(keybind_message)
+					await get_tree().create_timer(0.5).timeout
 	
 	# handle ship exit
-	if Global.canMount == false and Global.isMounted == true and Global.canMountShipBody == null:
+	if Global.canMount == false and Global.isMounted == true:
 		var keybind_message = "Press E to exit"
 		$"../MainUI".show_keybind_label(keybind_message)
 		

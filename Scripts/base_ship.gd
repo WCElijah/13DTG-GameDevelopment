@@ -28,7 +28,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	if Global.isMounted == true:
+	if Global.isMounted == true and Global.canMountShipBody == self:
 		# make it uniqe and check for boat node
 		if cameras_init == false:
 			for i in range(len(cameras)):
@@ -36,12 +36,11 @@ func _process(delta: float) -> void:
 					cameras[i].current = true
 				else:
 					cameras[i].current = false
-
-		else:
-			if Input.is_action_just_pressed("pressed_f5"):
-				current_camera_index = (current_camera_index + 1) % range(len(cameras))
-				for i in range(len(cameras)):
-					cameras[i].current  = (i == current_camera_index)
+	
+		if Input.is_action_just_pressed("pressed_f5") and cameras != null:
+			current_camera_index = (current_camera_index + 1) % len(cameras)
+			for i in range(len(cameras)):
+				cameras[i].current  = (i == current_camera_index)
 
 
 func _physics_process(delta: float) -> void:
