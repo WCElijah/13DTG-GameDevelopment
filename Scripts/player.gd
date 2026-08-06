@@ -77,8 +77,6 @@ func _process(delta: float) -> void:
 				if ship == Global.canMountShipBody:
 					global_position = Global.canMountShipBody.get_node("exitPoint").global_position
 					Global.isMounted = false
-					Global.canMountShipBody == null
-
 
 	# handle water staying with you
 	water.global_position.x = lerp(water.global_position.x, global_position.x, 0.1)

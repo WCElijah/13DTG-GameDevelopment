@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://byjn8nk2r5qp0"]
+
+[ext_resource type="PackedScene" uid="uid://dvw03c4enjflk" path="res://assets/Blender Model Exports/canon.glb" id="1_fdbkn"]
+
+[node name="ShipCanon" type="Node3D" unique_id=1947890008]
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=349693286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7981043, 0.44016093, 0)
+
+[node name="canon" parent="." unique_id=1130378035 instance=ExtResource("1_fdbkn")]
