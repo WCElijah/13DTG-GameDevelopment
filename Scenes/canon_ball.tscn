@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://taresg05778i"]
+
+[ext_resource type="Script" uid="uid://dvvuqclp44yp3" path="res://Scripts/canon_ball.gd" id="1_bohru"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_rst13"]
+radius = 0.056
+height = 0.112
+
+[node name="CanonBall" type="RayCast3D" unique_id=2009439414]
+top_level = true
+script = ExtResource("1_bohru")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2079558923]
+mesh = SubResource("SphereMesh_rst13")
+
+[node name="deleteTimer" type="Timer" parent="." unique_id=910227617]
+wait_time = 10.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="deleteTimer" to="." method="cleanup"]

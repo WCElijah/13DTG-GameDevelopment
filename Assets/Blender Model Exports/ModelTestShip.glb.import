@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://1nuuyhqh6od0"
-path="res://.godot/imported/ModelTestShip.glb-584652dc6221368014729e0058d18ebe.scn"
+path="res://.godot/imported/ModelTestShip.glb-55dc548ddda7b67c046c156ad6f13333.scn"
 
 [deps]
 
-source_file="res://assets/Blender Model Exports/ModelTestShip.glb"
-dest_files=["res://.godot/imported/ModelTestShip.glb-584652dc6221368014729e0058d18ebe.scn"]
+source_file="res://Assets/Blender Model Exports/ModelTestShip.glb"
+dest_files=["res://.godot/imported/ModelTestShip.glb-55dc548ddda7b67c046c156ad6f13333.scn"]
 
 [params]
 

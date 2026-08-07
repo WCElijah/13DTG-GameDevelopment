@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bri08lg01bho3"
-path.bptc="res://.godot/imported/kloppenheim_06_puresky_4k.exr-f7f8cf935f13e64779702c0735ca11cf.bptc.ctex"
+path.bptc="res://.godot/imported/kloppenheim_06_puresky_4k.exr-c4d93352a6b165916c2d624cc6776f1c.bptc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr"
-dest_files=["res://.godot/imported/kloppenheim_06_puresky_4k.exr-f7f8cf935f13e64779702c0735ca11cf.bptc.ctex"]
+source_file="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr"
+dest_files=["res://.godot/imported/kloppenheim_06_puresky_4k.exr-c4d93352a6b165916c2d624cc6776f1c.bptc.ctex"]
 
 [params]
 
