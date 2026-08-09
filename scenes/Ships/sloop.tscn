@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://yugqfo0dm6jh"]
 
-[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://scripts/base_ship.gd" id="1_7mach"]
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_ship.gd" id="1_7mach"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qkv"]
 resource_name = "brownWood"
@@ -101,6 +102,20 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.1
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=235035721]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)
 mesh = SubResource("ArrayMesh_8sa34")
+
+[node name="Canons" type="Node3D" parent="." unique_id=805703799]
+
+[node name="ShipCanon" parent="Canons" unique_id=1947890008 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.691422, 0.24803784, 0)
+
+[node name="ShipCanon2" parent="Canons" unique_id=1973281186 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.691422, 0.24803784, -0.29254952)
+
+[node name="ShipCanon3" parent="Canons" unique_id=231275788 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.691422, 0.24803784, -0.57585406)
+
+[node name="ShipCanon4" parent="Canons" unique_id=167686831 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-8.742278e-09, 0, -0.2, 0, 0.2, 0, 0.2, 0, -8.742278e-09, 0.691422, 0.24803784, -0.8554091)
 
 [node name="SpecialCameras" type="Node3D" parent="." unique_id=2001153801]
 

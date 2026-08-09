@@ -1,16 +1,16 @@
-extends RayCast3D
+extends RigidBody3D
 
-@export var speed := 50.0
+@export var explosion_strength := 5000.0
+@export var speed := 10.0
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 
-func _process(delta: float) -> void:
-	position += global_basis * Vector3.FORWARD * speed * delta
-	target_position = Vector3.FORWARD * speed * delta
-	force_raycast_update()
-	var collider = get_collider()
-	if is_colliding():
-		cleanup()
-	
+#func _ready() -> void:
+	#apply_impulse(global_basis * Vector3.FORWARD * explosion_strength)
+
+#func _process(delta: float) -> void:
+	#position += global_basis * Vector3.FORWARD * speed * delta
+
 
 func cleanup():
-	queue_free()	
+	queue_free()

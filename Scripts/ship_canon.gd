@@ -1,9 +1,12 @@
 extends Node3D
 
-var canon_ball = preload("res://Scenes/canon_ball.tscn")
+const CANON_BALL = preload("res://Scenes/canon_ball.tscn")
+@onready var timer: Timer = $cooldownTimer
 
 
-func shoot():
-	var new_canon_ball = canon_ball.instantiate()
-	$CanonBalls.add_child(new_canon_ball)
-	
+func _physics_process(delta: float) -> void:
+	if timer.is_stopped() and Input.is_action_pressed("left_click"):
+		timer.start(0.1)
+		var attack = CANON_BALL.instantiate()
+		add_child(attack)
+		attack.global_transform = $SpawnPoint.global_transform
