@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://bvbsearg4xhel"
-path="res://.godot/imported/sloop.glb-79b08a8558b2e380e134b46a0c18f22c.scn"
+path="res://.godot/imported/sloop.glb-792b098bca3e50936655e3c7eda5416f.scn"
 
 [deps]
 
-source_file="res://Assets/Blender Model Exports/sloop.glb"
-dest_files=["res://.godot/imported/sloop.glb-79b08a8558b2e380e134b46a0c18f22c.scn"]
+source_file="res://assets/Blender Model Exports/sloop.glb"
+dest_files=["res://.godot/imported/sloop.glb-792b098bca3e50936655e3c7eda5416f.scn"]
 
 [params]
 

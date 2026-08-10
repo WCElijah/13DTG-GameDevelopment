@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://fuchu2uidrbu"
-path.s3tc="res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg-8ae59be5b6cf0aa09f6d80a58bf1243f.s3tc.ctex"
+path.s3tc="res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg-5c98b96b42d52b13e2fcf85a88dd636a.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -14,8 +14,8 @@ generator_parameters={
 
 [deps]
 
-source_file="res://Assets/Blender Model Exports/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg"
-dest_files=["res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg-8ae59be5b6cf0aa09f6d80a58bf1243f.s3tc.ctex"]
+source_file="res://assets/Blender Model Exports/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg"
+dest_files=["res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg-5c98b96b42d52b13e2fcf85a88dd636a.s3tc.ctex"]
 
 [params]
 

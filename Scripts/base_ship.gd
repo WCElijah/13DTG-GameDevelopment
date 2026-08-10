@@ -70,7 +70,6 @@ func _physics_process(delta: float) -> void:
 			apply_torque(acceleration * mass * Vector3.UP * delta)
 		if Input.is_action_pressed("right"):
 			apply_torque(acceleration * mass * Vector3.DOWN * delta)
-			
 		if Input.is_action_pressed("forward"):
 			apply_force(acceleration * mass * -global_transform.basis.z * delta)
 	
