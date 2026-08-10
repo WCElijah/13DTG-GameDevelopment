@@ -40,15 +40,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _process(delta: float) -> void:
-	# handle staying in ship
-	if Global.isMounted == true:
-		$CollisionShape3D.disabled = true
-		global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
-		toggle_cameras()
-	else:
-		$CollisionShape3D.disabled = false
-		toggle_cameras()
-
 	# handle ship mounting
 	if Global.canMount == true and Global.isMounted == false and Global.canMountShipBody != null:
 		var keybind_message = "Press E to enter"
@@ -86,6 +77,15 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var current_speed = WALK_SPEED
 	
+	# handle staying in ship
+	if Global.isMounted == true:
+		$CollisionShape3D.disabled = true
+		global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
+		toggle_cameras()
+	else:
+		$CollisionShape3D.disabled = false
+		toggle_cameras()
+	
 	# handle bouyancy
 	submerged = false
 	var depth = water.get_height(global_position) - global_position.y
@@ -99,8 +99,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Add the gravity.
 		if not is_on_floor():
+			print('gravity applies')
 			velocity += get_gravity() * delta
-			
+
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
