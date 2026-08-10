@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b12e6aa108i7g"]
 
-[ext_resource type="Script" uid="uid://b0i6p8v27pgiy" path="res://Scripts/main_ui.gd" id="1_fnul3"]
+[ext_resource type="Script" uid="uid://b0i6p8v27pgiy" path="res://scripts/main_ui.gd" id="1_fnul3"]
 
 [node name="MainUI" type="Control" unique_id=1584415198]
 layout_mode = 3
@@ -15,3 +15,15 @@ script = ExtResource("1_fnul3")
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+
+[node name="ShipControls" type="Control" parent="." unique_id=1986457853]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="ShipControls" unique_id=1634100519]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "asdasdasdasdasdasd
+"
