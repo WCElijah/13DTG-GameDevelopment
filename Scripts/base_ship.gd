@@ -21,7 +21,6 @@ var cameras_init = false
 var perspective_cameras
 var special_cameras
 
-var fire_mode = false
 
 func _ready() -> void:
 	water = get_tree().get_first_node_in_group("waters")
@@ -35,7 +34,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	# handle perspective camera changes
-	if Global.isMounted == true and Global.canMountShipBody == self and fire_mode == false:
+	if Global.isMounted == true and Global.canMountShipBody == self and Global.fire_mode == false:
 		# make it uniqe and check for boat node
 		if cameras_init == false:
 			for i in range(len(perspective_cameras)):
@@ -51,8 +50,8 @@ func _process(delta: float) -> void:
 	
 	# handle gun fire mode
 	if Input.is_action_just_pressed("pressed_f") and Global.isMounted == true and Global.canMountShipBody == self:
-		fire_mode = !fire_mode
-		if fire_mode:
+		Global.fire_mode = !Global.fire_mode
+		if Global.fire_mode:
 			# disable all perspective cameras
 			for camera in perspective_cameras:
 				camera.current = false

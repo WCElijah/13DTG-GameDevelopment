@@ -6,11 +6,10 @@ const CANON_BALL = preload("res://Scenes/canon_ball.tscn")
 var canShoot = true
 
 func _physics_process(delta: float) -> void:
-	# handle cooldown
-	
-	if Input.is_action_just_pressed("left_click") and canShoot:
+	if Input.is_action_just_pressed("left_click") and canShoot and Global.fire_mode:
 		timer.start()
 		canShoot = false
+		
 		var attack = CANON_BALL.instantiate()
 		add_child(attack)
 		attack.global_transform = $SpawnPoint.global_transform
