@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export var float_force_multiplier := 1.5
 @export var water_drag := 2.0
-@export var water_angular_drag := 3.0
+@export var water_angular_drag := 1.0
 var float_force: float
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,12 +10,9 @@ var float_force: float
 @onready var probes = $Probes.get_children()
 var submerged := false
 
-
-@export var acceleration: float = 500
-
+@export var acceleration: float = 250
 var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
-
 var current_camera_index = 0
 var cameras_init = false
 var perspective_cameras
@@ -79,7 +76,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("right"):
 			apply_torque(acceleration * mass * Vector3.DOWN * delta)
 		if Input.is_action_pressed("forward"):
-			apply_force(acceleration * mass * -global_transform.basis.z * delta, $sailPoint.position)
+			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 	
 	# boyouancy effect
 	submerged = false

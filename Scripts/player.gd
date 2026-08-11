@@ -51,7 +51,7 @@ func _process(delta: float) -> void:
 			var ships = get_tree().get_nodes_in_group("ships")
 			for ship in ships:
 				if ship == Global.canMountShipBody:
-					global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
+					global_position = Global.canMountShipBody.get_node("Markers").get_node("quarterDeck").global_position
 					Global.canMount = false
 					Global.isMounted = true
 					$"../MainUI".hide_keybind_label(keybind_message)
@@ -66,7 +66,7 @@ func _process(delta: float) -> void:
 			var ships = get_tree().get_nodes_in_group("ships")
 			for ship in ships:
 				if ship == Global.canMountShipBody:
-					global_position = Global.canMountShipBody.get_node("exitPoint").global_position
+					global_position = Global.canMountShipBody.get_node("Markers").get_node("exitPoint").global_position
 					Global.isMounted = false
 
 	# handle water staying with you
@@ -80,7 +80,7 @@ func _physics_process(delta: float) -> void:
 	# handle staying in ship
 	if Global.isMounted == true:
 		$CollisionShape3D.disabled = true
-		global_position = Global.canMountShipBody.get_node("quarterDeck").global_position
+		global_position = Global.canMountShipBody.get_node("Markers").get_node("quarterDeck").global_position
 		toggle_cameras()
 	else:
 		$CollisionShape3D.disabled = false
