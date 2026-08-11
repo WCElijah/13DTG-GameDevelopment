@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://yugqfo0dm6jh"]
 
-[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_ship.gd" id="1_7mach"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://scripts/base_ship.gd" id="1_7mach"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qkv"]
 resource_name = "brownWood"
@@ -89,15 +89,17 @@ points = PackedVector3Array(1.298334, -0.16807988, -0.7803452, -2.8479793, 0.661
 points = PackedVector3Array(-4.230643, 0.8003588, -0.08909449, 0.8837298, 8.265428, 0.04916106, 1.0218501, 5.775853, 0.18741661, 3.7866092, 0.8003588, -0.08909449, 1.0218501, 0.8003588, 0.18741661, 0.8837298, 8.265428, -0.08909449, -4.230643, 1.0773029, 0.04916106, 3.7866092, 0.9391961, 0.04916106, -1.1888585, 6.467118, 0.04916106, 0.19234389, 5.222696, 0.18741661, -1.1888585, 6.467118, -0.08909449, -4.230643, 0.8003588, 0.04916106, -4.230643, 1.0773029, -0.08909449, 0.7448248, 8.265428, 0.04916106, 0.8837298, 0.8003588, 0.18741661, 1.0218501, 7.987753, -0.08909449, 1.0218501, 7.987753, 0.04916106, 3.7866092, 0.9391961, -0.08909449, 3.7866092, 0.8003588, 0.04916106, 0.7448248, 8.265428, -0.08909449, 0.7448248, 5.775853, 0.18741661, 0.19234389, 4.9464827, 0.18741661)
 
 [node name="Sloop" type="RigidBody3D" unique_id=1430013140 groups=["ships"]]
-mass = 500.0
+mass = 5000.0
 script = ExtResource("1_7mach")
-float_force = 500.0
 
 [node name="quarterDeck" type="Marker3D" parent="." unique_id=863424705]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.007884e-05, 0.60414535, 1.735778)
 
 [node name="exitPoint" type="Marker3D" parent="." unique_id=1921974937]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.1705422, 0.5156031, -0.4340444)
+
+[node name="sailPoint" type="Marker3D" parent="." unique_id=1481543535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.8644986, 0)
 
 [node name="Cube" type="MeshInstance3D" parent="." unique_id=235035721]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)

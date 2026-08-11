@@ -1,17 +1,17 @@
 extends RigidBody3D
 
-@export var float_force := 1.0
-@export var water_drag := 0.05
-@export var water_angular_drag := 0.05
+@export var float_force_multiplier := 1.5
+@export var water_drag := 2.0
+@export var water_angular_drag := 3.0
+var float_force: float
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var water
 @onready var probes = $Probes.get_children()
-#@onready var cameras = $Cameras.get_children()
 var submerged := false
 
 
-@export var acceleration: float = 150
+@export var acceleration: float = 500
 
 var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
@@ -30,6 +30,15 @@ func _ready() -> void:
 			perspective_cameras = child.get_children()
 		if child.name == "SpecialCameras":
 			special_cameras = child.get_children()
+	
+	# caluclate water physics
+	var total_probes
+	if probes.size() > 0:
+		total_probes = probes.size()
+	else:
+		total_probes = 1
+	
+	float_force = (mass * float_force_multiplier) / total_probes
 
 
 func _process(delta: float) -> void:
@@ -70,7 +79,7 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_pressed("right"):
 			apply_torque(acceleration * mass * Vector3.DOWN * delta)
 		if Input.is_action_pressed("forward"):
-			apply_force(acceleration * mass * -global_transform.basis.z * delta)
+			apply_force(acceleration * mass * -global_transform.basis.z * delta, $sailPoint.position)
 	
 	# boyouancy effect
 	submerged = false
@@ -83,8 +92,8 @@ func _physics_process(delta: float) -> void:
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if submerged:
-		state.linear_velocity *= 1 - water_drag
-		state.angular_velocity *= 1 - water_angular_drag
+		state.linear_velocity *= 1 - (water_drag * state.step)
+		state.angular_velocity *= 1 - (water_angular_drag * state.step)
 
 
 func _on_bounding_box_area_body_entered(body: Node3D) -> void:
