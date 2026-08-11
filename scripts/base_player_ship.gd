@@ -2,7 +2,7 @@ extends RigidBody3D
 
 @export var float_force_multiplier := 1.5
 @export var water_drag := 2.0
-@export var water_angular_drag := 1.0
+@export var water_angular_drag := 0.1
 var float_force: float
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -10,7 +10,7 @@ var float_force: float
 @onready var probes = $Probes.get_children()
 var submerged := false
 
-@export var acceleration: float = 250
+@export var acceleration: float = 500
 var input_dir = Vector3.ZERO
 var last_direction = Vector3.FORWARD
 var current_camera_index = 0
@@ -36,7 +36,9 @@ func _ready() -> void:
 		total_probes = 1
 	
 	float_force = (mass * float_force_multiplier) / total_probes
-
+	
+	# handle signals
+	self.body_entered.connect(_on_body_entered)
 
 func _process(delta: float) -> void:
 	# handle perspective camera changes
@@ -108,5 +110,5 @@ func _on_bounding_box_area_body_exited(body: Node3D) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body.name == "CanonBall" and body != Global.canMountShipBody:
+	if body.is_in_group("canon_balls"):
 		body.queue_free()

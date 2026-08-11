@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bb0tv78eyi2ek"]
 
-[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://scripts/base_hostile_ship.gd" id="1_vaaln"]
+[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21pdq"]
 resource_name = "JUN-AMA"
@@ -158,16 +158,16 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.235769, 0)
 [node name="Probes" type="Node3D" parent="." unique_id=942861942]
 
 [node name="FrontRight" type="Marker3D" parent="Probes" unique_id=1400017060]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, -6.3052225)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, -6.3052225)
 
 [node name="FrontLeft" type="Marker3D" parent="Probes" unique_id=587758844]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, -6.292223)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, -6.292223)
 
 [node name="BackLeft" type="Marker3D" parent="Probes" unique_id=194897697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, -0.5, 6.110468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.5, 6.110468)
 
 [node name="BackRight" type="Marker3D" parent="Probes" unique_id=945902085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -0.5, 6.110468)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0.5, 6.110468)
 
 [node name="PerspectiveCameras" type="Node3D" parent="." unique_id=839286275]
 

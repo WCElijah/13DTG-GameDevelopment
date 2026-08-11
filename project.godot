@@ -36,6 +36,7 @@ enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg")
 cameras=""
 waters=""
 ships=""
+canon_balls=""
 
 [input]
 

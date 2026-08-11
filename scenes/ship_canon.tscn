@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://byjn8nk2r5qp0"]
 
-[ext_resource type="PackedScene" uid="uid://dvw03c4enjflk" path="res://assets/Blender Model Exports/canon.glb" id="1_fdbkn"]
-[ext_resource type="Script" uid="uid://bdek5o8ygrpdb" path="res://scripts/ship_canon.gd" id="1_jioh0"]
+[ext_resource type="PackedScene" uid="uid://dvw03c4enjflk" path="res://Assets/Blender Model Exports/canon.glb" id="1_fdbkn"]
+[ext_resource type="Script" uid="uid://bdek5o8ygrpdb" path="res://Scripts/ship_canon.gd" id="1_jioh0"]
 
 [node name="ShipCanon" type="Node3D" unique_id=1947890008]
 script = ExtResource("1_jioh0")

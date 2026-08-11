@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://yugqfo0dm6jh"]
 
-[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://scripts/base_player_ship.gd" id="1_7mach"]
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
 [ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qkv"]
@@ -176,6 +176,5 @@ shape = SubResource("ConvexPolygonShape3D_5jgrs")
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)
 shape = SubResource("ConvexPolygonShape3D_31aka")
 
-[connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_entered" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_entered"]
 [connection signal="body_exited" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_exited"]

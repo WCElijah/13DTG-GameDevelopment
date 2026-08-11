@@ -11,8 +11,6 @@ var float_force: float
 var submerged := false
 
 @export var acceleration: float = 250
-var input_dir = Vector3.ZERO
-var last_direction = Vector3.FORWARD
 
 
 func _ready() -> void:
@@ -26,6 +24,9 @@ func _ready() -> void:
 		total_probes = 1
 	
 	float_force = (mass * float_force_multiplier) / total_probes
+	
+	# handle signals
+	self.body_entered.connect(_on_body_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -45,5 +46,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func _on_body_entered(body: Node) -> void:
-	if body.name == "CanonBall" and body != Global.canMountShipBody:
+	print('checking')
+	if body.is_in_group("canon_balls"):
+		print("culled")
 		body.queue_free()
