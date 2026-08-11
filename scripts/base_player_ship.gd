@@ -105,3 +105,8 @@ func _on_bounding_box_area_body_exited(body: Node3D) -> void:
 		Global.canMount = false
 		Global.isMounted = false
 		Global.canMountShipBody = null
+
+
+func _on_body_entered(body: Node) -> void:
+	if body.name == "CanonBall" and body != Global.canMountShipBody:
+		body.queue_free()

@@ -84,7 +84,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.935093, 0)
 [node name="PassiveShips" type="Node3D" parent="." unique_id=751481221]
 
 [node name="ChineseSamada" parent="PassiveShips" unique_id=232953914 instance=ExtResource("7_tipki")]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 42.848175, 23.78505, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 42.848175, 23.78505, 0)
 
 [node name="Sloop" parent="PassiveShips" unique_id=1430013140 instance=ExtResource("8_tipki")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -21.378288, 6.7109747, 0)

@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://cplk3yw2w0xkx"]
 
-[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_ship.gd" id="1_oufoa"]
-[ext_resource type="PackedScene" uid="uid://l66ryw2w1c6e" path="res://Assets/Blender Model Exports/majestic_voyager_ship.glb" id="2_oufoa"]
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://scripts/base_player_ship.gd" id="1_oufoa"]
+[ext_resource type="PackedScene" uid="uid://l66ryw2w1c6e" path="res://assets/Blender Model Exports/majestic_voyager_ship.glb" id="2_oufoa"]
+
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7pk0i"]
 radius = 1.1259766
