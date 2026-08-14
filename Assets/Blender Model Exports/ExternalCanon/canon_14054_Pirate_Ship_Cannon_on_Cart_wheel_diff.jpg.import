@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://fuchu2uidrbu"
-path.s3tc="res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg-8ae59be5b6cf0aa09f6d80a58bf1243f.s3tc.ctex"
+uid="uid://do211ivj0k34c"
+path.s3tc="res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_wheel_diff.jpg-da2954c2d11cda4fe9552d33399462fc.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "5112f1a428cfd40ccddfacf1c90d416e"
+"md5": "07f1fdbdc07c812505f6238036d7ae02"
 }
 
 [deps]
 
-source_file="res://Assets/Blender Model Exports/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg"
-dest_files=["res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_cart_diff.jpg-8ae59be5b6cf0aa09f6d80a58bf1243f.s3tc.ctex"]
+source_file="res://Assets/Blender Model Exports/ExternalCanon/canon_14054_Pirate_Ship_Cannon_on_Cart_wheel_diff.jpg"
+dest_files=["res://.godot/imported/canon_14054_Pirate_Ship_Cannon_on_Cart_wheel_diff.jpg-da2954c2d11cda4fe9552d33399462fc.s3tc.ctex"]
 
 [params]
 

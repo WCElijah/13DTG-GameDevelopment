@@ -17,9 +17,10 @@ var current_camera_index = 0
 var cameras_init = false
 var perspective_cameras
 var special_cameras
-
+var canons
 
 func _ready() -> void:
+	canons = self.get_node("Canons").get_children()
 	water = get_tree().get_first_node_in_group("waters")
 	# assign variables to cameras
 	for child in get_children():
@@ -41,6 +42,12 @@ func _ready() -> void:
 	self.body_entered.connect(_on_body_entered)
 
 func _process(delta: float) -> void:
+	# handle canon rotation
+	if Global.fire_mode == true and self == Global.canMountShipBody:
+		if Input.is_action_just_pressed("arrow_up"):
+			for canon in canons:
+				canon.rotate_vertical()
+
 	# handle perspective camera changes
 	if Global.isMounted == true and Global.canMountShipBody == self and Global.fire_mode == false:
 		# make it uniqe and check for boat node

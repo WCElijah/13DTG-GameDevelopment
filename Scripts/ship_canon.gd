@@ -15,5 +15,14 @@ func _physics_process(delta: float) -> void:
 		attack.global_transform = $SpawnPoint.global_transform
 
 
+func rotate_vertical(direction):
+	var rotational_inc = 5.0
+	var max_positive_z_rotation := 20.0
+	var max_negative_z_rotation := -20.0
+	var current_rotation = $Model/HorizontalPivot.rotation.z
+	if direction != 0 and current_rotation != max_positive_z_rotation and current_rotation != max_negative_z_rotation:
+		$Model/HorizontalPivot.rotation.z += rotational_inc
+		
+
 func _on_cooldown_timer_timeout() -> void:
 	canShoot = true
