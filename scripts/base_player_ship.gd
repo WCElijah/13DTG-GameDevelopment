@@ -20,7 +20,7 @@ var special_cameras
 var canons
 
 func _ready() -> void:
-	canons = self.get_node("Canons").get_children()
+	canons = self.get_node("Canons")
 	water = get_tree().get_first_node_in_group("waters")
 	# assign variables to cameras
 	for child in get_children():
@@ -45,8 +45,8 @@ func _process(delta: float) -> void:
 	# handle canon rotation
 	if Global.fire_mode == true and self == Global.canMountShipBody:
 		if Input.is_action_just_pressed("arrow_up"):
-			for canon in canons:
-				canon.rotate_vertical()
+			for canon in canons.get_children():
+				canon.rotate_vertical(1)
 
 	# handle perspective camera changes
 	if Global.isMounted == true and Global.canMountShipBody == self and Global.fire_mode == false:

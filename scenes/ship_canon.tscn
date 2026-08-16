@@ -73,9 +73,6 @@ shadow_mesh = SubResource("ArrayMesh_5jjnk")
 [node name="ShipCanon" type="Node3D" unique_id=1947890008]
 script = ExtResource("1_jioh0")
 
-[node name="SpawnPoint" type="Marker3D" parent="." unique_id=460493512]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.826)
-
 [node name="cooldownTimer" type="Timer" parent="." unique_id=925347760]
 one_shot = true
 
@@ -83,10 +80,14 @@ one_shot = true
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, 0)
 
 [node name="HorizontalPivot" type="Node3D" parent="Model" unique_id=1253330196]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Cylinder" type="MeshInstance3D" parent="Model/HorizontalPivot" unique_id=2041762222]
 transform = Transform3D(0, 0.24628133, 0, -0.24628133, 0, 0, 0, 0, 0.24628133, -0.9445492, 0, 0)
 mesh = SubResource("ArrayMesh_xh431")
+
+[node name="SpawnPoint" type="Marker3D" parent="Model/HorizontalPivot" unique_id=460493512]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.826, 0, 7.981699e-08)
 
 [node name="Cart" type="MeshInstance3D" parent="Model" unique_id=1169062312]
 transform = Transform3D(0.9620299, 0, 0, 0, 0.047226463, 0, 0, 0, 0.3417071, -0.6427617, -0.67523974, 0)
