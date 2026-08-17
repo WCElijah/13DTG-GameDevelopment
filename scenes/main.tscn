@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://c5je5ft2lbwi5"]
 
-[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://Scripts/main.gd" id="1_tipki"]
+[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://scripts/main.gd" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_344ge"]
-[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
+[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/chinese_samada.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
 [ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="8_tipki"]
@@ -61,6 +61,7 @@ transform = Transform3D(-0.9869064, 0, -0.16129385, 0, 1, 0, 0.16129385, 0, -0.9
 
 [node name="StaticBody3D2" type="StaticBody3D" parent="POI" unique_id=980417746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.766323, 4.748767, -20.726477)
+visible = false
 physics_material_override = SubResource("PhysicsMaterial_6bp64")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="POI/StaticBody3D2" unique_id=2042510757]
@@ -84,7 +85,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.935093, 0)
 [node name="PassiveShips" type="Node3D" parent="." unique_id=751481221]
 
 [node name="ChineseSamada" parent="PassiveShips" unique_id=232953914 instance=ExtResource("7_tipki")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 9.995079, 23.78505, 0)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 49.916157, 23.78505, 0)
 
 [node name="Sloop" parent="PassiveShips" unique_id=1430013140 instance=ExtResource("8_tipki")]
 transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -21.378288, 6.7109747, 0)

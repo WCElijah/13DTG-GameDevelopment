@@ -12,6 +12,9 @@ var submerged := false
 
 @export var acceleration: float = 250
 
+var in_range = false
+var target_position = null
+
 
 func _ready() -> void:
 
@@ -25,8 +28,6 @@ func _ready() -> void:
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
 	create_range_area()
-	# handle signals
-	self.body_entered.connect(_on_body_entered)
 
 
 func _physics_process(delta: float) -> void:
@@ -37,6 +38,23 @@ func _physics_process(delta: float) -> void:
 		if depth > 0:
 			submerged = true
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
+	
+	# handle follow prechecks
+	in_range = false
+	var bodies_in_range = get_node("RangeArea").get_overlapping_bodies()
+	for body in bodies_in_range:
+		if body.is_in_group("ships") and Global.canMountShipBody == body:
+			in_range = true
+			target_position = body.global_position
+
+
+	# follow
+	if target_position != null:
+		var distance_to_target = global_position.distance_to(target_position)
+		if distance_to_target > 30:
+			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
+
+	print(in_range)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -45,15 +63,21 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 		state.angular_velocity *= 1 - (water_angular_drag * state.step)
 
 
-func _on_body_entered(body: Node) -> void:
-	print('checking')
-	if body.is_in_group("canon_balls"):
-		print("culled")
-		body.queue_free()
+	# handle rotational follow
+	if in_range:
+		var target_dir = global_position.direction_to(target_position)
+		var current_forward = -global_transform.basis.z
+		var rot_axis = current_forward.cross(target_dir)
+		if rot_axis.length_squared() > 0.001:
+			rot_axis = rot_axis.normalized()
+			var angle = current_forward.angle_to(target_dir)
+			state.angular_velocity = rot_axis * angle
+		else:
+			state.angular_velocity = Vector3.ZERO
 
 
 func create_range_area():
-	var range_radius = sqrt(get_node("BoundingBoxArea").get_child(0).size.z) * Global.range_modifier
+	var bounding_box_collider = get_node("BoundingBoxArea").get_child(0)
 	var new_range_area = Area3D.new()
 	new_range_area.name = "RangeArea"
 	add_child(new_range_area)
@@ -62,4 +86,7 @@ func create_range_area():
 	new_range_area.add_child(new_collision_shape)
 	
 	var new_cylinder_colider = CylinderShape3D.new()
+	new_cylinder_colider.height = bounding_box_collider.shape.size.z
+	new_cylinder_colider.radius = sqrt(bounding_box_collider.shape.size.y) * Global.range_modifier
+	new_collision_shape.shape = new_cylinder_colider
 	

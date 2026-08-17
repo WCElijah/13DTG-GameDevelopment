@@ -92,11 +92,14 @@ func _physics_process(delta: float) -> void:
 	if Global.isMounted == true and Global.canMountShipBody == self:
 		if Input.is_action_pressed("left"):
 			apply_torque(acceleration * mass * Vector3.UP * delta)
-		if Input.is_action_pressed("right"):
+		elif Input.is_action_pressed("right"):
 			apply_torque(acceleration * mass * Vector3.DOWN * delta)
+		else:
+			angular_velocity.y  = move_toward(angular_velocity.y, 0, 5 * delta)
+		
 		if Input.is_action_pressed("forward"):
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
-	
+
 	# boyouancy effect
 	submerged = false
 	for probe in probes:
