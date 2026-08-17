@@ -1,6 +1,9 @@
 [gd_scene format=4 uid="uid://bb0tv78eyi2ek"]
 
-[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
+[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://scripts/base_hostile_ship.gd" id="1_vaaln"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_vaaln"]
+radius = 10.0
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21pdq"]
 resource_name = "JUN-AMA"
@@ -143,6 +146,11 @@ size = Vector3(2671, 4965.3525, 5167.3667)
 [node name="ChineseSamada" type="RigidBody3D" unique_id=232953914 groups=["ships"]]
 mass = 6000.0
 script = ExtResource("1_vaaln")
+
+[node name="RangeArea" type="Area3D" parent="." unique_id=1631057738]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RangeArea" unique_id=1540389792]
+shape = SubResource("CylinderShape3D_vaaln")
 
 [node name="Markers" type="Node3D" parent="." unique_id=1020618833]
 
