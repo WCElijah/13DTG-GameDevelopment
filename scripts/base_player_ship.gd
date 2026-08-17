@@ -51,7 +51,13 @@ func _process(delta: float) -> void:
 		elif Input.is_action_just_pressed("arrow_down"):
 			for canon in canons.get_children():
 				canon.rotate_vertical(-1)
-
+		elif Input.is_action_just_pressed("arrow_left"):
+			for canon in canons.get_children():
+				canon.rotate_horizontal(1)
+		elif Input.is_action_just_pressed("arrow_right"):
+			for canon in canons.get_children():
+				canon.rotate_horizontal(-1)
+		
 	# handle perspective camera changes
 	if Global.isMounted == true and Global.canMountShipBody == self and Global.fire_mode == false:
 		# make it uniqe and check for boat node

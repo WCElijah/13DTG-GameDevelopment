@@ -24,5 +24,12 @@ func rotate_vertical(vector):
 	$Model/HorizontalPivot.rotation.z = clamp(target_rotation, -max_rotation, max_rotation)
 
 
+func rotate_horizontal(vector):
+	# rotating left is a positive vector and right is negative
+	var rotational_inc := deg_to_rad(5.0)
+	var target_rotation  = $Model.rotation.y + (rotational_inc * vector)
+	$Model.rotation.y = clamp(target_rotation, deg_to_rad(60), deg_to_rad(120))
+
+
 func _on_cooldown_timer_timeout() -> void:
 	canShoot = true
