@@ -41,12 +41,16 @@ func _ready() -> void:
 	# handle signals
 	self.body_entered.connect(_on_body_entered)
 
+
 func _process(delta: float) -> void:
 	# handle canon rotation
 	if Global.fire_mode == true and self == Global.canMountShipBody:
 		if Input.is_action_just_pressed("arrow_up"):
 			for canon in canons.get_children():
 				canon.rotate_vertical(1)
+		elif Input.is_action_just_pressed("arrow_down"):
+			for canon in canons.get_children():
+				canon.rotate_vertical(-1)
 
 	# handle perspective camera changes
 	if Global.isMounted == true and Global.canMountShipBody == self and Global.fire_mode == false:
