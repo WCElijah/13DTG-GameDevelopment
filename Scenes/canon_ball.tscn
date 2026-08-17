@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://taresg05778i"]
 
-[ext_resource type="Script" uid="uid://dvvuqclp44yp3" path="res://Scripts/canon_ball.gd" id="1_bohru"]
+[ext_resource type="Script" uid="uid://dvvuqclp44yp3" path="res://scripts/canon_ball.gd" id="1_bohru"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rst13"]
 radius = 0.056
@@ -419,8 +419,12 @@ material = SubResource("StandardMaterial3D_nt8sw")
 shape = 0
 curve = SubResource("Curve_3yigh")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_bbc8j"]
+radius = 0.06930581
+
 [node name="CanonBall" type="RigidBody3D" unique_id=1323354967 groups=["canon_ball", "canon_balls"]]
 top_level = true
+max_contacts_reported = 1
 script = ExtResource("1_bohru")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2079558923]
@@ -440,4 +444,10 @@ trail_enabled = true
 process_material = SubResource("ShaderMaterial_o8nga")
 draw_pass_1 = SubResource("RibbonTrailMesh_8ybok")
 
+[node name="Area3D" type="Area3D" parent="." unique_id=2053171441]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D" unique_id=1257490518]
+shape = SubResource("SphereShape3D_bbc8j")
+
 [connection signal="timeout" from="deleteTimer" to="." method="cleanup"]
+[connection signal="body_entered" from="Area3D" to="." method="_on_area_3d_body_entered"]
