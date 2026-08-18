@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://ba6vljlu0n27o"]
 
-[ext_resource type="Material" uid="uid://30gkggd86fsn" path="res://Assets/Shaders/explosions/material_explosion_cloud.tres" id="1_a801j"]
-[ext_resource type="Shader" uid="uid://6mm6k82j2ck1" path="res://Assets/Shaders/explosions/streaks_shader.tres" id="2_4okmj"]
+[ext_resource type="Material" uid="uid://30gkggd86fsn" path="res://assets/Shaders/explosions/material_explosion_cloud.tres" id="1_a801j"]
+[ext_resource type="Shader" uid="uid://6mm6k82j2ck1" path="res://assets/Shaders/explosions/streaks_shader.tres" id="2_4okmj"]
 
 [sub_resource type="Curve" id="Curve_k2xjm"]
 _data = [Vector2(0.5190476, 0), 0.0, -0.1097465, 0, 0, Vector2(1, 1), -0.19662917, 0.0, 0, 0]
@@ -49,6 +49,7 @@ alpha_curve = SubResource("CurveTexture_bvnfy")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_drq55"]
 render_priority = 0
 shader = ExtResource("2_4okmj")
+shader_parameter/StreaksColor = Color(0.51115215, 0.20658013, 0.005943522, 1)
 
 [sub_resource type="Curve" id="Curve_88btf"]
 _data = [Vector2(0, 0.46067423), 0.0, 1.5267678, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -67,6 +68,8 @@ gravity = Vector3(0, 0, 0)
 scale_min = 5.0
 scale_max = 7.0
 scale_curve = SubResource("CurveTexture_ev8n3")
+hue_variation_min = -1.0
+hue_variation_max = 0.99999994
 
 [sub_resource type="QuadMesh" id="QuadMesh_1v2kj"]
 size = Vector2(0.25, 1)
