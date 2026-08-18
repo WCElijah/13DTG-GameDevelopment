@@ -90,12 +90,19 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	# movement
 	if Global.isMounted == true and Global.canMountShipBody == self:
+		var turn_input = 0.0
+		var speed = 1
 		if Input.is_action_pressed("left"):
+			turn_input += 1.0
 			apply_torque(acceleration * mass * Vector3.UP * delta)
 		elif Input.is_action_pressed("right"):
+			turn_input -= 1.0
 			apply_torque(acceleration * mass * Vector3.DOWN * delta)
+		
+		if turn_input != 0.0:
+			angular_velocity.y = turn_input * speed
 		else:
-			angular_velocity.y  = move_toward(angular_velocity.y, 0, 5 * delta)
+			angular_velocity.y = move_toward(angular_velocity.y, 0.0 , speed * 2 * delta)
 		
 		if Input.is_action_pressed("forward"):
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)

@@ -54,8 +54,6 @@ func _physics_process(delta: float) -> void:
 		if distance_to_target > 30:
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 
-	print(in_range)
-
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if submerged:
