@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ba6vljlu0n27o"]
+
+[ext_resource type="Shader" uid="uid://bcpk532dodcsl" path="res://Assets/Shaders/explosions/cloud_explosion.tres" id="1_17npe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nfeox"]
+render_priority = 0
+shader = ExtResource("1_17npe")
+shader_parameter/CloudSpeed = Vector2(0, 0.7)
+shader_parameter/CloudIntensity = 0.2
+shader_parameter/ExplosionColor = Color(0.703667, 0.219293, 0, 1)
+shader_parameter/ExplosionAmount = 0.390000018525
+
+[sub_resource type="SphereMesh" id="SphereMesh_aw4cw"]
+
+[node name="explosion" type="MeshInstance3D" unique_id=998993458]
+material_override = SubResource("ShaderMaterial_nfeox")
+mesh = SubResource("SphereMesh_aw4cw")
