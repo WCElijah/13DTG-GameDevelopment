@@ -1,9 +1,13 @@
 [gd_scene format=4 uid="uid://bb0tv78eyi2ek"]
 
-[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://scripts/base_hostile_ship.gd" id="1_vaaln"]
+[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
+[ext_resource type="PackedScene" uid="uid://cex78r1llvj6h" path="res://Scenes/health_ui.tscn" id="2_p6gxe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vaaln"]
 size = Vector3(1482.8215, 4965.3525, 5167.3667)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p6gxe"]
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21pdq"]
 resource_name = "JUN-AMA"
@@ -185,6 +189,11 @@ transform = Transform3D(1, 0, 0, 0, 0.9563048, 0.2923717, 0, -0.2923717, 0.95630
 
 [node name="FrontHullView" type="Camera3D" parent="PerspectiveCameras" unique_id=1545643845]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1221275, 1.7624016, -1.1934344)
+
+[node name="HealthUI" parent="." unique_id=171959526 instance=ExtResource("2_p6gxe")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6762943, 0)
+texture = SubResource("ViewportTexture_p6gxe")
+viewport_size = Vector2(500.745, 75)
 
 [node name="Medieval Boat" type="MeshInstance3D" parent="." unique_id=518009877]
 transform = Transform3D(-0.0033744609, -2.9500474e-10, 1.2895066e-17, 0, -1.4750237e-10, -0.0033744606, 2.9500474e-10, -0.0033744609, 1.4750236e-10, 3.0239513, -0.5416464, 3.0619757)

@@ -12,9 +12,15 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_3d_body_entered(body: Node3D) -> void:
 	if body.is_in_group("ships"):
+		# play explosion animation
 		var explosion = vfx_explosion.instantiate()
 		add_child(explosion)
 		explosion.global_position = global_position
 		explosion.get_node("AnimationPlayer").play("Init")
+		
+		# deal damage
+		if body:
+			body.get_node("HealthUI").take_damage(5)
+
 		await explosion.get_node("AnimationPlayer").animation_finished
 		queue_free()

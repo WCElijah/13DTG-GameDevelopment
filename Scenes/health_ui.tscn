@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://cex78r1llvj6h"]
+
+[ext_resource type="Script" uid="uid://berabwnkkcrmg" path="res://Scripts/health_ui.gd" id="1_fwugr"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_ofh1d"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h6up2"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p6gxe"]
+bg_color = Color(1, 0.21960784, 0.18039216, 1)
+border_width_bottom = 3
+border_color = Color(0.4294918, 0.04750298, 1.6845763e-07, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+shadow_size = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kcequ"]
+bg_color = Color(7.02709e-06, 0.8747734, 0.3627212, 1)
+border_width_bottom = 3
+border_color = Color(3.85046e-07, 0.27611196, 0.09127153, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_bottom = 3.0
+
+[node name="HealthUI" type="Sprite3D" unique_id=171959526]
+billboard = 1
+texture = SubResource("ViewportTexture_ofh1d")
+script = ExtResource("1_fwugr")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1210359033]
+transparent_bg = true
+size = Vector2i(208, 48)
+
+[node name="Panel" type="Panel" parent="SubViewport" unique_id=658768774]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h6up2")
+
+[node name="ProgressBar" type="ProgressBar" parent="SubViewport/Panel" unique_id=310695256]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.038000003
+anchor_top = 0.5
+anchor_right = 0.9620001
+anchor_bottom = 0.5
+offset_left = 0.09599972
+offset_top = -13.0
+offset_right = -0.0960083
+offset_bottom = 13.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_p6gxe")
+theme_override_styles/fill = SubResource("StyleBoxFlat_kcequ")
+value = 50.0

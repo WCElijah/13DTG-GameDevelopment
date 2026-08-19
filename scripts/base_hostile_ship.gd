@@ -27,6 +27,7 @@ func _ready() -> void:
 	
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
+	get_node("HealthUI").no_hp_left.connect(sink_ship)
 	create_range_area()
 
 
@@ -87,4 +88,7 @@ func create_range_area():
 	new_cylinder_colider.height = bounding_box_collider.shape.size.z
 	new_cylinder_colider.radius = sqrt(bounding_box_collider.shape.size.y) * Global.range_modifier
 	new_collision_shape.shape = new_cylinder_colider
-	
+
+
+func sink_ship():
+	queue_free()
