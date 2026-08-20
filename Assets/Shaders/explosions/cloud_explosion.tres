@@ -26,7 +26,7 @@ size = Vector2(616, 433)
 attached_nodes = PackedInt32Array(3, 2)
 
 [sub_resource type="VisualShaderNodeFrame" id="VisualShaderNodeFrame_h4fgs"]
-size = Vector2(1256, 905)
+size = Vector2(1256, 904.99994)
 attached_nodes = PackedInt32Array(5, 11, 4, 9, 8, 6, 17)
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_7skx8"]

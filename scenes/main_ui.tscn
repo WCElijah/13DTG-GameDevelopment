@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b12e6aa108i7g"]
 
-[ext_resource type="Script" uid="uid://b0i6p8v27pgiy" path="res://scripts/main_ui.gd" id="1_fnul3"]
+[ext_resource type="Script" uid="uid://b0i6p8v27pgiy" path="res://Scripts/main_ui.gd" id="1_fnul3"]
 
 [node name="MainUI" type="Control" unique_id=1584415198]
 layout_mode = 3
@@ -9,21 +9,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_fnul3")
 
 [node name="Keybinds" type="Control" parent="." unique_id=137001146]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
-[node name="ShipControls" type="Control" parent="." unique_id=1986457853]
+[node name="ShipControls" type="Control" parent="." unique_id=346869996]
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 1280.0
+offset_bottom = 720.0
 
-[node name="Label" type="Label" parent="ShipControls" unique_id=1634100519]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "asdasdasdasdasdasd
-"
+[node name="VBoxContainer" type="VBoxContainer" parent="ShipControls" unique_id=372169485]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -127.0
+offset_bottom = 306.0
+grow_horizontal = 0
+
+[node name="Button" type="Button" parent="ShipControls/VBoxContainer" unique_id=489539132]
+layout_mode = 2
+text = "Freelook"
+
+[node name="Button2" type="Button" parent="ShipControls/VBoxContainer" unique_id=765319484]
+layout_mode = 2
+text = "Hull View"

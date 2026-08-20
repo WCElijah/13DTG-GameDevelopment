@@ -1,6 +1,14 @@
 extends Control
 
 
+func _process(delta: float) -> void:
+	# handle ship controls
+	if Global.isMounted:
+		$ShipControls.show()
+	else:
+		$ShipControls.hide()
+
+
 func create_keybind_label(message):
 	var new_keybind = Label.new()
 	$Keybinds.add_child(new_keybind)
