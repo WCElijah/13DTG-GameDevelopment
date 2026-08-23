@@ -10,9 +10,11 @@ extends CharacterBody3D
 const WALK_SPEED = 5.0
 const SPRINT_SPEED = 10.0
 const JUMP_VELOCITY = 4.5
+
 @onready var pivot := $Pivot
-@onready var cameras = $Pivot.get_children()
-var current_camera_index = 0
+@onready var player_cameras = $Pivot.get_children()
+var is_freelook_mode = false
+
 var sensitivity = 0.01
 
 # water settings
@@ -21,12 +23,12 @@ var submerged := false
 
 
 func _ready() -> void:
-	camera_init()
-
+	Global.freelook_button_pressed.connect(freelook_btn_pressed)
+	Global.shiplook_button_pressed.connect(shiplook_btn_pressed)
 	water = get_tree().get_first_node_in_group("waters")
 
 
-func _unhandled_input(event: InputEvent) -> void:
+func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	elif event.is_action_pressed("ui_cancel"):
@@ -35,8 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and Global.isMounted == false:
 		if event is InputEventMouseMotion:
 			pivot.rotate_y(-event.relative.x * sensitivity)
-			cameras[get_current_camera_index()].rotate_x(-event.relative.y * sensitivity)
-			cameras[get_current_camera_index()].rotation.x = clamp(cameras[get_current_camera_index()].rotation.x, deg_to_rad(-30), deg_to_rad(60))
+			get_current_player_camera().rotate_x(-event.relative.y * sensitivity)
+			get_current_player_camera().rotation.x = clamp(get_current_player_camera().rotation.x, deg_to_rad(-30), deg_to_rad(60))
 
 
 func _process(delta: float) -> void:
@@ -68,6 +70,17 @@ func _process(delta: float) -> void:
 				if ship == Global.canMountShipBody:
 					global_position = Global.canMountShipBody.get_node("Markers").get_node("exitPoint").global_position
 					Global.isMounted = false
+	
+	# handle camera change
+	if Input.is_action_just_pressed("pressed_f5"):
+		if is_freelook_mode:
+			get_current_player_camera().current = false
+			var new_camera_index = (get_current_player_camera(true) + 1) % player_cameras.size()
+			player_cameras[new_camera_index].current = true
+		else:
+			# change ship cameras
+			pass
+
 
 	# handle water staying with you
 	water.global_position.x = lerp(water.global_position.x, global_position.x, 0.1)
@@ -81,10 +94,10 @@ func _physics_process(delta: float) -> void:
 	if Global.isMounted == true:
 		$CollisionShape3D.disabled = true
 		global_position = Global.canMountShipBody.get_node("Markers").get_node("quarterDeck").global_position
-		toggle_cameras()
+		toggle_cameras(false)
 	else:
 		$CollisionShape3D.disabled = false
-		toggle_cameras()
+		toggle_cameras(true)
 	
 	# handle bouyancy
 	submerged = false
@@ -107,11 +120,6 @@ func _physics_process(delta: float) -> void:
 	# handle sprint
 	if Input.is_action_pressed("pressed_shift"):
 		current_speed = SPRINT_SPEED
-	# handle camera change
-	if Input.is_action_just_pressed("pressed_f5") and Global.isMounted == false:
-		cameras[get_current_camera_index()].current = false
-		current_camera_index = (current_camera_index + 1) % cameras.size()
-		cameras[current_camera_index].current = true
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
@@ -128,24 +136,18 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func get_current_camera_index():
-	for i in range(len(cameras)):
-		if cameras[i].current == true:
-			return i
+func get_current_player_camera(return_index=false):
+	for i in range(len(player_cameras)):
+		if player_cameras[i].current == true:
+			if return_index:
+				return i
+			else:
+				return player_cameras[i]
 
 
-func toggle_cameras():
-	if Global.isMounted:
-		for camera in $Pivot.get_children():
-			if camera is Camera3D:
-				camera.current = false
-	else:
-		camera_init()
+func freelook_btn_pressed():
+	is_freelook_mode = true
 
 
-func camera_init():
-	for i in cameras.size():
-		if i == current_camera_index:
-			cameras[i].current = true
-		else:
-			cameras[i].current = false
+func shiplook_btn_pressed():
+	is_freelook_mode = false

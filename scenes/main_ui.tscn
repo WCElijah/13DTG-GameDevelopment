@@ -31,10 +31,13 @@ offset_left = -127.0
 offset_bottom = 306.0
 grow_horizontal = 0
 
-[node name="Button" type="Button" parent="ShipControls/VBoxContainer" unique_id=489539132]
+[node name="FreelookButton" type="Button" parent="ShipControls/VBoxContainer" unique_id=489539132]
 layout_mode = 2
 text = "Freelook"
 
-[node name="Button2" type="Button" parent="ShipControls/VBoxContainer" unique_id=765319484]
+[node name="ShipLookButton" type="Button" parent="ShipControls/VBoxContainer" unique_id=765319484]
 layout_mode = 2
 text = "Hull View"
+
+[connection signal="pressed" from="ShipControls/VBoxContainer/FreelookButton" to="." method="_on_freelook_button_pressed"]
+[connection signal="pressed" from="ShipControls/VBoxContainer/ShipLookButton" to="." method="_on_ship_look_button_pressed"]

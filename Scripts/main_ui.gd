@@ -1,6 +1,7 @@
 extends Control
 
 
+
 func _process(delta: float) -> void:
 	# handle ship controls
 	if Global.isMounted:
@@ -27,3 +28,11 @@ func hide_keybind_label(message):
 	for label in $Keybinds.get_children():
 		if label.text == message:
 			label.visible = false
+
+
+func _on_freelook_button_pressed() -> void:
+	Global.freelook_button_pressed.emit()
+
+
+func _on_ship_look_button_pressed() -> void:
+	Global.shiplook_button_pressed.emit()

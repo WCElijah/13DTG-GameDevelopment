@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ship's wheel
+* source:	https://sketchfab.com/3d-models/ships-wheel-7db785e378c848ba9c14f90f60d0c356
+* author:	galaxxxy (https://sketchfab.com/galaxxxy)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ship's wheel" (https://sketchfab.com/3d-models/ships-wheel-7db785e378c848ba9c14f90f60d0c356) by galaxxxy (https://sketchfab.com/galaxxxy) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

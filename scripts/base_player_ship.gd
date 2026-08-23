@@ -1,21 +1,19 @@
 extends RigidBody3D
 
+# water forces and boyounancy settings
 @export var float_force_multiplier := 1.5
 @export var water_drag := 2.0
 @export var water_angular_drag := 0.1
 var float_force: float
-
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var water
 @onready var probes = $Probes.get_children()
 var submerged := false
 
+# movement settings
 @export var acceleration: float = 500
 var input_dir = Vector3.ZERO
-var last_direction = Vector3.FORWARD
-var current_camera_index = 0
-var cameras_init = false
-var perspective_cameras
+
 var special_cameras
 var canons
 
