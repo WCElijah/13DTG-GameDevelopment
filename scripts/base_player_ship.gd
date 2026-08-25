@@ -16,7 +16,7 @@ var current_steering_deg = 0.0
 var target_steering_deg = 0.0
 
 var canons
-
+@onready var health_ui = preload("res://scenes/health_ui.tscn")
 
 func _ready() -> void:
 	canons = self.get_node("Canons")
@@ -31,6 +31,12 @@ func _ready() -> void:
 	
 	float_force = (mass * float_force_multiplier) / total_probes
 	
+	var new_health_ui = health_ui.instantiate()
+	add_child(new_health_ui)
+	new_health_ui.position = Vector3(0,0.4,0)
+	get_node("HealthUI").no_hp_left.connect(sink_ship)
+
+
 	# handle signals
 	self.body_entered.connect(_on_body_entered)
 
@@ -65,8 +71,7 @@ func _physics_process(delta: float) -> void:
 	# movement
 	if Global.isMounted == true and Global.canMountShipBody == self and not Global.fire_mode:
 		var steering_inc = deg_to_rad(15)
-		
-		var speed = 1
+
 		if Input.is_action_pressed("left"):
 			target_steering_deg = current_steering_deg + steering_inc
 			#apply_torque(acceleration * mass * Vector3.UP * delta)
@@ -121,3 +126,7 @@ func _on_bounding_box_area_body_exited(body: Node3D) -> void:
 func _on_body_entered(body: Node) -> void:
 	if body.is_in_group("canon_balls"):
 		body.queue_free()
+		
+
+func sink_ship():
+	queue_free()

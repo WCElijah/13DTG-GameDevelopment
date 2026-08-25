@@ -1,12 +1,13 @@
 [gd_scene format=4 uid="uid://bb0tv78eyi2ek"]
 
 [ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
-[ext_resource type="PackedScene" uid="uid://cex78r1llvj6h" path="res://Scenes/health_ui.tscn" id="2_p6gxe"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_b652t"]
+[ext_resource type="PackedScene" uid="uid://cex78r1llvj6h" path="res://scenes/health_ui.tscn" id="2_p6gxe"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vaaln"]
 size = Vector3(1482.8215, 4965.3525, 5167.3667)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_p6gxe"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_nl7wa"]
 viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21pdq"]
@@ -148,6 +149,14 @@ points = PackedVector3Array(1028.2958, 1751.475, 330.70493, 126.378174, 274.7713
 mass = 6000.0
 script = ExtResource("1_vaaln")
 
+[node name="Canons" type="Node3D" parent="." unique_id=1471566439]
+
+[node name="ShipCanon" parent="Canons" unique_id=1947890008 instance=ExtResource("2_b652t")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.394477, 1.5201225, 0)
+
+[node name="ShipCanon2" parent="Canons" unique_id=1874595757 instance=ExtResource("2_b652t")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.276529, 1.5201225, 0)
+
 [node name="BoundingBoxArea" type="Area3D" parent="." unique_id=1246117788]
 
 [node name="CollisionShape3D33" type="CollisionShape3D" parent="BoundingBoxArea" unique_id=643461075]
@@ -192,7 +201,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.1221275, 1.7624016, -1.1934
 
 [node name="HealthUI" parent="." unique_id=171959526 instance=ExtResource("2_p6gxe")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6762943, 0)
-texture = SubResource("ViewportTexture_p6gxe")
+texture = SubResource("ViewportTexture_nl7wa")
 viewport_size = Vector2(500.745, 75)
 
 [node name="Medieval Boat" type="MeshInstance3D" parent="." unique_id=518009877]

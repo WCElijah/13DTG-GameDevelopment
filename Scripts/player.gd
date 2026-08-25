@@ -58,7 +58,7 @@ func _process(delta: float) -> void:
 					global_position = Global.canMountShipBody.get_node("Markers/quarterDeck").global_position
 					$"../MainUI".hide_keybind_label(keybind_message)
 					await get_tree().create_timer(0.5).timeout
-	
+
 	# handle ship exit
 	if Global.canMount == false and Global.isMounted == true:
 		var keybind_message = "Press E to exit"

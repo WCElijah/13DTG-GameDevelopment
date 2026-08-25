@@ -14,7 +14,7 @@ var submerged := false
 
 var in_range = false
 var target_position = null
-
+@onready var health_ui = preload("res://scenes/health_ui.tscn")
 
 func _ready() -> void:
 
@@ -27,7 +27,12 @@ func _ready() -> void:
 	
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
+	
+	var new_health_ui = health_ui.instantiate()
+	add_child(new_health_ui)
+	new_health_ui.global_position = Vector3(0,3,0)
 	get_node("HealthUI").no_hp_left.connect(sink_ship)
+	
 	create_range_area()
 
 
@@ -54,7 +59,8 @@ func _physics_process(delta: float) -> void:
 		var distance_to_target = global_position.distance_to(target_position)
 		if distance_to_target > 30:
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
-
+		else:
+			shoot_canons()
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if submerged:
@@ -92,3 +98,10 @@ func create_range_area():
 
 func sink_ship():
 	queue_free()
+
+
+func shoot_canons():
+	# get canons
+	var canons = get_node("Canons").get_children()
+	for canon in canons:
+		canon.shoot_canon()

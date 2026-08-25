@@ -8,12 +8,7 @@ var canShoot = true
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("left_click") and canShoot and Global.fire_mode and Global.canMountShipBody == get_parent().get_parent():
-		timer.start()
-		canShoot = false
-		
-		var attack = CANON_BALL.instantiate()
-		add_child(attack)
-		attack.global_transform = $Model/HorizontalPivot/SpawnPoint.global_transform
+		shoot_canon()
 
 
 func rotate_vertical(vector):
@@ -33,3 +28,13 @@ func rotate_horizontal(vector):
 
 func _on_cooldown_timer_timeout() -> void:
 	canShoot = true
+
+
+func shoot_canon():
+	if canShoot:
+		timer.start()
+		canShoot = false
+			
+		var attack = CANON_BALL.instantiate()
+		add_child(attack)
+		attack.global_transform = $Model/HorizontalPivot/SpawnPoint.global_transform
