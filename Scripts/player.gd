@@ -53,7 +53,6 @@ func _process(delta: float) -> void:
 			var ships = get_tree().get_nodes_in_group("ships")
 			for ship in ships:
 				if ship == Global.canMountShipBody:
-					global_position = Global.canMountShipBody.get_node("Markers").get_node("quarterDeck").global_position
 					Global.canMount = false
 					Global.isMounted = true
 					global_position = Global.canMountShipBody.get_node("Markers/quarterDeck").global_position
@@ -91,12 +90,12 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var current_speed = WALK_SPEED
 	
-	## handle staying in ship
-	#if Global.isMounted == true:
-		#$CollisionShape3D.disabled = true
-		#global_position = Global.canMountShipBody.get_node("Markers/quarterDeck").global_position
-	#else:
-		#$CollisionShape3D.disabled = false
+	# handle staying in ship
+	if Global.isMounted == true:
+		$CollisionShape3D.disabled = true
+		global_position = Global.canMountShipBody.get_node("Markers/quarterDeck").global_position
+	else:
+		$CollisionShape3D.disabled = false
 
 	# handle bouyancy
 	submerged = false
@@ -110,8 +109,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z *= (1.0 - water_drag)
 	else:
 		# Add the gravity.
-		if not is_on_floor():
-			print('gravity')
+		if not is_on_floor() and not Global.isMounted:
 			velocity += get_gravity() * delta
 
 	# Handle jump.

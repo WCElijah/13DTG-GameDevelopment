@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://yugqfo0dm6jh"]
 
 [ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
 [ext_resource type="PackedScene" uid="uid://2cdkwigfljki" path="res://Assets/Blender Model Exports/ships_wheel/scene.gltf" id="2_u154u"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o5qkv"]
