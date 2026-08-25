@@ -12,7 +12,8 @@ var submerged := false
 
 # movement settings
 @export var acceleration: float = 500
-var input_dir = Vector3.ZERO
+var current_steering_deg = 0.0
+var target_steering_deg = 0.0
 
 var canons
 
@@ -62,21 +63,29 @@ func _process(delta: float) -> void:
 
 func _physics_process(delta: float) -> void:
 	# movement
-	if Global.isMounted == true and Global.canMountShipBody == self:
-		var turn_input = 0.0
+	if Global.isMounted == true and Global.canMountShipBody == self and not Global.fire_mode:
+		var steering_inc = deg_to_rad(15)
+		
 		var speed = 1
 		if Input.is_action_pressed("left"):
-			turn_input += 1.0
-			apply_torque(acceleration * mass * Vector3.UP * delta)
+			target_steering_deg = current_steering_deg + steering_inc
+			#apply_torque(acceleration * mass * Vector3.UP * delta)
 		elif Input.is_action_pressed("right"):
-			turn_input -= 1.0
-			apply_torque(acceleration * mass * Vector3.DOWN * delta)
+			target_steering_deg = current_steering_deg - steering_inc
 		
-		if turn_input != 0.0:
-			angular_velocity.y = turn_input * speed
-		else:
-			angular_velocity.y = move_toward(angular_velocity.y, 0.0 , speed * 2 * delta)
+		current_steering_deg = clamp(current_steering_deg, deg_to_rad(-45), deg_to_rad(45))
+		current_steering_deg = lerp(current_steering_deg, target_steering_deg, delta)
+		$WheelModel.rotation.z = current_steering_deg
 		
+		if abs(current_steering_deg) > 0.01: # error checking
+			var turning_dir
+			if current_steering_deg > 0:
+				turning_dir = Vector3.UP
+			else:
+				turning_dir = Vector3.DOWN
+			apply_torque(acceleration * mass * turning_dir * abs(current_steering_deg) * delta)
+
+
 		if Input.is_action_pressed("forward"):
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 
