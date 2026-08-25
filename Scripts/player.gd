@@ -13,7 +13,7 @@ const JUMP_VELOCITY = 4.5
 
 @onready var pivot := $Pivot
 @onready var player_cameras = $Pivot.get_children()
-var is_freelook_mode = false
+var is_ship_cam_mode = false
 
 var sensitivity = 0.01
 
@@ -34,7 +34,7 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("ui_cancel"):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and Global.isMounted == false:
+	if Input.mouse_mode == Input.MOUSE_MODE_CAPTURED and not Global.fire_mode:
 		if event is InputEventMouseMotion:
 			pivot.rotate_y(-event.relative.x * sensitivity)
 			get_current_player_camera().rotate_x(-event.relative.y * sensitivity)
@@ -56,6 +56,7 @@ func _process(delta: float) -> void:
 					global_position = Global.canMountShipBody.get_node("Markers").get_node("quarterDeck").global_position
 					Global.canMount = false
 					Global.isMounted = true
+					global_position = Global.canMountShipBody.get_node("Markers/quarterDeck").global_position
 					$"../MainUI".hide_keybind_label(keybind_message)
 					await get_tree().create_timer(0.5).timeout
 	
@@ -73,9 +74,9 @@ func _process(delta: float) -> void:
 	
 	# handle camera change
 	if Input.is_action_just_pressed("pressed_f5"):
-		if is_freelook_mode:
-			get_current_player_camera().current = false
+		if not is_ship_cam_mode:
 			var new_camera_index = (get_current_player_camera(true) + 1) % player_cameras.size()
+			get_current_player_camera().current = false
 			player_cameras[new_camera_index].current = true
 		else:
 			# change ship cameras
@@ -90,15 +91,13 @@ func _process(delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var current_speed = WALK_SPEED
 	
-	# handle staying in ship
-	if Global.isMounted == true:
-		$CollisionShape3D.disabled = true
-		global_position = Global.canMountShipBody.get_node("Markers").get_node("quarterDeck").global_position
-		toggle_cameras(false)
-	else:
-		$CollisionShape3D.disabled = false
-		toggle_cameras(true)
-	
+	## handle staying in ship
+	#if Global.isMounted == true:
+		#$CollisionShape3D.disabled = true
+		#global_position = Global.canMountShipBody.get_node("Markers/quarterDeck").global_position
+	#else:
+		#$CollisionShape3D.disabled = false
+
 	# handle bouyancy
 	submerged = false
 	var depth = water.get_height(global_position) - global_position.y
@@ -112,6 +111,7 @@ func _physics_process(delta: float) -> void:
 	else:
 		# Add the gravity.
 		if not is_on_floor():
+			print('gravity')
 			velocity += get_gravity() * delta
 
 	# Handle jump.
@@ -146,8 +146,8 @@ func get_current_player_camera(return_index=false):
 
 
 func freelook_btn_pressed():
-	is_freelook_mode = true
+	is_ship_cam_mode = false
 
 
 func shiplook_btn_pressed():
-	is_freelook_mode = false
+	is_ship_cam_mode = true
