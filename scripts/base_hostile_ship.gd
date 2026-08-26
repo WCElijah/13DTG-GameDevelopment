@@ -11,10 +11,12 @@ var float_force: float
 var submerged := false
 
 @export var acceleration: float = 250
+@export var shooting_distance = 30
 
 var in_range = false
 var target_position = null
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
+
 
 func _ready() -> void:
 
@@ -57,10 +59,11 @@ func _physics_process(delta: float) -> void:
 	# follow
 	if target_position != null:
 		var distance_to_target = global_position.distance_to(target_position)
-		if distance_to_target > 30:
+		if distance_to_target > shooting_distance:
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 		else:
 			shoot_canons()
+
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	if submerged:
@@ -79,6 +82,20 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			state.angular_velocity = rot_axis * angle
 		else:
 			state.angular_velocity = Vector3.ZERO
+	
+	# handle rotational alignment for shooting
+	if target_position != null:
+		var distance_to_target = global_position.distance_to(target_position)
+		if distance_to_target < shooting_distance:
+			var target_dir = global_position.direction_to(target_position)
+			var current_forward = -global_transform.basis.x
+			var rot_axis = current_forward.cross(target_dir)
+			if rot_axis.length_squared() > 0.001:
+				rot_axis = rot_axis.normalized()
+				var angle = current_forward.angle_to(target_dir)
+				state.angular_velocity = rot_axis * angle
+			else:
+				state.angular_velocity = Vector3.ZERO
 
 
 func create_range_area():
