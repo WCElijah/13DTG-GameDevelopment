@@ -90,7 +90,6 @@ func _physics_process(delta: float) -> void:
 				turning_dir = Vector3.DOWN
 			apply_torque(acceleration * mass * turning_dir * abs(current_steering_deg) * delta)
 
-
 		if Input.is_action_pressed("forward"):
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 
