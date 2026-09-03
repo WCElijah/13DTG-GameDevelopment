@@ -30,11 +30,7 @@ func _ready() -> void:
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
 	
-	var new_health_ui = health_ui.instantiate()
-	add_child(new_health_ui)
-	new_health_ui.global_position = Vector3(0,3,0)
-	get_node("HealthUI").no_hp_left.connect(sink_ship)
-	
+	generate_health_bar()
 	create_range_area()
 
 
@@ -122,3 +118,10 @@ func shoot_canons():
 	var canons = get_node("Canons").get_children()
 	for canon in canons:
 		canon.shoot_canon()
+
+func generate_health_bar():
+	var new_health_ui = health_ui.instantiate()
+	add_child(new_health_ui)
+	var new_pos = position + Vector3(0,5.23,0)
+	new_health_ui.position = new_pos
+	get_node("HealthUI").no_hp_left.connect(sink_ship)

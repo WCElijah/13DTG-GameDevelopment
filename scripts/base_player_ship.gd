@@ -31,12 +31,8 @@ func _ready() -> void:
 	
 	float_force = (mass * float_force_multiplier) / total_probes
 	
-	var new_health_ui = health_ui.instantiate()
-	add_child(new_health_ui)
-	new_health_ui.position = Vector3(0,0.4,0)
-	get_node("HealthUI").no_hp_left.connect(sink_ship)
 
-
+	generate_health_bar()
 	# handle signals
 	self.body_entered.connect(_on_body_entered)
 
@@ -129,3 +125,10 @@ func _on_body_entered(body: Node) -> void:
 
 func sink_ship():
 	queue_free()
+	
+
+func generate_health_bar():
+	var new_health_ui = health_ui.instantiate()
+	add_child(new_health_ui)
+	new_health_ui.global_position = Vector3(0,0.4,0)
+	get_node("HealthUI").no_hp_left.connect(sink_ship)
