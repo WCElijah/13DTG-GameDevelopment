@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bb0tv78eyi2ek"]
 
 [ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_b652t"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_b652t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32f5s"]
 size = Vector3(1482.8215, 4965.3525, 5167.3667)
@@ -186,21 +186,21 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6563478, 10.829006)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.624731, 0, 0)
 
 [node name="sailPoint" type="Marker3D" parent="Markers" unique_id=63057213]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.97368, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.649752, 0)
 
 [node name="Probes" type="Node3D" parent="." unique_id=942861942]
 
 [node name="FrontRight" type="Marker3D" parent="Probes" unique_id=1400017060]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -10)
 
 [node name="FrontLeft" type="Marker3D" parent="Probes" unique_id=587758844]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -10)
 
 [node name="BackLeft" type="Marker3D" parent="Probes" unique_id=194897697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 10)
 
 [node name="BackRight" type="Marker3D" parent="Probes" unique_id=945902085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, 10)
 
 [node name="Medieval Boat" type="MeshInstance3D" parent="." unique_id=518009877]
 transform = Transform3D(-0.006, -9.0597485e-10, 3.9601417e-17, 0, -2.6226832e-10, -0.006, 9.0597485e-10, -0.006, 2.6226832e-10, 5.4107513, -0.78416395, 5.9822226)

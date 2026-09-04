@@ -44,13 +44,13 @@ func _physics_process(delta: float) -> void:
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 	
 	# handle follow prechecks
-	in_range = false
 	var bodies_in_range = get_node("RangeArea").get_overlapping_bodies()
 	for body in bodies_in_range:
 		if body.is_in_group("ships") and Global.canMountShipBody == body and Global.isMounted:
 			in_range = true
 			target_position = body.global_position
-
+		else:
+			in_range = false
 
 	# follow
 	if target_position != null:
