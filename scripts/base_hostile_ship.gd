@@ -96,18 +96,24 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 func create_range_area():
 	var bounding_box_collider = get_node("BoundingBoxArea").get_child(0)
+	
+	# generate area3d
 	var new_range_area = Area3D.new()
 	new_range_area.name = "RangeArea"
 	add_child(new_range_area)
 	
+	# generate collisionshape
 	var new_collision_shape = CollisionShape3D.new()
 	new_range_area.add_child(new_collision_shape)
 	
+	# generate shape of collisionshape
 	var new_cylinder_colider = CylinderShape3D.new()
+	print(bounding_box_collider.shape.size.z)
+	print(bounding_box_collider.shape.size.y)
 	new_cylinder_colider.height = bounding_box_collider.shape.size.z
-	new_cylinder_colider.radius = sqrt(bounding_box_collider.shape.size.y) * Global.range_modifier
+	new_cylinder_colider.radius = bounding_box_collider.shape.size.y/2 * Global.range_modifier
 	new_collision_shape.shape = new_cylinder_colider
-
+	
 
 func sink_ship():
 	queue_free()
@@ -119,9 +125,9 @@ func shoot_canons():
 	for canon in canons:
 		canon.shoot_canon()
 
+
 func generate_health_bar():
 	var new_health_ui = health_ui.instantiate()
 	add_child(new_health_ui)
-	var new_pos = position + Vector3(0,5.23,0)
-	new_health_ui.position = new_pos
+	new_health_ui.position = Vector3(0,5.23,0)
 	get_node("HealthUI").no_hp_left.connect(sink_ship)
