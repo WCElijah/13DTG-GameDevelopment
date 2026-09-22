@@ -11,10 +11,10 @@ var float_force: float
 var submerged := false
 
 @export var acceleration: float = 250
-@export var shooting_distance = 30
+@export var shooting_distance: float = 30.0
 
 var in_range = false
-var target_position = null
+var target = null
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
 
 
@@ -42,19 +42,10 @@ func _physics_process(delta: float) -> void:
 			submerged = true
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 	
-	# handle follow prechecks
-	var bodies_in_range = get_node("RangeArea").get_overlapping_bodies()
-	in_range = false
-	target_position = null
-	for body in bodies_in_range:
-		if body.is_in_group("ships") and Global.canMountShipBody == body and Global.isMounted:
-			in_range = true
-			target_position = body.global_position
-			break
-
-	# follow
-	if target_position != null:
-		var distance_to_target = global_position.distance_to(target_position)
+	# handle target movement
+	update_target()
+	if target != null:
+		var distance_to_target = global_position.distance_to(target.global_position)
 		if distance_to_target > shooting_distance:
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 		else:
@@ -62,39 +53,23 @@ func _physics_process(delta: float) -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	state.angular_velocity = Vector3.ZERO
-	
+	# handle water drag
 	if submerged:
 		state.linear_velocity *= 1 - (water_drag * state.step)
 		state.angular_velocity *= 1 - (water_angular_drag * state.step)
 
 
 	# handle rotational follow
-	if in_range:
-		var target_dir = global_position.direction_to(target_position)
-		var current_forward = -global_transform.basis.z
-		var rot_axis = current_forward.cross(target_dir)
-		if rot_axis.length_squared() > 0.001:
-			rot_axis = rot_axis.normalized()
-			var angle = current_forward.angle_to(target_dir)
-			state.angular_velocity = rot_axis * angle
-		else:
-			state.angular_velocity = Vector3.ZERO
-		print('rotating')
-		
-	# handle rotational alignment for shooting
-	if target_position != null:
-		var distance_to_target = global_position.distance_to(target_position)
-		if distance_to_target < shooting_distance:
-			var target_dir = global_position.direction_to(target_position)
-			var current_forward = -global_transform.basis.x
-			var rot_axis = current_forward.cross(target_dir)
-			if rot_axis.length_squared() > 0.001:
-				rot_axis = rot_axis.normalized()
-				var angle = current_forward.angle_to(target_dir)
-				state.angular_velocity = rot_axis * angle
-			else:
-				state.angular_velocity = Vector3.ZERO
+	if target == null:
+		return
+	
+	var target_direction = global_position.direction_to(target.global_position)
+	var current_forward = -global_transform.basis.z
+	var rot_axis = current_forward.cross(target_direction)
+	if rot_axis.length_squared() > 0.001:
+		rot_axis = rot_axis.normalized()
+		var angle = current_forward.angle_to(target_direction)
+		state.angular_velocity = rot_axis * angle
 
 
 func create_range_area():
@@ -143,3 +118,17 @@ func generate_health_bar():
 	add_child(new_health_ui)
 	new_health_ui.position = Vector3(0,5.23,0)
 	get_node("HealthUI").no_hp_left.connect(sink_ship)
+
+
+func update_target():
+	var bodies_in_range = $RangeArea.get_overlapping_bodies()
+
+	in_range = false
+	target = null
+
+	for body in bodies_in_range:
+		if body.is_in_group("ships") and body == Global.canMountShipBody and Global.isMounted:
+			in_range = true
+			target = body
+			return
+	
