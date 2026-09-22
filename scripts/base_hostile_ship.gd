@@ -48,8 +48,6 @@ func _physics_process(delta: float) -> void:
 		var distance_to_target = global_position.distance_to(target.global_position)
 		if distance_to_target > shooting_distance:
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
-		else:
-			shoot_canons()
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -62,14 +60,39 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# handle rotational follow
 	if target == null:
 		return
-	
 	var target_direction = global_position.direction_to(target.global_position)
+	target_direction.y = 0
+	target_direction = target_direction.normalized()
+	
+	var distance_to_target = global_position.distance_to(target.global_position)
 	var current_forward = -global_transform.basis.z
-	var rot_axis = current_forward.cross(target_direction)
-	if rot_axis.length_squared() > 0.001:
-		rot_axis = rot_axis.normalized()
-		var angle = current_forward.angle_to(target_direction)
-		state.angular_velocity = rot_axis * angle
+	if distance_to_target > shooting_distance:
+		# follow target
+		var rot_axis = current_forward.cross(target_direction)
+		if rot_axis.length_squared() > 0.001:
+			rot_axis = rot_axis.normalized()
+			var angle = current_forward.angle_to(target_direction)
+			state.angular_velocity = rot_axis * angle
+	else:
+		# perpendicular alightnment for shooting
+		var side_direction1 = Vector3.UP.cross(target_direction)
+		var side_direction2 = -side_direction1
+		
+		# choose closest side
+		var desired_side_direction
+		if current_forward.dot(side_direction1) > current_forward.dot(side_direction2):
+			desired_side_direction = side_direction1
+		else:
+			desired_side_direction = side_direction2
+		
+		var rot_axis = current_forward.cross(desired_side_direction)
+		if rot_axis.length_squared() > 0.001:
+			rot_axis = rot_axis.normalized()
+			var angle = current_forward.angle_to(desired_side_direction)
+			state.angular_velocity = rot_axis * angle
+		else:
+			state.angular_velocity = Vector3.ZERO
+			shoot_canons()
 
 
 func create_range_area():
