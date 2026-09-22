@@ -19,7 +19,6 @@ var target_position = null
 
 
 func _ready() -> void:
-
 	# caluclate water physics
 	var total_probes
 	if probes.size() > 0:
@@ -62,6 +61,8 @@ func _physics_process(delta: float) -> void:
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
+	state.angular_velocity = Vector3.ZERO
+	
 	if submerged:
 		state.linear_velocity *= 1 - (water_drag * state.step)
 		state.angular_velocity *= 1 - (water_angular_drag * state.step)
@@ -78,7 +79,8 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 			state.angular_velocity = rot_axis * angle
 		else:
 			state.angular_velocity = Vector3.ZERO
-	
+		print('rotating')
+		
 	# handle rotational alignment for shooting
 	if target_position != null:
 		var distance_to_target = global_position.distance_to(target_position)
@@ -95,12 +97,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func create_range_area():
+	print('ran')
 	var bounding_box_collider = get_node("BoundingBoxArea").get_child(0)
 	
 	# generate area3d
 	var new_range_area = Area3D.new()
 	new_range_area.name = "RangeArea"
-	add_child(new_range_area)
+	self.add_child(new_range_area)
 	
 	# generate collisionshape
 	var new_collision_shape = CollisionShape3D.new()
@@ -108,8 +111,6 @@ func create_range_area():
 	
 	# generate shape of collisionshape
 	var new_cylinder_colider = CylinderShape3D.new()
-	print(bounding_box_collider.shape.size.z)
-	print(bounding_box_collider.shape.size.y)
 	new_cylinder_colider.height = bounding_box_collider.shape.size.z
 	new_cylinder_colider.radius = bounding_box_collider.shape.size.y/2 * Global.range_modifier
 	new_collision_shape.shape = new_cylinder_colider

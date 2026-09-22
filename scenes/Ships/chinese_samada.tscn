@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://bb0tv78eyi2ek"]
 
 [ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_b652t"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_b652t"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_32f5s"]
 size = Vector3(1482.8215, 4965.3525, 5167.3667)
