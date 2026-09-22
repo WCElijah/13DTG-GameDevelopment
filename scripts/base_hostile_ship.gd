@@ -12,9 +12,12 @@ var submerged := false
 
 @export var acceleration: float = 250
 @export var shooting_distance: float = 30.0
+var shooting_exit_distance: float = shooting_distance + 5
 
 var in_range = false
 var target = null
+var perpendicular_fire_mode := false
+
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
 
 
@@ -44,10 +47,20 @@ func _physics_process(delta: float) -> void:
 	
 	# handle target movement
 	update_target()
-	if target != null:
-		var distance_to_target = global_position.distance_to(target.global_position)
-		if distance_to_target > shooting_distance:
-			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
+	if target == null:
+		perpendicular_fire_mode = false
+		return
+
+	# set course of action for npc
+	var distance_to_target = global_position.distance_to(target.global_position)
+	if not perpendicular_fire_mode and distance_to_target <= shooting_distance:
+		perpendicular_fire_mode = true
+	elif perpendicular_fire_mode and distance_to_target >= shooting_exit_distance:
+		perpendicular_fire_mode = false
+
+	# follow if not perpendicular
+	if not perpendicular_fire_mode:
+		apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -60,13 +73,13 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 	# handle rotational follow
 	if target == null:
 		return
+	# ignore players y position
 	var target_direction = global_position.direction_to(target.global_position)
 	target_direction.y = 0
 	target_direction = target_direction.normalized()
 	
-	var distance_to_target = global_position.distance_to(target.global_position)
 	var current_forward = -global_transform.basis.z
-	if distance_to_target > shooting_distance:
+	if not perpendicular_fire_mode:
 		# follow target
 		var rot_axis = current_forward.cross(target_direction)
 		if rot_axis.length_squared() > 0.001:
