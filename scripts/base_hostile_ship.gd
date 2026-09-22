@@ -44,12 +44,13 @@ func _physics_process(delta: float) -> void:
 	
 	# handle follow prechecks
 	var bodies_in_range = get_node("RangeArea").get_overlapping_bodies()
+	in_range = false
+	target_position = null
 	for body in bodies_in_range:
 		if body.is_in_group("ships") and Global.canMountShipBody == body and Global.isMounted:
 			in_range = true
 			target_position = body.global_position
-		else:
-			in_range = false
+			break
 
 	# follow
 	if target_position != null:
@@ -97,13 +98,19 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func create_range_area():
-	print('ran')
 	var bounding_box_collider = get_node("BoundingBoxArea").get_child(0)
-	
+	var bounding_box_shape: BoxShape3D = bounding_box_collider.shape
+	var bounding_box_shape_sizes = Vector3(
+		bounding_box_shape.size.x * bounding_box_collider.scale.x,
+		bounding_box_shape.size.y * bounding_box_collider.scale.y,
+		bounding_box_shape.size.z * bounding_box_collider.scale.z)
+		
 	# generate area3d
 	var new_range_area = Area3D.new()
 	new_range_area.name = "RangeArea"
-	self.add_child(new_range_area)
+	new_range_area.monitoring = true
+	new_range_area.monitorable = true
+	add_child(new_range_area)
 	
 	# generate collisionshape
 	var new_collision_shape = CollisionShape3D.new()
@@ -111,10 +118,14 @@ func create_range_area():
 	
 	# generate shape of collisionshape
 	var new_cylinder_colider = CylinderShape3D.new()
-	new_cylinder_colider.height = bounding_box_collider.shape.size.z
-	new_cylinder_colider.radius = bounding_box_collider.shape.size.y/2 * Global.range_modifier
+	new_cylinder_colider.height = bounding_box_shape_sizes.y
+	new_cylinder_colider.radius = max(bounding_box_shape_sizes.x, bounding_box_shape_sizes.z) / 2.0
+	new_cylinder_colider.radius *= Global.range_modifier
 	new_collision_shape.shape = new_cylinder_colider
 	
+	print("Cylinder height: ", new_cylinder_colider.height)
+	print("Cylinder radius: ", new_cylinder_colider.radius)
+	print("Assigned shape: ", new_collision_shape.shape)
 
 func sink_ship():
 	queue_free()
