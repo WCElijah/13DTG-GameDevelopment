@@ -18,7 +18,11 @@ var target_steering_deg = 0.0
 var canons
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
 
+@export var ship_mesh: MeshInstance3D
+
+
 func _ready() -> void:
+	generate_convex_collisions()
 	canons = self.get_node("Canons")
 	water = get_tree().get_first_node_in_group("waters")
 	
@@ -32,7 +36,7 @@ func _ready() -> void:
 	float_force = (mass * float_force_multiplier) / total_probes
 	
 
-	generate_health_bar()
+	
 	# handle signals
 	self.body_entered.connect(_on_body_entered)
 
@@ -132,3 +136,23 @@ func generate_health_bar():
 	add_child(new_health_ui)
 	new_health_ui.global_position = Vector3(0,0.4,0)
 	get_node("HealthUI").no_hp_left.connect(sink_ship)
+
+
+func generate_convex_collisions():
+	# uses a builint HAVCD but using code 
+	ship_mesh.create_multiple_convex_collisions() # this generates a staticbody child to meshinstance
+	call_deferred('reparent_generated_collisions')  # 'call_defered' runs the function on a safe frame for physics manioulaition like this
+
+
+func reparent_generated_collisions():
+	for child in ship_mesh.get_children():
+		if child is StaticBody3D: # because createmultipleconvexcollisons() generates a staticbody
+			for shape in child.get_children():
+				if shape is CollisionShape3D:
+					var global_transform = shape.global_transform
+					shape.get_parent().remove_child(shape)  # remove the shape from the tree or parent
+					add_child(shape)  # reparent it to the current rigidbody3d
+					shape.global_transform = global_transform
+					shape.owner = self
+			child.queue_free()
+	print('succesfully generated : '+ str(self.name))

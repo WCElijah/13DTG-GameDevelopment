@@ -23,3 +23,5 @@ func toggle_between_cameras(cameras: Array):
 	
 	var new_camera_index = (current_cam_index + 1) % cameras.size()
 	cameras[new_camera_index].current = true
+
+

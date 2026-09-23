@@ -35,8 +35,8 @@ var range_area: Area3D
 
 
 func _ready() -> void:
-	if ship_mesh:
-		generate_convex_collisions()
+	# if ship_mesh:
+	# 	generate_convex_collisions()
 
 	# caluclate water physics
 	probes = probes_node.get_children()
@@ -179,18 +179,21 @@ func update_target():
 			return
 	
 
-func generate_convex_collisions():
-	# uses a builint HAVCD but using code 
-	ship_mesh.create_multiple_convex_collisions() # this generates a staticbody child to meshinstance
-	call_deferred('reparent_generated_collisions')  # 'call_defered' runs the function on a safe frame for physics manioulaition like this
+# func generate_convex_collisions():
+# 	# uses a builint HAVCD but using code 
+# 	ship_mesh.create_multiple_convex_collisions() # this generates a staticbody child to meshinstance
+# 	call_deferred('reparent_generated_collisions')  # 'call_defered' runs the function on a safe frame for physics manioulaition like this
 
 
-func reparent_generated_collisions():
-	for child in ship_mesh.get_children():
-		if child is StaticBody3D: # because createmultipleconvexcollisons() generates a staticbody
-			for shape in child.get_children():
-				if shape is CollisionShape3D:
-					shape.get_parent().remove_child(shape)  # remove the shape from the tree or parent
-					add_child(shape)  # reparent it to the current rigidbody3d
-					shape.owner = self
-			child.queue_free()
+# func reparent_generated_collisions():
+# 	for child in ship_mesh.get_children():
+# 		if child is StaticBody3D: # because createmultipleconvexcollisons() generates a staticbody
+# 			for shape in child.get_children():
+# 				if shape is CollisionShape3D:
+# 					var global_transform = shape.global_transform
+# 					shape.get_parent().remove_child(shape)  # remove the shape from the tree or parent
+# 					add_child(shape)  # reparent it to the current rigidbody3d
+# 					shape.global_transform = global_transform
+# 					shape.owner = self
+# 			child.queue_free()
+# 	print('succesfully generated : '+ str(self.name))

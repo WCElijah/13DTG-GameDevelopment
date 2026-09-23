@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://scripts/main.gd" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_344ge"]
-[ext_resource type="PackedScene" uid="uid://bw3bknbvds3uk" path="res://scenes/Ships/Binary Ships/sloop.scn" id="7_85g3d"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/chinese_samada.tscn" id="7_tipki"]
 [ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="8_tipki"]
 [ext_resource type="PackedScene" uid="uid://b12e6aa108i7g" path="res://scenes/main_ui.tscn" id="9_85g3d"]
 [ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://scenes/player.tscn" id="10_choun"]
 
@@ -58,11 +58,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.935093, 0)
 
 [node name="Ships" type="Node3D" parent="." unique_id=751481221]
 
-[node name="Sloop" parent="Ships" unique_id=1430013140 instance=ExtResource("7_85g3d")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.579193, 0, 0)
-
 [node name="ChineseSamada" parent="Ships" unique_id=232953914 instance=ExtResource("7_tipki")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.881325, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 26.193974, 0, 0)
+
+[node name="Sloop" parent="Ships" unique_id=1430013140 instance=ExtResource("8_tipki")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.926525, 0, 0)
 
 [node name="MainUI" parent="." unique_id=1584415198 instance=ExtResource("9_85g3d")]
 mouse_filter = 2
