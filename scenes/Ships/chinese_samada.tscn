@@ -141,9 +141,13 @@ points = PackedVector3Array(1192.2668, 3063.525, -489.34338, 126.378174, 1751.47
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_rdlrl"]
 points = PackedVector3Array(1028.2958, 1751.475, 330.70493, 126.378174, 274.77133, -571.29285, 536.53485, -1037.062, -571.29285, 1684.638, 1751.475, -571.29285, 946.2339, -1037.062, 412.77478, 126.378174, 1751.475, -325.27594, 1274.3287, -1037.062, -571.29285, 1684.638, 274.77133, -325.27594, 126.378174, 1587.1989, -571.29285, 782.5678, 1751.475, 330.70493, 126.378174, 274.77133, -325.27594, 864.62964, -1037.062, 412.77478, 1684.638, 1751.475, -325.27594, 1110.3575, -1283.3278, -407.24948, 700.506, -1283.3278, -571.29285, 1684.638, 274.77133, -489.223, 1274.3287, -1037.062, -407.24948, 536.53485, -1037.062, -407.24948, 700.506, -1283.3278, -407.24948, 399.12714, 1675.8435, -546.76855, 1110.3575, -1283.3278, -571.29285, 946.2339, -709.10364, 412.77478, 864.62964, -709.10364, 412.77478)
 
-[node name="ChineseSamada" type="RigidBody3D" unique_id=232953914 groups=["ships"]]
+[node name="ChineseSamada" type="RigidBody3D" unique_id=232953914 node_paths=PackedStringArray("probes_node", "bounding_box_area", "markers_node", "canons_node") groups=["ships"]]
 mass = 6000.0
 script = ExtResource("1_vaaln")
+probes_node = NodePath("Probes")
+bounding_box_area = NodePath("BoundingBoxArea")
+markers_node = NodePath("Markers")
+canons_node = NodePath("Canons")
 
 [node name="Canons" type="Node3D" parent="." unique_id=1471566439]
 

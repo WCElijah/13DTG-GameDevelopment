@@ -1,13 +1,14 @@
 [gd_scene format=3 uid="uid://c5je5ft2lbwi5"]
 
-[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://Scripts/main.gd" id="1_tipki"]
+[ext_resource type="Script" uid="uid://cvjxl37fgbat6" path="res://scripts/main.gd" id="1_tipki"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_344ge"]
-[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
-[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://Scenes/Ships/chinese_samada.tscn" id="7_tipki"]
-[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://Scenes/test_cube.tscn" id="8_85g3d"]
-[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://Scenes/Ships/sloop.tscn" id="8_tipki"]
-[ext_resource type="PackedScene" uid="uid://b12e6aa108i7g" path="res://Scenes/main_ui.tscn" id="9_85g3d"]
-[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://Scenes/player.tscn" id="10_choun"]
+[ext_resource type="PackedScene" uid="uid://cplk3yw2w0xkx" path="res://scenes/Ships/majestic_voyage_ship.tscn" id="6_85g3d"]
+[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="7_o6xl0"]
+[ext_resource type="PackedScene" uid="uid://bb0tv78eyi2ek" path="res://scenes/Ships/chinese_samada.tscn" id="7_tipki"]
+[ext_resource type="PackedScene" uid="uid://bhk20vqcals3" path="res://scenes/test_cube.tscn" id="8_85g3d"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="8_tipki"]
+[ext_resource type="PackedScene" uid="uid://b12e6aa108i7g" path="res://scenes/main_ui.tscn" id="9_85g3d"]
+[ext_resource type="PackedScene" uid="uid://bghc4kucdisjv" path="res://scenes/player.tscn" id="10_choun"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_344ge"]
 size = Vector3(100, 20, 5)
@@ -58,13 +59,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.935093, 0)
 
 [node name="Ships" type="Node3D" parent="." unique_id=751481221]
 
-[node name="ChineseSamada" parent="Ships" unique_id=232953914 instance=ExtResource("7_tipki")]
+[node name="VoyageShip" parent="Ships" unique_id=232953914 instance=ExtResource("6_85g3d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70.13226, 0, 0)
+
+[node name="ChineseSamada" parent="Ships" unique_id=1476139681 instance=ExtResource("7_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.123398, 23.78505, 0)
-float_force_multiplier = null
-water_drag = null
 water_angular_drag = 0.1
 acceleration = 500.0
-shooting_distance = null
 
 [node name="Sloop" parent="Ships" unique_id=1430013140 instance=ExtResource("8_tipki")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.378288, 6.7109747, 0)

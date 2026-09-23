@@ -1,34 +1,41 @@
 extends RigidBody3D
 
+# ship settings
 @export var float_force_multiplier := 1.5
 @export var water_drag := 2.0
 @export var water_angular_drag := 0.5
-var float_force: float
-
-@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var water
-@onready var probes = $Probes.get_children()
-var submerged := false
 
 @export var acceleration: float = 250
 @export var shooting_distance: float = 30.0
 var shooting_exit_distance: float = shooting_distance + 5
+@export var health_ui_position = Vector3(0,5.23,0)
 
+# ship nodes
+@export var probes_node: Node3D
+@export var bounding_box_area: Area3D
+@export var markers_node: Node3D
+@export var canons_node: Node3D
+
+# internal variables
+var float_force: float
+var submerged := false
+var water: MeshInstance3D
+var probes: Array[Node]
 var in_range = false
 var target = null
 var perpendicular_fire_mode := false
 
+var range_area: Area3D
+
+@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
 
 
 func _ready() -> void:
 	# caluclate water physics
-	var total_probes
-	if probes.size() > 0:
-		total_probes = probes.size()
-	else:
-		total_probes = 1
-	
+	probes = probes_node.get_children()
+	var total_probes = max(probes.size(), 1)
+
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
 	
@@ -60,7 +67,7 @@ func _physics_process(delta: float) -> void:
 
 	# follow if not perpendicular
 	if not perpendicular_fire_mode:
-		apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
+		apply_force(acceleration * mass * -global_transform.basis.z * delta, markers_node.get_node("sailPoint").position)
 
 
 func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
@@ -109,7 +116,7 @@ func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
 
 
 func create_range_area():
-	var bounding_box_collider = get_node("BoundingBoxArea").get_child(0)
+	var bounding_box_collider: CollisionShape3D = bounding_box_area.get_child(0)
 	var bounding_box_shape: BoxShape3D = bounding_box_collider.shape
 	var bounding_box_shape_sizes = Vector3(
 		bounding_box_shape.size.x * bounding_box_collider.scale.x,
@@ -117,15 +124,15 @@ func create_range_area():
 		bounding_box_shape.size.z * bounding_box_collider.scale.z)
 		
 	# generate area3d
-	var new_range_area = Area3D.new()
-	new_range_area.name = "RangeArea"
-	new_range_area.monitoring = true
-	new_range_area.monitorable = true
-	add_child(new_range_area)
+	range_area = Area3D.new()
+	range_area.name = "RangeArea"
+	range_area.monitoring = true
+	range_area.monitorable = true
+	add_child(range_area)
 	
 	# generate collisionshape
 	var new_collision_shape = CollisionShape3D.new()
-	new_range_area.add_child(new_collision_shape)
+	range_area.add_child(new_collision_shape)
 	
 	# generate shape of collisionshape
 	var new_cylinder_colider = CylinderShape3D.new()
@@ -134,9 +141,6 @@ func create_range_area():
 	new_cylinder_colider.radius *= Global.range_modifier
 	new_collision_shape.shape = new_cylinder_colider
 	
-	print("Cylinder height: ", new_cylinder_colider.height)
-	print("Cylinder radius: ", new_cylinder_colider.radius)
-	print("Assigned shape: ", new_collision_shape.shape)
 
 func sink_ship():
 	queue_free()
@@ -152,7 +156,7 @@ func shoot_canons():
 func generate_health_bar():
 	var new_health_ui = health_ui.instantiate()
 	add_child(new_health_ui)
-	new_health_ui.position = Vector3(0,5.23,0)
+	new_health_ui.position = health_ui_position
 	get_node("HealthUI").no_hp_left.connect(sink_ship)
 
 
