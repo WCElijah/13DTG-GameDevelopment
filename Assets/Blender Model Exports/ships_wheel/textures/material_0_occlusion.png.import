@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dvnspjmlxqku"
-path.s3tc="res://.godot/imported/material_0_occlusion.png-f872fd019a9f553d6389038fb18e6143.s3tc.ctex"
+path.s3tc="res://.godot/imported/material_0_occlusion.png-e666975c1e92e8c470a03fae3f3a6834.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Blender Model Exports/ships_wheel/textures/material_0_occlusion.png"
-dest_files=["res://.godot/imported/material_0_occlusion.png-f872fd019a9f553d6389038fb18e6143.s3tc.ctex"]
+source_file="res://Assets/Blender Model Exports/ships_wheel/textures/material_0_occlusion.png"
+dest_files=["res://.godot/imported/material_0_occlusion.png-e666975c1e92e8c470a03fae3f3a6834.s3tc.ctex"]
 
 [params]
 

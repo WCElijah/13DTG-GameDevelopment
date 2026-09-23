@@ -12,7 +12,7 @@ cull_mode = 2
 albedo_color = Color(0.9063318, 0.9063318, 0.9063318, 1)
 roughness = 0.5
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_fs1nh"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_bl41o"]
 _surfaces = [{
 "aabb": AABB(-4.162297, -0.5137954, -0.8495103, 8.168098, 8.710133, 1.6990206),
 "format": 34359742465,
@@ -68,4 +68,4 @@ _surfaces = [{
 "vertex_data": PackedByteArray("NRSIv8CSxkBc34+8wJx/wJEdfD8vXS88NRSIv8CSxkBc3488wJx/wJEdfD8vXS+82PFIP6rtCz/sANy8NRSIv8CSxkBc34+8G4BGP14nlEDPkd28wJx/wJEdfD8vXS+8G4BGP14nlEDPkd08wJx/wJEdfD8vXS882PFIP6rtCz/sANw8NRSIv8CSxkBc3488IYSNP+CBokAKK3G8XPByQACTGj8WkZm86Dp0QACTGj8WkZm86YWNP6m1oUALK3G86YWNP6m1oUALK3G8XPByQACTGj8WkRm8XPByQACTGj8WkZm86YWNP6m1oUALK/G76Dp0QACTGj8WkZk8IYSNP+CBokAKK3G86Dp0QACTGj8WkZm8IYSNP+CBokAKK3E86YWNP6m1oUALK/E7XPByQACTGj8WkRk8VuCaP8xXHT8LK/E76YWNP6m1oUALK/G7VuCaP8xXHT8LK/G7XPByQACTGj8WkRm8MNlWP4H5+EAG8Oouqx9pv76jyUAKeya84k1YP377+EAKeya8XZRqv8GhyUAG8Oou4k1YP377+EAKeyY8XZRqv8GhyUAG8OouMNlWP4H5+EAG8Oouqx9pv76jyUAKeyY84k1YP377+EAKeyY89FYXvyOzu0CT3KM8qx9pv76jyUAKeyY8PMYpPwyNtUD+ybc8B7JSP5o5wUD+ybc8cG0bP19Dm0BoAtY89FYXvyOzu0CT3KO84k1YP377+EAKeya8qx9pv76jyUAKeya8PMYpPwyNtUD+ybe8CHAePyTymkAqANe8B7JSP5o5wUD+ybe8+tH6Uf///7/60fpR////v/rR+lH///+/+tH6Uf///794gPJ/////P3iA8n////8/eIDyf////z94gPJ/////P/H/eAD///+/8f94AP///7/x/3gA////v/H/eAD///+/EADr/3OzsJkQAOv/c7OwmRAA6/////+/EADr/3OzTmY7MMRP////vzswxE////+/OzDET////787MMRP////v7XPSLD///+/tc9IsP///7+1z0iw////v7XPSLD///+/5X//f////z/lf/9/////P+V//3////8/AADk/////78AAOT/////vwAA5P////+/4Tfm0P///7/hN+bQ////v+E35tD///+/4Tfm0P///7/mUOC3////P+ZQ4Lf///8/5lDgt////z/mUOC3////P3F/9YD///8/cX/1gP///z9xf/WA////P3F/9YD///8/cX/1gP///z9xf/WA////P/YAcP////+/9gBw/////7/2AHD/////v/YAcP////+/9gBw/////7/2AHD/////vw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_fs1nh")
+shadow_mesh = SubResource("ArrayMesh_bl41o")

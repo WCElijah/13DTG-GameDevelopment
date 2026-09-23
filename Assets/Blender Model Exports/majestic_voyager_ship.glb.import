@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://l66ryw2w1c6e"
-path="res://.godot/imported/majestic_voyager_ship.glb-12ac302266e1ea0012459704eebd0fe2.scn"
+path="res://.godot/imported/majestic_voyager_ship.glb-0891258d0016c7eb974e60bdac3acab4.scn"
 
 [deps]
 
-source_file="res://assets/Blender Model Exports/majestic_voyager_ship.glb"
-dest_files=["res://.godot/imported/majestic_voyager_ship.glb-12ac302266e1ea0012459704eebd0fe2.scn"]
+source_file="res://Assets/Blender Model Exports/majestic_voyager_ship.glb"
+dest_files=["res://.godot/imported/majestic_voyager_ship.glb-0891258d0016c7eb974e60bdac3acab4.scn"]
 
 [params]
 

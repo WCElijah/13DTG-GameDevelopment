@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cqomac0u7js4n"
-path="res://.godot/imported/material_0_specularGlossiness.png-9667525c95d6f72e846f6cfdf5269c9f.ctex"
+path="res://.godot/imported/material_0_specularGlossiness.png-1c393df314a82e765709ffe28c600cc5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Blender Model Exports/ships_wheel/textures/material_0_specularGlossiness.png"
-dest_files=["res://.godot/imported/material_0_specularGlossiness.png-9667525c95d6f72e846f6cfdf5269c9f.ctex"]
+source_file="res://Assets/Blender Model Exports/ships_wheel/textures/material_0_specularGlossiness.png"
+dest_files=["res://.godot/imported/material_0_specularGlossiness.png-1c393df314a82e765709ffe28c600cc5.ctex"]
 
 [params]
 
