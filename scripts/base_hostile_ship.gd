@@ -30,8 +30,14 @@ var range_area: Area3D
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
 
+# convex decompisition
+@export var ship_mesh: MeshInstance3D
+
 
 func _ready() -> void:
+	if ship_mesh:
+		generate_convex_collisions()
+
 	# caluclate water physics
 	probes = probes_node.get_children()
 	var total_probes = max(probes.size(), 1)
@@ -172,3 +178,19 @@ func update_target():
 			target = body
 			return
 	
+
+func generate_convex_collisions():
+	# uses a builint HAVCD but using code 
+	ship_mesh.create_multiple_convex_collisions() # this generates a staticbody child to meshinstance
+	call_deferred('reparent_generated_collisions')  # 'call_defered' runs the function on a safe frame for physics manioulaition like this
+
+
+func reparent_generated_collisions():
+	for child in ship_mesh.get_children():
+		if child is StaticBody3D: # because createmultipleconvexcollisons() generates a staticbody
+			for shape in child.get_children():
+				if shape is CollisionShape3D:
+					shape.get_parent().remove_child(shape)  # remove the shape from the tree or parent
+					add_child(shape)  # reparent it to the current rigidbody3d
+					shape.owner = self
+			child.queue_free()
