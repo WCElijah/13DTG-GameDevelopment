@@ -1,63 +1,66 @@
 extends RigidBody3D
 
 # ship settings
-
-
-# water forces and boyounancy settings
 @export var float_force_multiplier := 1.5
 @export var water_drag := 2.0
 @export var water_angular_drag := 0.1
-var float_force: float
+
+@export var acceleration := 500
+@export var health_ui_position = Vector3(0,0.4,0)
+
+# node references
+@export var probes_node: Node3D
+@export var wheel_model_node: Node3D
+@export var markers_node: Node3D
+@export var canons_node: Node3D
+@export var gun_deck_camera_node: Node3D
+
+@export var ship_mesh: MeshInstance3D
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var water
-@onready var probes = $Probes.get_children()
+@onready var health_ui_tscn = preload("res://scenes/health_ui.tscn")
+
+# internal variables
+var float_force: float
+var water_plane_node: MeshInstance3D
+var probes: Array[Node]
+var canons: Array[Node]
 var submerged := false
 
-# movement settings
-@export var acceleration: float = 500
 var current_steering_deg = 0.0
 var target_steering_deg = 0.0
 
-var canons
-@onready var health_ui = preload("res://scenes/health_ui.tscn")
-
-@export var ship_mesh: MeshInstance3D
+var health_ui: Sprite3D
 
 
 func _ready() -> void:
 	generate_convex_collisions()
-	canons = self.get_node("Canons")
-	water = get_tree().get_first_node_in_group("waters")
+
+	probes = probes_node.get_children()
+	canons = canons_node.get_children()
+	water_plane_node = get_tree().get_first_node_in_group("waters")
 	
 	# caluclate water physics
-	var total_probes
-	if probes.size() > 0:
-		total_probes = probes.size()
-	else:
-		total_probes = 1
-	
+	var total_probes = max(probes.size(), 1)
 	float_force = (mass * float_force_multiplier) / total_probes
-	
-
 	
 	# handle signals
 	self.body_entered.connect(_on_body_entered)
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# handle canon rotation
 	if Global.fire_mode == true and self == Global.canMountShipBody:
 		if Input.is_action_just_pressed("arrow_up"):
-			for canon in canons.get_children():
+			for canon in canons:
 				canon.rotate_vertical(1)
 		elif Input.is_action_just_pressed("arrow_down"):
-			for canon in canons.get_children():
+			for canon in canons:
 				canon.rotate_vertical(-1)
 		elif Input.is_action_just_pressed("arrow_left"):
-			for canon in canons.get_children():
+			for canon in canons:
 				canon.rotate_horizontal(1)
 		elif Input.is_action_just_pressed("arrow_right"):
-			for canon in canons.get_children():
+			for canon in canons:
 				canon.rotate_horizontal(-1)
 
 	# handle gun fire mode
@@ -65,9 +68,9 @@ func _process(delta: float) -> void:
 		Global.fire_mode = !Global.fire_mode
 		if Global.fire_mode:
 			get_viewport().get_camera_3d().current = false
-			get_node("SpecialCameras/GunDeck").current = true
+			gun_deck_camera_node.current = true
 		else:
-			$SpecialCameras/GunDeck.current = false
+			gun_deck_camera_node.current = false
 
 
 func _physics_process(delta: float) -> void:
@@ -83,7 +86,7 @@ func _physics_process(delta: float) -> void:
 		
 		current_steering_deg = clamp(current_steering_deg, deg_to_rad(-45), deg_to_rad(45))
 		current_steering_deg = lerp(current_steering_deg, target_steering_deg, delta)
-		$WheelModel.rotation.z = current_steering_deg
+		wheel_model_node.rotation.z = current_steering_deg
 		
 		if abs(current_steering_deg) > 0.01: # error checking
 			var turning_dir
@@ -94,12 +97,12 @@ func _physics_process(delta: float) -> void:
 			apply_torque(acceleration * mass * turning_dir * abs(current_steering_deg) * delta)
 
 		if Input.is_action_pressed("forward"):
-			apply_force(acceleration * mass * -global_transform.basis.z * delta, $Markers/sailPoint.position)
+			apply_force(acceleration * mass * -global_transform.basis.z * delta, markers_node.get_node('sailPoint').position)
 
 	# boyouancy effect
 	submerged = false
 	for probe in probes:
-		var depth = water.get_height(probe.global_position) - probe.global_position.y
+		var depth = water_plane_node.get_height(probe.global_position) - probe.global_position.y
 		if depth > 0:
 			submerged = true
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
@@ -135,10 +138,11 @@ func sink_ship():
 	
 
 func generate_health_bar():
-	var new_health_ui = health_ui.instantiate()
+	var new_health_ui = health_ui_tscn.instantiate()
 	add_child(new_health_ui)
-	new_health_ui.global_position = Vector3(0,0.4,0)
-	get_node("HealthUI").no_hp_left.connect(sink_ship)
+	new_health_ui.position = health_ui_position
+	health_ui = new_health_ui
+	health_ui.no_hp_left.connect(sink_ship)
 
 
 func generate_convex_collisions():
@@ -152,10 +156,10 @@ func reparent_generated_collisions():
 		if child is StaticBody3D: # because createmultipleconvexcollisons() generates a staticbody
 			for shape in child.get_children():
 				if shape is CollisionShape3D:
-					var global_transform = shape.global_transform
+					var saved_global_transform = shape.global_transform
 					shape.get_parent().remove_child(shape)  # remove the shape from the tree or parent
 					add_child(shape)  # reparent it to the current rigidbody3d
-					shape.global_transform = global_transform
+					shape.global_transform = saved_global_transform
 					shape.owner = self
 			child.queue_free()
 	print('succesfully generated : '+ str(self.name))

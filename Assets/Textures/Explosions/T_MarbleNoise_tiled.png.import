@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ixsro65idm8t"
-path.s3tc="res://.godot/imported/T_MarbleNoise_tiled.png-13a20a3cd9cf8c2d9fa39ef84a343be7.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_MarbleNoise_tiled.png-1babbd473a7301b48c4cf725d50405f3.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Textures/Explosions/T_MarbleNoise_tiled.png"
-dest_files=["res://.godot/imported/T_MarbleNoise_tiled.png-13a20a3cd9cf8c2d9fa39ef84a343be7.s3tc.ctex"]
+source_file="res://assets/Textures/Explosions/T_MarbleNoise_tiled.png"
+dest_files=["res://.godot/imported/T_MarbleNoise_tiled.png-1babbd473a7301b48c4cf725d50405f3.s3tc.ctex"]
 
 [params]
 

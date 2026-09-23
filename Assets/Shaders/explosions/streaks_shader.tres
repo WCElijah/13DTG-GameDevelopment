@@ -1,7 +1,7 @@
 [gd_resource type="VisualShader" format=3 uid="uid://6mm6k82j2ck1"]
 
-[ext_resource type="Texture2D" uid="uid://bvl8kr30i53rw" path="res://Assets/Textures/Explosions/T_4_streaks.png" id="1_mpqxc"]
-[ext_resource type="Texture2D" uid="uid://kala43ap8va6" path="res://Assets/Textures/Explosions/T_PerlinNoise_Tiled11_inv.png" id="1_u2fyo"]
+[ext_resource type="Texture2D" uid="uid://bvl8kr30i53rw" path="res://assets/Textures/Explosions/T_4_streaks.png" id="1_mpqxc"]
+[ext_resource type="Texture2D" uid="uid://kala43ap8va6" path="res://assets/Textures/Explosions/T_PerlinNoise_Tiled11_inv.png" id="1_u2fyo"]
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_5pd2w"]
 expanded_output_ports = [0]

@@ -4,12 +4,12 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://2cdkwigfljki"
-path="res://.godot/imported/scene.gltf-c28138e91838f31d3bba24abdfc99bd1.scn"
+path="res://.godot/imported/scene.gltf-e9f64b683dc999d3d22dc2f02411b0e3.scn"
 
 [deps]
 
-source_file="res://Assets/Blender Model Exports/ships_wheel/scene.gltf"
-dest_files=["res://.godot/imported/scene.gltf-c28138e91838f31d3bba24abdfc99bd1.scn"]
+source_file="res://assets/Blender Model Exports/ships_wheel/scene.gltf"
+dest_files=["res://.godot/imported/scene.gltf-e9f64b683dc999d3d22dc2f02411b0e3.scn"]
 
 [params]
 

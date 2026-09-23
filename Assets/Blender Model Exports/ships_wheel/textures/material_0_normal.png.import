@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://paplasbwl5ng"
-path.s3tc="res://.godot/imported/material_0_normal.png-b1601176b5fdeed945f88a3dee88e4df.s3tc.ctex"
+path.s3tc="res://.godot/imported/material_0_normal.png-a7cce7669f73ea2a1eb6aee2abcfed75.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://Assets/Blender Model Exports/ships_wheel/textures/material_0_normal.png"
-dest_files=["res://.godot/imported/material_0_normal.png-b1601176b5fdeed945f88a3dee88e4df.s3tc.ctex"]
+source_file="res://assets/Blender Model Exports/ships_wheel/textures/material_0_normal.png"
+dest_files=["res://.godot/imported/material_0_normal.png-a7cce7669f73ea2a1eb6aee2abcfed75.s3tc.ctex"]
 
 [params]
 
