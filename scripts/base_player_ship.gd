@@ -1,5 +1,8 @@
 extends RigidBody3D
 
+# ship settings
+
+
 # water forces and boyounancy settings
 @export var float_force_multiplier := 1.5
 @export var water_drag := 2.0
