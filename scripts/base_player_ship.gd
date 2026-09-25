@@ -5,7 +5,7 @@ extends RigidBody3D
 @export var water_drag := 2.0
 @export var water_angular_drag := 0.1
 
-@export var acceleration := 500
+@export var acceleration := 1000  # orginal 500
 @export var health_ui_position = Vector3(0,0.4,0)
 
 # node references
@@ -30,10 +30,12 @@ var current_steering_deg = 0.0
 var target_steering_deg = 0.0
 
 var health_ui: Sprite3D
+var auto_move := false
 
 
 func _ready() -> void:
 	generate_convex_collisions()
+	generate_health_bar()
 
 	probes = probes_node.get_children()
 	canons = canons_node.get_children()
@@ -48,6 +50,8 @@ func _ready() -> void:
 
 
 func _process(_delta: float) -> void:
+	# handle auto move toggle
+	
 	# handle canon rotation
 	if Global.fire_mode == true and self == Global.canMountShipBody:
 		if Input.is_action_just_pressed("arrow_up"):
@@ -101,7 +105,7 @@ func _physics_process(delta: float) -> void:
 					turning_dir = Vector3.DOWN
 				
 				# limit the current steering deg to limit torque applied
-				var effective_force = clamp(current_steering_deg, deg_to_rad(-10), deg_to_rad(10))
+				var effective_force = clamp(current_steering_deg, deg_to_rad(-20), deg_to_rad(20))
 				apply_torque(acceleration * mass * turning_dir * abs(effective_force) * delta)
 	
 	# boyouancy effect

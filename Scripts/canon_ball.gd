@@ -19,8 +19,7 @@ func _on_area_3d_body_entered(body: Node3D) -> void:
 		explosion.get_node("AnimationPlayer").play("Init")
 		
 		# deal damage
-		if body and body != Global.canMountShipBody:
-			body.get_node("HealthUI").take_damage(5)
+		body.get_node("HealthUI").take_damage(5)
 
 		await explosion.get_node("AnimationPlayer").animation_finished
 		queue_free()

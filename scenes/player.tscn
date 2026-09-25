@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bghc4kucdisjv"]
 
-[ext_resource type="Script" uid="uid://dhs8ywgd1npyu" path="res://Scripts/player.gd" id="1_3vyb7"]
+[ext_resource type="Script" uid="uid://dhs8ywgd1npyu" path="res://scripts/player.gd" id="1_3vyb7"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_u8vuu"]
 radius = 0.37
@@ -26,4 +26,3 @@ current = true
 
 [node name="ThirdPerson" type="Camera3D" parent="Pivot" unique_id=1437785364]
 transform = Transform3D(1, 0, 0, 0, 0.9573094, 0.2890652, 0, -0.2890652, 0.9573094, 0, 1.1445447, 2.0470128)
-current = true

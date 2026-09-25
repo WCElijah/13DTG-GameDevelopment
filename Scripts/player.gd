@@ -41,7 +41,7 @@ func _input(event: InputEvent) -> void:
 			get_current_player_camera().rotation.x = clamp(get_current_player_camera().rotation.x, deg_to_rad(-30), deg_to_rad(60))
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	# handle ship mounting
 	if Global.canMount == true and Global.isMounted == false and Global.canMountShipBody != null:
 		var keybind_message = "Press E to enter"
@@ -72,14 +72,14 @@ func _process(delta: float) -> void:
 					Global.isMounted = false
 	
 	# handle camera change
-	if Input.is_action_just_pressed("pressed_f5"):
-		if not is_ship_cam_mode:
-			var new_camera_index = (get_current_player_camera(true) + 1) % player_cameras.size()
-			get_current_player_camera().current = false
-			player_cameras[new_camera_index].current = true
-		else:
-			# change ship cameras
-			pass
+	# if Input.is_action_just_pressed("pressed_f5"):
+	# 	if not is_ship_cam_mode:
+	# 		var new_camera_index = (get_current_player_camera(true) + 1) % player_cameras.size()
+	# 		get_current_player_camera().current = false
+	# 		player_cameras[new_camera_index].current = true
+	# 	else:
+	# 		# change ship cameras
+	# 		pass
 
 
 	# handle water staying with you
@@ -109,8 +109,9 @@ func _physics_process(delta: float) -> void:
 		velocity.z *= (1.0 - water_drag)
 	else:
 		# Add the gravity.
-		if not is_on_floor() and not Global.isMounted:
-			velocity += get_gravity() * delta
+		pass
+		# if not is_on_floor() and not Global.isMounted:
+		# 	velocity += get_gravity() * delta
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():

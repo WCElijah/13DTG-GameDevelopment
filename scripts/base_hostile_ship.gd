@@ -5,9 +5,7 @@ extends RigidBody3D
 @export var water_drag := 2.0
 @export var water_angular_drag := 0.5
 
-@export var acceleration: float = 250
-@export var shooting_distance: float = 30.0
-var shooting_exit_distance: float = shooting_distance + 5
+@export var acceleration: float = 500 # oringialy 250
 @export var health_ui_position = Vector3(0,5.23,0)
 
 # ship nodes
@@ -26,6 +24,8 @@ var target = null
 var perpendicular_fire_mode := false
 
 var range_area: Area3D
+var shooting_distance
+var shooting_exit_distance
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var health_ui = preload("res://scenes/health_ui.tscn")
@@ -35,6 +35,11 @@ var range_area: Area3D
 
 
 func _ready() -> void:
+	generate_health_bar()
+	create_range_area()
+	init_shooting_calibrations()
+
+	shooting_exit_distance = shooting_distance * 1.1
 	# if ship_mesh:
 	# 	generate_convex_collisions()
 
@@ -45,9 +50,9 @@ func _ready() -> void:
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
 	
-	generate_health_bar()
-	create_range_area()
-
+	# set shooting distances
+	
+	
 
 func _physics_process(delta: float) -> void:
 	# boyouancy effect
@@ -59,7 +64,7 @@ func _physics_process(delta: float) -> void:
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 	
 	# handle target movement
-	update_target()
+	#update_target()
 	if target == null:
 		perpendicular_fire_mode = false
 		return
@@ -147,6 +152,13 @@ func create_range_area():
 	new_cylinder_colider.radius *= Global.range_modifier
 	new_collision_shape.shape = new_cylinder_colider
 	
+
+func init_shooting_calibrations():
+	var range_collider: CollisionShape3D = range_area.get_child(0)
+	var shape: CylinderShape3D = range_collider.shape
+
+	shooting_distance = shape.radius * 0.25
+
 
 func sink_ship():
 	queue_free()
