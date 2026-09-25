@@ -83,22 +83,27 @@ func _physics_process(delta: float) -> void:
 			#apply_torque(acceleration * mass * Vector3.UP * delta)
 		elif Input.is_action_pressed("right"):
 			target_steering_deg = current_steering_deg - steering_inc
-		
+		else:
+			target_steering_deg = float(0)
+
 		current_steering_deg = clamp(current_steering_deg, deg_to_rad(-45), deg_to_rad(45))
 		current_steering_deg = lerp(current_steering_deg, target_steering_deg, delta)
 		wheel_model_node.rotation.z = current_steering_deg
 		
-		if abs(current_steering_deg) > 0.01: # error checking
-			var turning_dir
-			if current_steering_deg > 0:
-				turning_dir = Vector3.UP
-			else:
-				turning_dir = Vector3.DOWN
-			apply_torque(acceleration * mass * turning_dir * abs(current_steering_deg) * delta)
-
 		if Input.is_action_pressed("forward"):
 			apply_force(acceleration * mass * -global_transform.basis.z * delta, markers_node.get_node('sailPoint').position)
-
+			# rotate only when moving
+			if abs(current_steering_deg) > 0.01: # error checking
+				var turning_dir
+				if current_steering_deg > 0:
+					turning_dir = Vector3.UP
+				else:
+					turning_dir = Vector3.DOWN
+				
+				# limit the current steering deg to limit torque applied
+				var effective_force = clamp(current_steering_deg, deg_to_rad(-10), deg_to_rad(10))
+				apply_torque(acceleration * mass * turning_dir * abs(effective_force) * delta)
+	
 	# boyouancy effect
 	submerged = false
 	for probe in probes:
