@@ -50,10 +50,7 @@ func _ready() -> void:
 	float_force = (mass * float_force_multiplier) / total_probes
 	water = get_tree().get_first_node_in_group("waters")
 	
-	# set shooting distances
 	
-	
-
 func _physics_process(delta: float) -> void:
 	# boyouancy effect
 	submerged = false
@@ -64,7 +61,7 @@ func _physics_process(delta: float) -> void:
 			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
 	
 	# handle target movement
-	#update_target()
+	update_target()
 	if target == null:
 		perpendicular_fire_mode = false
 		return

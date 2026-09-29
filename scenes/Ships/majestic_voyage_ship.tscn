@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cplk3yw2w0xkx"]
 
 [ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://scripts/base_hostile_ship.gd" id="1_8m1t8"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_3h5ry"]
 [ext_resource type="ArrayMesh" uid="uid://xbxxcafvheqh" path="res://scenes/Ships/Binary Models/majestic_voyage_ship.tres" id="2_oufoa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oufoa"]
@@ -102,26 +103,36 @@ points = PackedVector3Array(-0.095234126, -0.53583527, -0.8571767, 0.06336801, -
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_0pbxw"]
 points = PackedVector3Array(0.06338975, -0.40899327, 0.63382065, -0.031780228, -0.694487, 0.41181117, -0.06349631, -0.44069755, 0.41178012, 0.12684365, -0.4724639, 0.41181117, -0.06349631, -0.694487, 0.5704071, -0.031780228, -0.37725794, 0.72903407, 0.06338975, -0.59931207, 0.6020828, 0.03165193, -0.37725794, 0.41178012, -0.095234126, -0.4724639, 0.41181117, 0.031608455, -0.694487, 0.41181117, 0.03165193, -0.44069755, 0.72903407, -0.06349631, -0.37725794, 0.41178012, -0.095234126, -0.50419927, 0.5387314, 0.12684365, -0.53587246, 0.44358003, 0.031608455, -0.694487, 0.5387314, -0.095234126, -0.5675767, 0.41181117, 0.03165193, -0.37725794, 0.72903407, -0.031780228, -0.44069755, 0.72903407, -4.2410567e-05, -0.694487, 0.5704071, -0.06349631, -0.37725794, 0.50699353, -0.095234126, -0.53587246, 0.5387314, -0.06349631, -0.694487, 0.50702465, 0.12684365, -0.53587246, 0.41181117, 0.12684365, -0.4724639, 0.44358003, 0.09510583, -0.53587246, 0.5387314)
 
-[node name="VoyageShip" type="RigidBody3D" unique_id=232953914 node_paths=PackedStringArray("probes_node", "bounding_box_area", "markers_node")]
+[node name="VoyageShip" type="RigidBody3D" unique_id=232953914 node_paths=PackedStringArray("probes_node", "bounding_box_area", "markers_node", "canons_node", "ship_mesh")]
 mass = 20000.0
 script = ExtResource("1_8m1t8")
 probes_node = NodePath("Probes")
 bounding_box_area = NodePath("BoundingBoxArea")
 markers_node = NodePath("Markers")
+canons_node = NodePath("Canons")
+ship_mesh = NodePath("Model")
+
+[node name="Canons" type="Node3D" parent="." unique_id=788481947]
+
+[node name="ShipCanon" parent="Canons" unique_id=1947890008 instance=ExtResource("2_3h5ry")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 9.701008, -25.74396, 0)
+
+[node name="ShipCanon2" parent="Canons" unique_id=2041477678 instance=ExtResource("2_3h5ry")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.409267, -25.74396, 0)
 
 [node name="Probes" type="Node3D" parent="." unique_id=942861942]
 
 [node name="FrontRight" type="Marker3D" parent="Probes" unique_id=1400017060]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -37.214287, -17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -37.214287, -26.425484)
 
 [node name="FrontLeft" type="Marker3D" parent="Probes" unique_id=587758844]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -37.214287, -17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -37.214, -26.425)
 
 [node name="BackLeft" type="Marker3D" parent="Probes" unique_id=194897697]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, -37.214287, 29)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, -37.214, 46.28)
 
 [node name="BackRight" type="Marker3D" parent="Probes" unique_id=945902085]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, -37.214287, 29)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, -37.214, 46.28)
 
 [node name="BoundingBoxArea" type="Area3D" parent="." unique_id=1573667774]
 
@@ -135,130 +146,162 @@ mesh = ExtResource("2_oufoa")
 
 [node name="CollisionShape3D32" type="CollisionShape3D" parent="." unique_id=253815824]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_3h5ry")
 
 [node name="CollisionShape3D31" type="CollisionShape3D" parent="." unique_id=584740241]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_hiuqp")
 
 [node name="CollisionShape3D30" type="CollisionShape3D" parent="." unique_id=1747767375]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_t8vwl")
 
 [node name="CollisionShape3D29" type="CollisionShape3D" parent="." unique_id=415776346]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_eg473")
 
 [node name="CollisionShape3D28" type="CollisionShape3D" parent="." unique_id=346308877]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_su1po")
 
 [node name="CollisionShape3D27" type="CollisionShape3D" parent="." unique_id=1901509245]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_7yx0s")
 
 [node name="CollisionShape3D26" type="CollisionShape3D" parent="." unique_id=495818951]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_hthyp")
 
 [node name="CollisionShape3D25" type="CollisionShape3D" parent="." unique_id=1771319843]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_4wk12")
 
 [node name="CollisionShape3D24" type="CollisionShape3D" parent="." unique_id=1173599014]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_h00d3")
 
 [node name="CollisionShape3D23" type="CollisionShape3D" parent="." unique_id=1349014195]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ihjre")
 
 [node name="CollisionShape3D22" type="CollisionShape3D" parent="." unique_id=1184912974]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_e8pns")
 
 [node name="CollisionShape3D21" type="CollisionShape3D" parent="." unique_id=300783419]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_hc8vw")
 
 [node name="CollisionShape3D20" type="CollisionShape3D" parent="." unique_id=1998112074]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_iyujk")
 
 [node name="CollisionShape3D19" type="CollisionShape3D" parent="." unique_id=1073701552]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_xrc2s")
 
 [node name="CollisionShape3D18" type="CollisionShape3D" parent="." unique_id=1020989272]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_imyrj")
 
 [node name="CollisionShape3D17" type="CollisionShape3D" parent="." unique_id=239419331]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_11fa3")
 
 [node name="CollisionShape3D16" type="CollisionShape3D" parent="." unique_id=997027322]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ot0w4")
 
 [node name="CollisionShape3D15" type="CollisionShape3D" parent="." unique_id=1432476328]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_5jg73")
 
 [node name="CollisionShape3D14" type="CollisionShape3D" parent="." unique_id=340194583]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_nf26g")
 
 [node name="CollisionShape3D13" type="CollisionShape3D" parent="." unique_id=87511458]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_dqmwb")
 
 [node name="CollisionShape3D12" type="CollisionShape3D" parent="." unique_id=1349022781]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_uwt4t")
 
 [node name="CollisionShape3D11" type="CollisionShape3D" parent="." unique_id=1617869840]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_08sph")
 
 [node name="CollisionShape3D10" type="CollisionShape3D" parent="." unique_id=1958671132]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_fv4ko")
 
 [node name="CollisionShape3D9" type="CollisionShape3D" parent="." unique_id=809190049]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_ywecx")
 
 [node name="CollisionShape3D8" type="CollisionShape3D" parent="." unique_id=1616010932]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_h8c1y")
 
 [node name="CollisionShape3D7" type="CollisionShape3D" parent="." unique_id=1359050249]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_66ctp")
 
 [node name="CollisionShape3D6" type="CollisionShape3D" parent="." unique_id=1239473302]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_87030")
 
 [node name="CollisionShape3D5" type="CollisionShape3D" parent="." unique_id=642652312]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_l84o3")
 
 [node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=196625271]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_6cv1e")
 
 [node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=2019907269]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_dskfj")
 
 [node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=288808580]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_7dfn4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=401235076]
 transform = Transform3D(-80, 0, -1.2079664e-05, 0, 80, 0, 1.2079664e-05, 0, -80, 0, 15.10124, 0)
+visible = false
 shape = SubResource("ConvexPolygonShape3D_0pbxw")
 
 [node name="Markers" type="Node3D" parent="." unique_id=522250995]
