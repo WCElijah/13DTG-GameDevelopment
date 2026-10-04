@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://yugqfo0dm6jh"]
 
-[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://scripts/base_player_ship.gd" id="1_7mach"]
+[ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
 [ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
 [ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
 [ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://scenes/Ships/Binary Models/Sloop.tres" id="5_ntg5b"]
@@ -57,16 +57,28 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.803999, 0)
 [node name="Canons" type="Node3D" parent="." unique_id=805703799]
 
 [node name="ShipCanon" parent="Canons" unique_id=1947890008 instance=ExtResource("2_qyfov")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, 0)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, -3.4981797)
 
 [node name="ShipCanon2" parent="Canons" unique_id=935518920 instance=ExtResource("2_qyfov")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, 1.4020908)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, -2.096089)
 
 [node name="ShipCanon3" parent="Canons" unique_id=695489816 instance=ExtResource("2_qyfov")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, 2.890024)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, -0.6081557)
 
 [node name="ShipCanon4" parent="Canons" unique_id=532085869 instance=ExtResource("2_qyfov")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, 4.563978)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 2.6371102, 1.5906878, 1.0657985)
+
+[node name="ShipCanon5" parent="Canons" unique_id=564919225 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7783628, 1.5906878, -3.4981797)
+
+[node name="ShipCanon6" parent="Canons" unique_id=773215079 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7783628, 1.5906878, -2.096089)
+
+[node name="ShipCanon7" parent="Canons" unique_id=1161156777 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7783628, 1.5906878, -0.6081557)
+
+[node name="ShipCanon8" parent="Canons" unique_id=56386609 instance=ExtResource("2_qyfov")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7783628, 1.5906878, 1.0657985)
 
 [node name="SpecialCameras" type="Node3D" parent="." unique_id=2001153801]
 

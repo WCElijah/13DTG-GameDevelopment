@@ -5,8 +5,8 @@
 
 [sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
 size = Vector2(100, 100)
-subdivide_width = 100
-subdivide_depth = 100
+subdivide_width = 1000
+subdivide_depth = 1000
 orientation = 1
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_loxa5"]

@@ -3,7 +3,7 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://l3ftjq8pn4x3"
-path.s3tc="res://.godot/imported/T_cloudy_noise_211c.png-4b037848249ab4616ebd6fb2ed308652.s3tc.ctex"
+path.s3tc="res://.godot/imported/T_cloudy_noise_211c.png-7a8fb2d87c0aa8fef51f152dfdee708c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/Textures/Explosions/T_cloudy_noise_211c.png"
-dest_files=["res://.godot/imported/T_cloudy_noise_211c.png-4b037848249ab4616ebd6fb2ed308652.s3tc.ctex"]
+source_file="res://Assets/Textures/Explosions/T_cloudy_noise_211c.png"
+dest_files=["res://.godot/imported/T_cloudy_noise_211c.png-7a8fb2d87c0aa8fef51f152dfdee708c.s3tc.ctex"]
 
 [params]
 

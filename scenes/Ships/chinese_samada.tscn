@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bb0tv78eyi2ek"]
 
-[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://scripts/base_hostile_ship.gd" id="1_vaaln"]
+[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_vaaln"]
 [ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_b652t"]
 [ext_resource type="ArrayMesh" uid="uid://bbidhwe4jtpw6" path="res://scenes/Ships/Binary Models/ChineseSamada.tres" id="3_b652t"]
 
