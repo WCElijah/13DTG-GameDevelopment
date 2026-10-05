@@ -19,3 +19,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.25, 0, 36.75)
 
 [node name="Player" parent="." unique_id=1519985126 instance=ExtResource("3_0od7b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6707914, 7.7186637)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1233782482]

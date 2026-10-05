@@ -10,26 +10,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2eikk"]
 size = Vector3(8.168098, 8.710133, 4)
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_31aka"]
-points = PackedVector3Array(2.8198893, 0.24660558, -0.08909449, 3.7872045, 0.7996277, 0.04916106, 4.0635805, 0.6613722, 0.04916106, 2.4048386, 0.24660558, 0.04916106, 2.4048386, 0.7996277, -0.08909449, 4.0635805, 0.6613722, -0.08909449, 2.4048386, 0.7996277, 0.04916106, 3.9253924, 0.3848611, 0.04916106, 3.9253924, 0.3848611, -0.08909449, 2.4048386, 0.24660558, -0.08909449, 3.7872045, 0.7996277, -0.08909449, 2.8198893, 0.24660558, 0.04916106, 4.0635805, 0.52311665, -0.08909449)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_jo3od"]
-points = PackedVector3Array(-1.8803663, -0.58279246, 0.46376532, 2.404838, 0.7994924, 0.049215227, 2.404838, 0.7994924, -0.08909446, -2.9956827, 0.8416802, 0.0281205, -2.2948487, 0.52292717, 0.87869436, 1.5747635, -0.16807991, 0.7403847, 1.460642, -0.37927815, -0.031999998, -2.3189533, -0.5012449, -0.031999998, 1.2984419, 0.38477987, 0.87869436, -3.263639, 0.66120976, 0.7403847, -2.2948487, -0.30622724, 0.7403847, -3.1249232, 0.38477987, -0.08909446, 1.7134793, -0.4445098, 0.32583457, -2.5717251, -0.58279246, 0.049215227, 0.7452438, -0.16807991, 0.87869436, 2.404838, 0.24649727, 0.18743016, 0.33076143, -0.58279246, 0.049215227, -3.263639, 0.38477987, 0.7403847, 1.0221202, -0.4445098, 0.60216975, -2.8480468, 0.7994924, -0.08909446, -0.63580936, 0.52292717, 0.87869436, -2.2948487, 0.10834998, 0.87869436, 1.9898007, 0.38477987, 0.60216975, 1.9898007, -0.30622724, 0.049215227, 1.0221202, 0.7994924, 0.18743016, -2.2948487, -0.58279246, 0.46376532, -2.8480468, -0.029797316, 0.7403847, 2.2661223, 0.10834998, 0.32583457, -1.8803663, -0.029797316, 0.87869436, 2.1380906, 0.10834998, -0.043552198, 1.9898007, 0.10834998, 0.60216975, 1.2984419, 0.10834998, 0.87869436)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_2eikk"]
-points = PackedVector3Array(1.298334, -0.16807988, -0.7803452, -2.8479793, 0.6613722, -0.5038611, -2.8479793, 0.6613722, -0.7803452, -2.2953901, -0.5829277, -0.08909446, 2.2660418, 0.38464457, -0.08909446, -3.1245444, 0.38464457, -0.08909446, -2.433402, -0.16807988, -0.7803452, 1.0217688, 0.38464457, -0.9186278, 1.7129111, -0.4445639, -0.08909446, -2.2953901, -0.5829277, -0.5038611, -3.2630978, 0.38464457, -0.7803452, -1.1896704, -0.02983787, -0.9186278, 0.7452036, -0.4445639, -0.64206254, 1.7129111, 0.38464457, -0.7803452, 2.1274884, -0.02983787, -0.3656597, -1.6042476, 0.5228866, -0.9186278, 1.7129111, -0.4445639, -0.3656597, 0.88321555, -0.02983787, -0.9186278, -1.3276825, -0.3063219, -0.7803452, -3.2630978, 0.6613722, -0.7803452, 1.7129111, 0.10816055, -0.7803452, -2.9865324, 0.10816055, -0.08909446, -1.8808129, -0.5829277, -0.5038611, 2.2660418, 0.38464457, -0.22737709, -0.63654, 0.5228866, -0.9186278, 0.7452036, -0.3063219, -0.7803452, -3.2630978, 0.6613722, -0.5038611, -1.6042476, 0.10816055, -0.9186278, -2.9865324, 0.10816055, -0.7803452, 1.7129111, -0.16807988, -0.64206254, 1.436346, -0.4445639, -0.5038611, -1.8808129, -0.5829277, -0.08909446)
-
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_mfeig"]
-points = PackedVector3Array(-4.230643, 0.8003588, -0.08909449, 0.8837298, 8.265428, 0.04916106, 1.0218501, 5.775853, 0.18741661, 3.7866092, 0.8003588, -0.08909449, 1.0218501, 0.8003588, 0.18741661, 0.8837298, 8.265428, -0.08909449, -4.230643, 1.0773029, 0.04916106, 3.7866092, 0.9391961, 0.04916106, -1.1888585, 6.467118, 0.04916106, 0.19234389, 5.222696, 0.18741661, -1.1888585, 6.467118, -0.08909449, -4.230643, 0.8003588, 0.04916106, -4.230643, 1.0773029, -0.08909449, 0.7448248, 8.265428, 0.04916106, 0.8837298, 0.8003588, 0.18741661, 1.0218501, 7.987753, -0.08909449, 1.0218501, 7.987753, 0.04916106, 3.7866092, 0.9391961, -0.08909449, 3.7866092, 0.8003588, 0.04916106, 0.7448248, 8.265428, -0.08909449, 0.7448248, 5.775853, 0.18741661, 0.19234389, 4.9464827, 0.18741661)
-
-[node name="Sloop" type="RigidBody3D" unique_id=1430013140 node_paths=PackedStringArray("probes_node", "wheel_model_node", "markers_node", "canons_node", "gun_deck_camera_node", "ship_mesh") groups=["ships"]]
-mass = 5000.0
+[node name="Sloop" type="Node3D" unique_id=1430013140 node_paths=PackedStringArray("probes_node", "wheel_model_node", "canons_node", "ship_mesh") groups=["ships"]]
 script = ExtResource("1_7mach")
 probes_node = NodePath("Probes")
 wheel_model_node = NodePath("WheelModel")
-markers_node = NodePath("Markers")
 canons_node = NodePath("Canons")
-gun_deck_camera_node = NodePath("SpecialCameras/GunDeck")
 ship_mesh = NodePath("Model")
 
 [node name="WheelModel" type="Node3D" parent="." unique_id=1382954128]
@@ -42,17 +27,6 @@ mesh = ExtResource("2_xuhp6")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="WheelModel" unique_id=1816741841]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0617905, 0)
 mesh = SubResource("CapsuleMesh_mr86w")
-
-[node name="Markers" type="Node3D" parent="." unique_id=541957140]
-
-[node name="quarterDeck" type="Marker3D" parent="Markers" unique_id=863424705]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.007884e-05, 1.9268196, 7.861102)
-
-[node name="exitPoint" type="Marker3D" parent="Markers" unique_id=1921974937]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.880479, 0, 0)
-
-[node name="sailPoint" type="Marker3D" parent="Markers" unique_id=1481543535]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 8.803999, 0)
 
 [node name="Canons" type="Node3D" parent="." unique_id=805703799]
 
@@ -73,19 +47,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7
 
 [node name="ShipCanon8" parent="Canons" unique_id=56386609 instance=ExtResource("2_qyfov")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7783628, 1.5906878, 0.74048305)
-
-[node name="SpecialCameras" type="Node3D" parent="." unique_id=2001153801]
-
-[node name="GunDeck" type="Camera3D" parent="SpecialCameras" unique_id=171155229]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.42334306, 2.3922842, 0)
-
-[node name="PerspectiveCameras" type="Node3D" parent="." unique_id=1367568048]
-
-[node name="ThirdPersonCamera" type="Camera3D" parent="PerspectiveCameras" unique_id=1175246007]
-transform = Transform3D(1, 0, 0, 0, 0.9790739, 0.20350505, 0, -0.20350505, 0.9790739, 0, 9.85619, 21.772034)
-
-[node name="FirstPersonCamera" type="Camera3D" parent="PerspectiveCameras" unique_id=1080181616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.1634884, 1.1501191, 0.15853977)
 
 [node name="Probes" type="Node3D" parent="." unique_id=694124379]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)
@@ -111,22 +72,6 @@ shape = SubResource("BoxShape3D_2eikk")
 [node name="Model" type="MeshInstance3D" parent="." unique_id=235035721]
 transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 0, 0, 0)
 mesh = ExtResource("5_ntg5b")
-
-[node name="CollisionShape3D4" type="CollisionShape3D" parent="." unique_id=1240568456]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_31aka")
-
-[node name="CollisionShape3D3" type="CollisionShape3D" parent="." unique_id=16988090]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_jo3od")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="." unique_id=771450365]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_2eikk")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1378855171]
-transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 0, 0, 0)
-shape = SubResource("ConvexPolygonShape3D_mfeig")
 
 [connection signal="body_entered" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_entered"]
 [connection signal="body_exited" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_exited"]

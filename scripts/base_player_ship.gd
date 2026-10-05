@@ -1,11 +1,9 @@
-extends RigidBody3D
+extends Node3D
 
 # ship settings
-@export var float_force_multiplier := 1.5
-@export var water_drag := 2.0
-@export var water_angular_drag := 0.1
+@export var float_height := 0.3  # how high the ship sits above the water
+@export var float_speed := 2.0  # lower is heavier and smoother
 
-@export var acceleration := 1000  # orginal 500
 @export var health_ui_position = Vector3(0,0.4,0)
 
 # node references
@@ -16,37 +14,30 @@ extends RigidBody3D
 @export var gun_deck_camera_node: Node3D
 
 @export var ship_mesh: MeshInstance3D
-@onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 @onready var health_ui_tscn = preload("res://scenes/health_ui.tscn")
 
 # internal variables
-var float_force: float
 var water_plane_node: MeshInstance3D
 var probes: Array[Node]
 var canons: Array[Node]
-var submerged := false
-
-var current_steering_deg = 0.0
-var target_steering_deg = 0.0
+var ship_length: float
+var ship_width: float
 
 var health_ui: Sprite3D
 var auto_move := false
 
 
 func _ready() -> void:
-	generate_convex_collisions()
-	generate_health_bar()
+	#generate_convex_collisions()  # not needed now the ship is a node3d with no physics
+	#generate_health_bar()
 
 	probes = probes_node.get_children()
 	canons = canons_node.get_children()
 	water_plane_node = get_tree().get_first_node_in_group("waters")
 	
-	# caluclate water physics
-	var total_probes = max(probes.size(), 1)
-	float_force = (mass * float_force_multiplier) / total_probes
-	
-	# handle signals
-	self.body_entered.connect(_on_body_entered)
+	# caluclate ship size from the probes for the tilting
+	ship_length = probes_node.get_node('frontLeft').position.distance_to(probes_node.get_node('backLeft').position)
+	ship_width = probes_node.get_node('frontLeft').position.distance_to(probes_node.get_node('frontRight').position)
 
 
 func _process(_delta: float) -> void:
@@ -78,49 +69,31 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(delta: float) -> void:
-	# movement
-	if Global.isMounted == true and Global.canMountShipBody == self and not Global.fire_mode:
-		var steering_inc = deg_to_rad(15)
-
-		if Input.is_action_pressed("left"):
-			target_steering_deg = current_steering_deg + steering_inc
-			#apply_torque(acceleration * mass * Vector3.UP * delta)
-		elif Input.is_action_pressed("right"):
-			target_steering_deg = current_steering_deg - steering_inc
-		else:
-			target_steering_deg = float(0)
-
-		current_steering_deg = clamp(current_steering_deg, deg_to_rad(-45), deg_to_rad(45))
-		current_steering_deg = lerp(current_steering_deg, target_steering_deg, delta)
-		wheel_model_node.rotation.z = current_steering_deg
-		
-		if Input.is_action_pressed("forward"):
-			apply_force(acceleration * mass * -global_transform.basis.z * delta, markers_node.get_node('sailPoint').position)
-			# rotate only when moving
-			if abs(current_steering_deg) > 0.01: # error checking
-				var turning_dir
-				if current_steering_deg > 0:
-					turning_dir = Vector3.UP
-				else:
-					turning_dir = Vector3.DOWN
-				
-				# limit the current steering deg to limit torque applied
-				var effective_force = clamp(current_steering_deg, deg_to_rad(-20), deg_to_rad(20))
-				apply_torque(acceleration * mass * turning_dir * abs(effective_force) * delta)
-	
 	# boyouancy effect
-	submerged = false
+	# bouyancy now dosent depend on actual physics but just a effect
+	var front_height = 0.0
+	var back_height = 0.0
+	var left_height = 0.0
+	var right_height = 0.0
 	for probe in probes:
-		var depth = water_plane_node.get_height(probe.global_position) - probe.global_position.y
-		if depth > 0:
-			submerged = true
-			apply_force(Vector3.UP * float_force * gravity * depth, probe.global_position - global_position)
-
-
-func _integrate_forces(state: PhysicsDirectBodyState3D) -> void:
-	if submerged:
-		state.linear_velocity *= 1 - (water_drag * state.step)
-		state.angular_velocity *= 1 - (water_angular_drag * state.step)
+		var water_height = water_plane_node.get_height(probe.global_position)
+		if 'front' in probe.name:
+			front_height += water_height / 2
+		else:
+			back_height += water_height / 2
+		if 'Left' in probe.name:
+			left_height += water_height / 2
+		else:
+			right_height += water_height / 2
+	
+	# height is the average and the tilt comes from the difference between each side
+	var target_height = (front_height + back_height) / 2 + float_height
+	var target_pitch = atan2(front_height - back_height, ship_length)
+	var target_roll = atan2(right_height - left_height, ship_width)
+	
+	global_position.y = lerp(global_position.y, target_height, float_speed * delta)
+	rotation.x = lerp_angle(rotation.x, target_pitch, float_speed * delta)
+	rotation.z = lerp_angle(rotation.z, target_roll, float_speed * delta)
 
 
 func _on_bounding_box_area_body_entered(body: Node3D) -> void:
@@ -136,11 +109,6 @@ func _on_bounding_box_area_body_exited(body: Node3D) -> void:
 		Global.isMounted = false
 		Global.canMountShipBody = null
 
-
-func _on_body_entered(body: Node) -> void:
-	if body.is_in_group("canon_balls"):
-		body.queue_free()
-		
 
 func sink_ship():
 	queue_free()
