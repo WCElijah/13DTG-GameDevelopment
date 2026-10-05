@@ -23,7 +23,6 @@ var ship_length: float
 var ship_width: float
 
 var health_ui: Sprite3D
-var auto_move := false
 
 
 func _ready() -> void:
