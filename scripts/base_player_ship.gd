@@ -7,7 +7,6 @@ extends Node3D
 @export var health_ui_position = Vector3(0,0.4,0)
 
 # node references
-@export var probes_node: Node3D
 @export var wheel_model_node: Node3D
 @export var markers_node: Node3D
 @export var canons_node: Node3D
@@ -18,7 +17,7 @@ extends Node3D
 
 # internal variables
 var water_plane_node: MeshInstance3D
-var probes: Array[Node]
+var probe_points: Dictionary
 var canons: Array[Node]
 var ship_length: float
 var ship_width: float
@@ -31,13 +30,21 @@ func _ready() -> void:
 	#generate_convex_collisions()  # not needed now the ship is a node3d with no physics
 	#generate_health_bar()
 
-	probes = probes_node.get_children()
 	canons = canons_node.get_children()
 	water_plane_node = get_tree().get_first_node_in_group("waters")
 	
-	# caluclate ship size from the probes for the tilting
-	ship_length = probes_node.get_node('frontLeft').position.distance_to(probes_node.get_node('backLeft').position)
-	ship_width = probes_node.get_node('frontLeft').position.distance_to(probes_node.get_node('frontRight').position)
+	# get_aabb() gives the smallest box that fits around the whole model (AABB = axis aligned bounding box)
+	# https://docs.godotengine.org/en/stable/classes/class_aabb.html
+	var box = ship_mesh.transform * ship_mesh.get_aabb()
+	ship_length = box.size.z
+	ship_width = box.size.x
+	
+	probe_points = {
+		'frontLeft': Vector3(box.position.x, 0, box.position.z),
+		'frontRight': Vector3(box.end.x, 0, box.position.z),
+		'backLeft': Vector3(box.position.x, 0, box.end.z),
+		'backRight': Vector3(box.end.x, 0, box.end.z),
+	}
 
 
 func _process(_delta: float) -> void:
@@ -75,22 +82,29 @@ func _physics_process(delta: float) -> void:
 	var back_height = 0.0
 	var left_height = 0.0
 	var right_height = 0.0
-	for probe in probes:
-		var water_height = water_plane_node.get_height(probe.global_position)
-		if 'front' in probe.name:
+	for probe_name in probe_points:
+		# to_global() changes a point from the ships space into the worlds space so it moves and turns with the ship
+		# ref to https://docs.godotengine.org/en/stable/classes/class_node3d.html#class-node3d-method-to-global
+		# each side has 2 probes so adding half of each one gives the average for that side
+		var water_height = water_plane_node.get_height(to_global(probe_points[probe_name]))
+		if 'front' in probe_name:
 			front_height += water_height / 2
 		else:
 			back_height += water_height / 2
-		if 'Left' in probe.name:
+		if 'Left' in probe_name:
 			left_height += water_height / 2
 		else:
 			right_height += water_height / 2
 	
-	# height is the average and the tilt comes from the difference between each side
 	var target_height = (front_height + back_height) / 2 + float_height
+	
+	# atan2 gives the angle of a slope that goes up by y over a distance of x
+	# so if the front water is higher than the back the angle is positive and the front of the ship tilts up
+	# its the same as trig inverse tan(angle)
+	# for more info and ref here it is boomers: https://docs.godotengine.org/en/stable/classes/class_@globalscope.html#class-globalscope-method-atan2
 	var target_pitch = atan2(front_height - back_height, ship_length)
 	var target_roll = atan2(right_height - left_height, ship_width)
-	
+
 	global_position.y = lerp(global_position.y, target_height, float_speed * delta)
 	rotation.x = lerp_angle(rotation.x, target_pitch, float_speed * delta)
 	rotation.z = lerp_angle(rotation.z, target_roll, float_speed * delta)
@@ -123,7 +137,6 @@ func generate_health_bar():
 
 
 func generate_convex_collisions():
-	# uses a builint HAVCD but using code 
 	ship_mesh.create_multiple_convex_collisions() # this generates a staticbody child to meshinstance
 	call_deferred('reparent_generated_collisions')  # 'call_defered' runs the function on a safe frame for physics manioulaition like this
 

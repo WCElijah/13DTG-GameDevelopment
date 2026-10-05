@@ -10,9 +10,8 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_2eikk"]
 size = Vector3(8.168098, 8.710133, 4)
 
-[node name="Sloop" type="Node3D" unique_id=1430013140 node_paths=PackedStringArray("probes_node", "wheel_model_node", "canons_node", "ship_mesh") groups=["ships"]]
+[node name="Sloop" type="Node3D" unique_id=1430013140 node_paths=PackedStringArray("wheel_model_node", "canons_node", "ship_mesh") groups=["ships"]]
 script = ExtResource("1_7mach")
-probes_node = NodePath("Probes")
 wheel_model_node = NodePath("WheelModel")
 canons_node = NodePath("Canons")
 ship_mesh = NodePath("Model")
@@ -47,21 +46,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7
 
 [node name="ShipCanon8" parent="Canons" unique_id=56386609 instance=ExtResource("2_qyfov")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7783628, 1.5906878, 0.74048305)
-
-[node name="Probes" type="Node3D" parent="." unique_id=694124379]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 7.997453e-05, 0, -0.43404448)
-
-[node name="frontLeft" type="Marker3D" parent="Probes" unique_id=1226760381]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, -4.0000005)
-
-[node name="backLeft" type="Marker3D" parent="Probes" unique_id=1637051189]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1, -4.0000005)
-
-[node name="frontRight" type="Marker3D" parent="Probes" unique_id=77255778]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, -1, 4.0000005)
-
-[node name="backRight" type="Marker3D" parent="Probes" unique_id=1656722440]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -1, 3.9999995)
 
 [node name="BoundingBoxArea" type="Area3D" parent="." unique_id=2145639851]
 
