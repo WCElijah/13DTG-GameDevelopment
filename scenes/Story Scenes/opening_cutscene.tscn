@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bvptvv2e2vham"]
 
-[ext_resource type="Script" uid="uid://jeb7kphd7b2s" path="res://Scripts/opening_cutscene.gd" id="1_script"]
+[ext_resource type="Script" uid="uid://jeb7kphd7b2s" path="res://Scripts/Cutscene Scripts/opening_cutscene.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_water"]
 [ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_sloop"]
 [ext_resource type="PackedScene" uid="uid://ci8jkijvw5jhy" path="res://Trialing 3/Exports/captain.glb" id="4_captain"]
