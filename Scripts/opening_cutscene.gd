@@ -36,7 +36,7 @@ func play_cutscene():
 	# shows a trading ship being spotted
 	move_camera(Vector3(-3.2, 3.4, 9), trader_ship.position + Vector3(0, 3, 0), 0)
 	move_camera(Vector3(-3, 3.3, 8.6), trader_ship.position + Vector3(0, 3, 0), 4)
-	say('Lookout: "Sail ahead, Captain. Just a trader."')
+	say('Lookout: "Sail ahead, Captain. It is just a trader."')
 	await get_tree().create_timer(4).timeout
 
 	# captain decides to shoot it
