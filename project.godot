@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="13DTG - GameDevelopment"
-run/main_scene="uid://c5je5ft2lbwi5"
+run/main_scene="res://scenes/Story Scenes/opening_cutscene.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
