@@ -8,8 +8,7 @@ extends Node3D
 
 @onready var canon = $PlayerShip/Canons/ShipCanon3
 
-@onready var dialogue_panel = $DialogueUI/Panel
-@onready var dialogue_label = $DialogueUI/Panel/Label
+@onready var dialogue_label = $DialogueUI/DialogueLabel
 @onready var fade = $DialogueUI/Fade
 
 @onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
@@ -22,7 +21,7 @@ var next_scene = "res://scenes/Minigames/aiming_minigame.tscn"  # remember t och
 
 func _ready() -> void:
 	# setup dialogue
-	dialogue_panel.visible = false
+	dialogue_label.visible = false
 	fade.modulate.a = 0
 	
 	# hide ships at start
@@ -110,11 +109,11 @@ func move_camera(cam_position, position_to_look, duration):
 
 func say(line):
 	dialogue_label.text = line
-	dialogue_panel.visible = true
+	dialogue_label.visible = true
 
 
 func hide_dialogue():
-	dialogue_panel.visible = false
+	dialogue_label.visible = false
 
 
 func get_newest_ball():
