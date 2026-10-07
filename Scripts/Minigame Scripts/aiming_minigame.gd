@@ -7,6 +7,7 @@ extends Node3D
 
 @onready var player_ship = $PlayerShip
 @onready var water = $WaterPlane
+@onready var water_square_size = water.mesh.size.x / (water.mesh.subdivide_width + 1)  # cuz when they subdivide it they make an extra cut at the sides not accounted for
 @onready var sail_camera = $PlayerShip/SailCamera
 @onready var aim_camera = $PlayerShip/AimCamera
 @onready var enemies = $Enemies
@@ -20,7 +21,8 @@ extends Node3D
 @onready var sloop_tscn = preload("res://scenes/Ships/sloop.tscn")
 @onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
 
-var next_scene = 'res://scenes/main.tscn'
+var next_scene = "res://scenes/Story Scenes/cargo_cutscene.tscn"
+
 
 # internal variables
 var time_until_next_ship = 0.0
@@ -45,9 +47,8 @@ func _process(delta: float) -> void:
 	# keep ship moving forward
 	player_ship.position.z -= player_ship_speed * delta
 
-	# water following logic applied to the player's ship like in player.gd
-	water.global_position.x = player_ship.global_position.x
-	water.global_position.z = player_ship.global_position.z
+	water.global_position.x = snapped(player_ship.global_position.x, water_square_size)  # snapped makes it only moves to the position of the next relevant part based on the tile size
+	water.global_position.z = snapped(player_ship.global_position.z, water_square_size)
 	# keep crosshair node alongside player mouse position (it is still invisble tho in most cases)
 	crosshair.position = get_viewport().get_mouse_position()
 

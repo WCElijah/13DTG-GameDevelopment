@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dfnu40h44eegq" path="res://Trialing/water_plane.gd" id="2_rjqxt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_fbhhr"]
-size = Vector2(100, 100)
+size = Vector2(600, 600)
 subdivide_width = 1000
 subdivide_depth = 1000
 orientation = 1

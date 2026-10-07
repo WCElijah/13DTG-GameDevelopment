@@ -28,7 +28,6 @@ shadow_enabled = true
 environment = SubResource("Environment_sky")
 
 [node name="WaterPlane" parent="." unique_id=1378789486 instance=ExtResource("2_water")]
-transform = Transform3D(6, 0, 0, 0, 1, 0, 0, 0, 6, 0, 0, 0)
 
 [node name="PlayerShip" parent="." unique_id=1769782968 instance=ExtResource("3_sloop")]
 
