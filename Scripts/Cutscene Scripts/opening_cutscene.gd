@@ -1,18 +1,23 @@
 extends Node3D
 
 @onready var camera = $Camera3D
+
 @onready var player_ship = $PlayerShip
 @onready var trader_ship = $TraderShip
 @onready var reinforcements = $Reinforcements
+
 @onready var canon = $PlayerShip/Canons/ShipCanon3
+
 @onready var dialogue_panel = $DialogueUI/Panel
 @onready var dialogue_label = $DialogueUI/Panel/Label
 @onready var fade = $DialogueUI/Fade
+
 @onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
 
 var camera_tween: Tween
 
-var next_scene = 'res://scenes/main.tscn'  # remember t ochange ts LATER 
+var next_scene = "res://scenes/Minigames/aiming_minigame.tscn"  # remember t ochange ts LATER 
+
 
 
 func _ready() -> void:
