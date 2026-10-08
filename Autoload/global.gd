@@ -63,7 +63,7 @@ func move_camera(camera, cam_position, position_to_look, duration):
 		return
 	else:
 		# camera.create_tween() so the tween gets removed with the camera when stuff changes later https://docs.godotengine.org/en/stable/classes/class_node.html#class-node-method-create-tween
-		camera_tween = camera.create_tween().set_parallel(true).set_trans(Tween.TRANS_SINE)
+		camera_tween = camera.create_tween().set_parallel(true)
 		camera_tween.tween_property(camera, 'position', cam_position, duration)
 		camera_tween.tween_property(camera, 'rotation_degrees', target_rotation, duration)
 

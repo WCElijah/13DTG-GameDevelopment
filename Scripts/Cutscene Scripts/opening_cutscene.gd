@@ -105,6 +105,6 @@ func start_explosion_effect():  # we hve to do this since the original explosion
 
 func sink_trader_ship():
 	trader_ship.set_physics_process(false)  # turn off physics for better sinking and no interferance
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(trader_ship, 'rotation:z', deg_to_rad(-80), 6)
 	tween.tween_property(trader_ship, 'position:y', -12.0, 6)
