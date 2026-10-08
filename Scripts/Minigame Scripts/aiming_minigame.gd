@@ -177,7 +177,7 @@ func start_explosion_effect(ship):  # same as the cutscene one
 
 func sink_ship(ship):  # same tween idea as the trader ship in the cutscene
 	ship.set_physics_process(false)  # stop the bouyancy so it can sink
-	var tween = create_tween().set_parallel(true).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(ship, 'rotation:z', deg_to_rad(-80), 3)
 	tween.tween_property(ship, 'position:y', -12.0, 3)
 
