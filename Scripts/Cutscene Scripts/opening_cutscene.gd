@@ -9,7 +9,6 @@ extends Node3D
 @onready var canon = $PlayerShip/Canons/ShipCanon3
 
 @onready var dialogue_label = $DialogueUI/DialogueLabel
-@onready var fade = $DialogueUI/Fade
 
 @onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
 
@@ -19,7 +18,6 @@ var next_scene = "res://scenes/Minigames/aiming_minigame.tscn"  # remember t och
 func _ready() -> void:
 	# setup dialogue
 	dialogue_label.visible = false
-	fade.modulate.a = 0
 	
 	# hide ships at start
 	for ship in reinforcements.get_children():
@@ -78,11 +76,8 @@ func play_cutscene():
 	Global.move_camera(camera, Vector3(2, 5.5, -19), Vector3(45, 3, -170), 4)
 	for ship in reinforcements.get_children():
 		ship.visible = true
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(2.5).timeout
 
-	var tween = create_tween()
-	tween.tween_property(fade, 'modulate:a', 1.0, 1.0)
-	await tween.finished
 	get_tree().change_scene_to_file(next_scene)
 
 

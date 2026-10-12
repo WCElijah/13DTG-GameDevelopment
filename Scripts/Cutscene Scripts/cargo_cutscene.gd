@@ -15,7 +15,6 @@ extends Node3D
 @onready var water_square_size = water.mesh.size.x / (water.mesh.subdivide_width + 1)  # cuz when they subdivide it they make an extra cut at the sides not accounted for
 
 @onready var dialogue_label = $DialogueUI/DialogueLabel
-@onready var fade = $DialogueUI/Fade
 
 var floating_crates = []  # crates that have hit the water
 
@@ -25,7 +24,6 @@ var next_scene = 'res://scenes/Minigames/dodging_minigame.tscn'
 func _ready() -> void:
 	# setup dialogue
 	dialogue_label.visible = false
-	fade.modulate.a = 0
 	
 	# hide ships at start and take the crates off them since theyre navy ships
 	for ship in reinforcements.get_children():
@@ -95,12 +93,8 @@ func play_cutscene():
 	Global.move_camera(camera, Vector3(2, 5.5, 19), Vector3(5, 3, 120), 4)
 	for ship in reinforcements.get_children():
 		ship.visible = true
-	await get_tree().create_timer(2.5).timeout
+	await get_tree().create_timer(3.5).timeout
 
-	# fade the screen away
-	var tween = create_tween()
-	tween.tween_property(fade, 'modulate:a', 1.0, 1.0)
-	await tween.finished
 	get_tree().change_scene_to_file(next_scene)
 
 
