@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_water"]
 [ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_sloop"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_sky"]
-[ext_resource type="PackedScene" uid="uid://2di54rlca4iu" path="res://scenes/canon_shot_indicator.tscn" id="5_marker"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sky"]
 panorama = ExtResource("4_sky")
@@ -21,7 +20,6 @@ size = Vector3(7.341736, 4.921631, 21.773315)
 
 [node name="DodgingMinigame" type="Node3D" unique_id=1875227309]
 script = ExtResource("1_script")
-shot_marker_scene = ExtResource("5_marker")
 
 [node name="Enviroment" type="Node" parent="." unique_id=1032008232]
 
