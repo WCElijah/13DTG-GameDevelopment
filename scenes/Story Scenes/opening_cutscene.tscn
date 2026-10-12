@@ -36,7 +36,7 @@ environment = SubResource("Environment_sky")
 [node name="Captain" parent="PlayerShip" unique_id=293500555 instance=ExtResource("4_captain")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.2, 0.77, 6.8)
 
-[node name="Lookout" parent="PlayerShip" unique_id=184225790 instance=ExtResource("5_crewmate")]
+[node name="Crewmate" parent="PlayerShip" unique_id=184225790 instance=ExtResource("5_crewmate")]
 transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, 1.6, 0.69, -3)
 
 [node name="TraderShip" parent="." unique_id=614139164 instance=ExtResource("3_sloop")]

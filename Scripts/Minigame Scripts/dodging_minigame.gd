@@ -16,7 +16,7 @@ extends Node3D
 
 @onready var time_label = $MinigameUI/TimeLabel
 
-var next_scene = 'res://scenes/main.tscn'
+var next_scene = 'res://scenes/Story Scenes/supplies_cutscene.tscn'
 
 
 func _ready() -> void:

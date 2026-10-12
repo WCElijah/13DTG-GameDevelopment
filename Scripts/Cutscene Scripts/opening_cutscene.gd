@@ -37,7 +37,7 @@ func play_cutscene():
 	# shows a trading ship being spotted
 	Global.move_camera(camera, Vector3(-3.2, 3.4, 9), trader_ship.position + Vector3(0, 3, 0), 0)
 	Global.move_camera(camera, Vector3(-3, 3.3, 8.6), trader_ship.position + Vector3(0, 3, 0), 4)
-	Global.say(dialogue_label, 'Lookout: "Sail ahead, Captain. It is just a trader."')
+	Global.say(dialogue_label, 'Crewmate: "Sail ahead, Captain. It is just a trader."')
 	await get_tree().create_timer(4).timeout
 
 	# captain decides to shoot it
@@ -69,7 +69,7 @@ func play_cutscene():
 	start_explosion_effect()
 	await get_tree().create_timer(1.5).timeout
 	sink_trader_ship()
-	Global.say(dialogue_label, 'Lookout: "Captain... that was a navy supply ship."')
+	Global.say(dialogue_label, 'Crewmate: "Captain... that was a navy supply ship."')
 	await get_tree().create_timer(4).timeout
 
 	# reinforcements show up shot

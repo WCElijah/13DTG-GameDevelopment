@@ -8,7 +8,7 @@ extends Node3D
 @onready var player_ship = $PlayerShip
 @onready var cargos = $PlayerShip/Cargos
 @onready var captain = $PlayerShip/Captain
-@onready var lookout = $PlayerShip/Lookout
+@onready var crewmate = $PlayerShip/Crewmate
 @onready var reinforcements = $Reinforcements
 
 @onready var water = $WaterPlane
@@ -83,7 +83,7 @@ func play_cutscene():
 	await get_tree().create_timer(3.5).timeout
 
 	# crewmate checks the canon and finds out they cant fire
-	lookout.position = Vector3(1.3, 0.64, -1.33)  # stand behind ShipCanon3
+	crewmate.position = Vector3(1.3, 0.64, -1.33)  # stand behind ShipCanon3
 	Global.move_camera(camera, Vector3(-0.5, 1.6, -3.8), Vector3(1.8, 1.0, -1.2), 0)
 	Global.move_camera(camera, Vector3(-0.3, 1.6, -3.4), Vector3(1.8, 1.0, -1.2), 4.5)
 	Global.say(dialogue_label, 'Crewmate: "The powder went over with the crates. We can\'t fire."')
