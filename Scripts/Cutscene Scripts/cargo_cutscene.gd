@@ -19,7 +19,7 @@ extends Node3D
 
 var floating_crates = []  # crates that have hit the water
 
-var next_scene = 'res://scenes/main.tscn'  # change this to minigame 2 when its made
+var next_scene = 'res://scenes/Minigames/dodging_minigame.tscn'
 
 
 func _ready() -> void:
