@@ -109,11 +109,17 @@ func make_hit_box(ship):
 	var shape = CollisionShape3D.new()
 	shape.shape = BoxShape3D.new()
 	shape.shape.size = box.size
+	shape.shape.size.y = shape.shape.size.y / 3  # reduce it to only cover the hull of the ship
 	
 	hit_box.add_child(shape)
 	ship.ship_mesh.add_child(hit_box)
 	hit_box.position = box.get_center()
 
+	# set pos of the itbox to center of the ship
+	var center_of_pos = ship.get_node('CenterPoint')
+	hit_box.global_position = center_of_pos.global_position
+	
+	
 	hit_box.area_entered.connect(on_hit_box_area_entered)
 
 

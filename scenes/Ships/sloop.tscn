@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://yugqfo0dm6jh"]
 
 [ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
-[ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
-[ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://scenes/Ships/Binary Models/Sloop.tres" id="5_ntg5b"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
+[ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://Scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
+[ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://Scenes/Ships/Binary Models/sloop.tres" id="5_ntg5b"]
 [ext_resource type="PackedScene" uid="uid://cg1wx7j7626qu" path="res://Assets/Blender Model Exports/cratebox.glb" id="6_crate"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mr86w"]
@@ -77,6 +77,8 @@ transform = Transform3D(0.447535, 0, -0.047038, 0, 0.45, 0, 0.047038, 0, 0.44753
 
 [node name="Crate6" parent="Cargos" unique_id=1250362001 instance=ExtResource("6_crate")]
 transform = Transform3D(0.422862, 0, 0.153909, 0, 0.45, 0, -0.153909, 0, 0.422862, 0.3, 1.1, 3)
+
+[node name="CenterPoint" type="Marker3D" parent="." unique_id=1453763177]
 
 [connection signal="body_entered" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_entered"]
 [connection signal="body_exited" from="BoundingBoxArea" to="." method="_on_bounding_box_area_body_exited"]

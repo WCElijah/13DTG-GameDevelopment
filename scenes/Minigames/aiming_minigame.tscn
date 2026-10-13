@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cfuj8fxfjgix6" path="res://Scripts/Minigame Scripts/aiming_minigame.gd" id="1_script"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_water"]
-[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_sloop"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://Scenes/Ships/sloop.tscn" id="3_sloop"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_sky"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sky"]
