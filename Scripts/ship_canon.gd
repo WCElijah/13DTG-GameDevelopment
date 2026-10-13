@@ -2,6 +2,7 @@ extends Node3D
 
 const CANON_BALL = preload("res://Scenes/canon_ball.tscn")
 @onready var timer: Timer = $cooldownTimer
+@onready var animation_player: AnimationPlayer = $Model/HorizontalPivot/CanonRigged/AnimationPlayer
 
 var canShoot = true
 
@@ -34,6 +35,8 @@ func shoot_canon():
 	if canShoot:
 		timer.start()
 		canShoot = false
+
+		animation_player.play("Recoil")
 			
 		var attack = CANON_BALL.instantiate()
 		add_child(attack)
