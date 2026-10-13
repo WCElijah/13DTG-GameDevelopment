@@ -1,0 +1,83 @@
+[gd_scene format=3 uid="uid://bgqx48qwlrcvh"]
+
+[ext_resource type="Script" uid="uid://cx66mky2flsoa" path="res://Scripts/Minigame Scripts/keep_level_minigame.gd" id="1_k3lvl"]
+[ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_ffedg"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_yugqf"]
+[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_bri08"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_q4m2d"]
+panorama = ExtResource("4_bri08")
+
+[sub_resource type="Sky" id="Sky_7wn3c"]
+sky_material = SubResource("PanoramaSkyMaterial_q4m2d")
+
+[sub_resource type="Environment" id="Environment_x2p8r"]
+background_mode = 2
+sky = SubResource("Sky_7wn3c")
+
+[node name="KeepLevelMinigame" type="Node3D" unique_id=1023384890]
+script = ExtResource("1_k3lvl")
+
+[node name="Enviroment" type="Node" parent="." unique_id=1403884415]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment" unique_id=762030973]
+transform = Transform3D(1, 0, 0, 0, 0.873509, 0.48680806, 0, -0.48680806, 0.873509, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment" unique_id=1327412650]
+environment = SubResource("Environment_x2p8r")
+
+[node name="WaterPlane" parent="." unique_id=825620287 instance=ExtResource("2_ffedg")]
+
+[node name="PlayerShip" parent="." unique_id=405019708 instance=ExtResource("3_yugqf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="BackCamera" type="Camera3D" parent="." unique_id=1322058149]
+transform = Transform3D(1, 0, 0, 0, 0.996195, 0.087156, 0, -0.087156, 0.996195, 0, 5, 24)
+current = true
+fov = 60.0
+
+[node name="RollTimer" type="Timer" parent="." unique_id=1362255747]
+wait_time = 2.0
+autostart = true
+
+[node name="MinigameTimer" type="Timer" parent="." unique_id=1785116394]
+wait_time = 20.0
+one_shot = true
+autostart = true
+
+[node name="MinigameUI" type="CanvasLayer" parent="." unique_id=6397789]
+
+[node name="TimeLabel" type="Label" parent="MinigameUI" unique_id=2048360295]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -250.0
+offset_top = 30.0
+offset_right = -30.0
+offset_bottom = 75.0
+grow_horizontal = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 26
+horizontal_alignment = 2
+
+[node name="HullLabel" type="Label" parent="MinigameUI" unique_id=810483221]
+offset_left = 30.0
+offset_top = 30.0
+offset_right = 110.0
+offset_bottom = 75.0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 26
+text = "Hull"
+
+[node name="HullBar" type="ProgressBar" parent="MinigameUI" unique_id=1226904178]
+offset_left = 110.0
+offset_top = 36.0
+offset_right = 410.0
+offset_bottom = 70.0
+value = 100.0
+
+[connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
+[connection signal="timeout" from="MinigameTimer" to="." method="_on_minigame_timer_timeout"]

@@ -16,7 +16,7 @@ extends Node3D
 
 @onready var dialogue_label = $DialogueUI/DialogueLabel
 
-var next_scene = 'res://scenes/main.tscn'  # change this to minigame 3 once its made
+var next_scene = 'res://scenes/Minigames/keep_level_minigame.tscn'
 
 
 func _ready() -> void:
