@@ -23,10 +23,7 @@ Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
-directories/dch_directory={
-"captain": "res://Assets/Characters/captain.dch",
-"unit_test_character": "res://Tests/Resources/unit_test_character.dch"
-}
+directories/dch_directory={}
 directories/dtl_directory={}
 layout/style_directory={}
 variables={}
