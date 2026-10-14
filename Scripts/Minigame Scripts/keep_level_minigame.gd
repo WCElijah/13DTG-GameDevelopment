@@ -6,14 +6,14 @@ extends Node3D
 
 @export var max_rotation_angle = 40.0 
 @export var angle_where_water_comes_in = 20.0
-@export var ship_damage_per_second = 15.0
+@export var ship_dps = 15.0
 
 @onready var player_ship = $PlayerShip
 @onready var minigame_timer = $MinigameTimer
 @onready var time_label = $MinigameUI/TimeLabel
 @onready var ship_bar = $MinigameUI/HullBar
 
-var next_scene = 'res://scenes/main.tscn'  # change this to the final chase once its made
+var next_scene = 'res://scenes/Story Scenes/ending_cutscene.tscn'
 
 # internal variables
 var current_ship_angle = 0.0  # how far the ship is rolled in degrees, positive is to the left
@@ -44,7 +44,7 @@ func _process(delta: float) -> void:
 
 	# handle taking damage
 	if abs(current_ship_angle) > angle_where_water_comes_in:
-		ship_bar.value -= ship_damage_per_second * delta
+		ship_bar.value -= ship_dps * delta
 
 	# update time left
 	time_label.text = 'Time Left: ' + str(round(minigame_timer.time_left))
