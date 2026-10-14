@@ -2,6 +2,7 @@ extends Node3D
 
 @export var player_ship_speed = 6.0
 @export var navy_ship_speed = 7.0  # a bit faster so they catch up
+@export var time_until_rock_hit = 2.5
 
 @onready var camera = $PlayerShip/Camera3D  # on the ship like the cameras in the aiming minigame
 
@@ -10,6 +11,7 @@ extends Node3D
 @onready var captain = $PlayerShip/Captain
 @onready var crewmate = $PlayerShip/Crewmate
 @onready var reinforcements = $Reinforcements
+@onready var rocks = $Rocks
 
 @onready var water = $WaterPlane
 @onready var water_square_size = water.mesh.size.x / (water.mesh.subdivide_width + 1)  # cuz when they subdivide it they make an extra cut at the sides not accounted for
@@ -17,7 +19,7 @@ extends Node3D
 @onready var dialogue_label = $DialogueUI/DialogueLabel
 
 var floating_crates = []  # crates that have hit the water
-
+var ship_front_z = -11.0  # distance btwn the center of the ship and the front of the hull
 var next_scene = 'res://scenes/Minigames/dodging_minigame.tscn'
 
 
@@ -30,6 +32,8 @@ func _ready() -> void:
 		ship.visible = false
 		ship.get_node('Cargos').visible = false
 	reinforcements.get_child(0).visible = true  # the first ship is already chasing us
+
+	rocks.position.z = player_ship.position.z + ship_front_z - player_ship_speed * time_until_rock_hit
 	
 	play_cutscene()
 
@@ -44,21 +48,24 @@ func _process(delta: float) -> void:
 	water.global_position.x = snapped(player_ship.global_position.x, water_square_size)
 	water.global_position.z = snapped(player_ship.global_position.z, water_square_size)
 
-	# make the thrown crates float on the waves the same way the ship does in base_player_ship.gd
+	# make crates float
 	for crate in floating_crates:
 		var water_height = water.get_height(crate.global_position)
 		crate.position.y = lerp(crate.position.y, water_height, 2.0 * delta)
 
 
 func play_cutscene():
-	# cam positions are nowrelativ etothe ship
-	Global.move_camera(camera, Vector3(14, 6, -12), Vector3(0, 1.5, 10), 0)
-	Global.move_camera(camera, Vector3(15, 4, 4), Vector3(0, 1, 4), 3.5)
-	await get_tree().create_timer(1.5).timeout
+	# hit rocks
+	Global.move_camera(camera, Vector3(-20, 5, -20), Vector3(-2, 1, -16), 0)
+	Global.move_camera(camera, Vector3(-16, 4, -14), Vector3(-2, 1, -12), time_until_rock_hit)
+	await get_tree().create_timer(time_until_rock_hit).timeout
 	
-	# crates falloff
+	# roll ship cuz of rocks
 	roll_ship(-14, 0.6)  # tip the right side down
 	await get_tree().create_timer(0.4).timeout
+
+	# crates falloff
+	Global.move_camera(camera, Vector3(15, 4, 4), Vector3(0, 1, 4), 0)
 	await crates_fall_off()
 	roll_ship(0, 1.2)  # level out again
 	

@@ -3,7 +3,7 @@ extends Node3D
 @export var player_ship_speed = 8.0
 @export var hits_needed = 3  # how many sink must be sunk before we move on
 @export var aim_time_limit = 5.0  # time limit 
-@export var time_between_ship_spawn = 6.0
+@export var time_between_ship_spawn = 2.0
 
 @onready var player_ship = $PlayerShip
 @onready var water = $WaterPlane
