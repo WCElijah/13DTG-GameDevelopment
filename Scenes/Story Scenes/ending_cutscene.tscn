@@ -1,0 +1,90 @@
+[gd_scene format=3 uid="uid://od8p6y5cpvtfm"]
+
+[ext_resource type="Script" uid="uid://ui212c3q1odov" path="res://Scripts/Cutscene Scripts/ending_cutscene.gd" id="1_script"]
+[ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_water"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_sloop"]
+[ext_resource type="PackedScene" uid="uid://ci8jkijvw5jhy" path="res://Trialing 3/Exports/captain.glb" id="4_captain"]
+[ext_resource type="PackedScene" uid="uid://dt8v2k4o7b62k" path="res://Trialing 3/Exports/crewmate.glb" id="5_crewmate"]
+[ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="6_sky"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sky"]
+panorama = ExtResource("6_sky")
+
+[sub_resource type="Sky" id="Sky_sky"]
+sky_material = SubResource("PanoramaSkyMaterial_sky")
+
+[sub_resource type="Environment" id="Environment_sky"]
+background_mode = 2
+sky = SubResource("Sky_sky")
+
+[node name="EndingCutscene" type="Node3D" unique_id=526123340]
+script = ExtResource("1_script")
+
+[node name="Enviroment" type="Node" parent="." unique_id=1666375563]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="Enviroment" unique_id=654653771]
+transform = Transform3D(1, 0, 0, 0, 0.873509, 0.48680806, 0, -0.48680806, 0.873509, 0, 0, 0)
+shadow_enabled = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="Enviroment" unique_id=939817969]
+environment = SubResource("Environment_sky")
+
+[node name="WaterPlane" parent="." unique_id=1258669421 instance=ExtResource("2_water")]
+
+[node name="PlayerShip" parent="." unique_id=806225244 instance=ExtResource("3_sloop")]
+
+[node name="Captain" parent="PlayerShip" unique_id=1843315167 instance=ExtResource("4_captain")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -1.2, 0.77, 6.8)
+
+[node name="Crewmate" parent="PlayerShip" unique_id=1736938893 instance=ExtResource("5_crewmate")]
+transform = Transform3D(0.4, 0, 0, 0, 0.4, 0, 0, 0, 0.4, -0.3, 0.66, 2.9)
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=333494434]
+current = true
+fov = 60.0
+far = 1000.0
+
+[node name="BlockingShips" type="Node3D" parent="." unique_id=648652332]
+
+[node name="Sloop1" parent="BlockingShips" unique_id=413518198 instance=ExtResource("3_sloop")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -54, 0, -70)
+
+[node name="Sloop2" parent="BlockingShips" unique_id=800206796 instance=ExtResource("3_sloop")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -18, 0, -75)
+
+[node name="Sloop3" parent="BlockingShips" unique_id=1523318092 instance=ExtResource("3_sloop")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 18, 0, -70)
+
+[node name="Sloop4" parent="BlockingShips" unique_id=434203283 instance=ExtResource("3_sloop")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 54, 0, -75)
+
+[node name="ChasingShips" type="Node3D" parent="." unique_id=1801359551]
+
+[node name="Sloop1" parent="ChasingShips" unique_id=656970222 instance=ExtResource("3_sloop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 0, 110)
+
+[node name="Sloop2" parent="ChasingShips" unique_id=521999629 instance=ExtResource("3_sloop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 130)
+
+[node name="Sloop3" parent="ChasingShips" unique_id=906533655 instance=ExtResource("3_sloop")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 0, 115)
+
+[node name="DialogueUI" type="CanvasLayer" parent="." unique_id=642156234]
+
+[node name="DialogueLabel" type="Label" parent="DialogueUI" unique_id=554574173]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 100.0
+offset_top = -130.0
+offset_right = -100.0
+offset_bottom = -40.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_font_sizes/font_size = 32
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
