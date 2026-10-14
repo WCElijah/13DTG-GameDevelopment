@@ -14,14 +14,18 @@ extends Node3D
 
 var next_scene = "res://scenes/Minigames/aiming_minigame.tscn"  # remember t ochange ts LATER 
 
+@export var reinforcement_starting_distance := 60.0  # how far back the ships start before sailing in
+
 
 func _ready() -> void:
 	# setup dialogue
 	dialogue_label.visible = false
 	
-	# hide ships at start
+	# setting flgs and visibilit
+	trader_ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 	for ship in reinforcements.get_children():
 		ship.visible = false
+		ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 	
 	play_cutscene()
 
@@ -30,24 +34,24 @@ func play_cutscene():
 	# cinematic starting shot
 	Global.move_camera(camera, Vector3(-45, 18, 40), Vector3(0, 2, 0), 0)
 	Global.move_camera(camera, Vector3(-30, 10, 25), Vector3(0, 2, 0), 4)
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	# shows a trading ship being spotted
 	Global.move_camera(camera, Vector3(-3.2, 3.4, 9), trader_ship.position + Vector3(0, 3, 0), 0)
 	Global.move_camera(camera, Vector3(-3, 3.3, 8.6), trader_ship.position + Vector3(0, 3, 0), 4)
 	Global.say(dialogue_label, 'Crewmate: "Sail ahead, Captain. It is just a trader."')
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	# captain decides to shoot it
 	Global.move_camera(camera, Vector3(-2, 2, 3.9), Vector3(-1.2, 2.1, 6.8), 0)
 	Global.move_camera(camera, Vector3(-1.8, 2.1, 4.5), Vector3(-1.2, 2.1, 6.8), 3.5)
 	Global.say(dialogue_label, 'Captain: "Then it won\'t shoot back."')
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(3.5, false).timeout
 
 	# shows the firing of the canons to the trading ship
 	Global.hide_dialogue(dialogue_label)
 	Global.move_camera(camera, Vector3(9, 3.5, 6), Vector3(3, 2, -1.3), 0)
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(1, false).timeout
 	canon.rotate_vertical(2)  # tilt it up a bit so the ball reaches the trader
 	canon.shoot_canon()
 	var ball = get_newest_ball()
@@ -65,18 +69,20 @@ func play_cutscene():
 	Global.move_camera(camera, Vector3(25, 8, 30), trader_ship.position + Vector3(0, 2, 0), 0)
 	Global.move_camera(camera, Vector3(28, 9, 34), trader_ship.position + Vector3(0, 2, 0), 5.5)
 	start_explosion_effect()
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	sink_trader_ship()
 	Global.say(dialogue_label, 'Crewmate: "Captain... that was a navy supply ship."')
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	# reinforcements show up shot
 	Global.hide_dialogue(dialogue_label)
 	Global.move_camera(camera, Vector3(2, 5, -17), Vector3(45, 3, -170), 0)
-	Global.move_camera(camera, Vector3(2, 5.5, -19), Vector3(45, 3, -170), 4)
+	Global.move_camera(camera, Vector3(2, 5.5, -19), Vector3(45, 3, -170), 6)
 	for ship in reinforcements.get_children():
 		ship.visible = true
-	await get_tree().create_timer(2.5).timeout
+		create_tween().tween_property(ship, 'position:z', ship.position.z, 4)
+		ship.position.z -= reinforcement_starting_distance
+	await get_tree().create_timer(5, false).timeout
 
 	get_tree().change_scene_to_file(next_scene)
 
