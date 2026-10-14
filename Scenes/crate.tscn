@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dfr0kn5aip63p"]
+
+[ext_resource type="Script" uid="uid://bawxwa4ong2o4" path="res://Scripts/crate.gd" id="1_k3v8p"]
+[ext_resource type="PackedScene" uid="uid://cg1wx7j7626qu" path="res://Assets/Blender Model Exports/cratebox.glb" id="2_r6m1x"]
+[ext_resource type="Texture2D" uid="uid://l6th56ixwoup" path="res://Assets/Textures/Crate Icons/food_icon.webp" id="3_kn6iu"]
+
+[node name="Crate" type="Node3D" unique_id=459287024]
+script = ExtResource("1_k3v8p")
+
+[node name="Model" parent="." unique_id=959829838 instance=ExtResource("2_r6m1x")]
+
+[node name="Icons" type="Node3D" parent="." unique_id=1688085067]
+
+[node name="FrontIcon" type="Sprite3D" parent="Icons" unique_id=743735358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.92)
+cast_shadow = 0
+pixel_size = 0.0042
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("3_kn6iu")
+
+[node name="BackIcon" type="Sprite3D" parent="Icons" unique_id=1508911483]
+transform = Transform3D(-1, 0, 0, 0, 1, 0, 0, 0, -1, 0, 0, -0.92)
+cast_shadow = 0
+pixel_size = 0.0042
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("3_kn6iu")
+
+[node name="RightIcon" type="Sprite3D" parent="Icons" unique_id=594950005]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, 0.92, 0, 0)
+cast_shadow = 0
+pixel_size = 0.0042
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("3_kn6iu")
+
+[node name="LeftIcon" type="Sprite3D" parent="Icons" unique_id=124164824]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -0.92, 0, 0)
+cast_shadow = 0
+pixel_size = 0.0042
+shaded = true
+alpha_cut = 1
+texture_filter = 2
+texture = ExtResource("3_kn6iu")
