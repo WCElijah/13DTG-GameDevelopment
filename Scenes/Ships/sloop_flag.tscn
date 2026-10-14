@@ -1,0 +1,56 @@
+[gd_scene format=3]
+
+[ext_resource type="Shader" path="res://Assets/Shaders/flag.gdshader" id="1_shader"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_flag"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_flag"]
+seamless = true
+noise = SubResource("FastNoiseLite_flag")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_flag"]
+render_priority = 0
+shader = ExtResource("1_shader")
+shader_parameter/noise_map = SubResource("NoiseTexture2D_flag")
+shader_parameter/noise_stretch = Vector2(-0.2, -0.1)
+shader_parameter/scroll_speed = Vector2(0.3, 0)
+shader_parameter/depth_warp = 0.5
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_flag"]
+material = SubResource("ShaderMaterial_flag")
+size = Vector2(3, 2)
+subdivide_width = 32
+subdivide_depth = 32
+center_offset = Vector3(1.5, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wood"]
+albedo_color = Color(0.153, 0.08, 0.042, 1)
+roughness = 0.9
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_pole"]
+material = SubResource("StandardMaterial3D_wood")
+top_radius = 0.05
+bottom_radius = 0.05
+height = 2.8
+radial_segments = 12
+
+[sub_resource type="SphereMesh" id="SphereMesh_knob"]
+material = SubResource("StandardMaterial3D_wood")
+radius = 0.09
+height = 0.18
+radial_segments = 12
+rings = 8
+
+[node name="SloopFlag" type="Node3D"]
+
+[node name="Flag" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
+mesh = SubResource("PlaneMesh_flag")
+
+[node name="Flagpole" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
+mesh = SubResource("CylinderMesh_pole")
+
+[node name="Knob" type="MeshInstance3D" parent="Flagpole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42, 0)
+mesh = SubResource("SphereMesh_knob")
