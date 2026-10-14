@@ -96,6 +96,7 @@ func spawn_enemy():
 
 	target_ship = sloop_tscn.instantiate()
 	enemies.add_child(target_ship)
+	target_ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 	target_ship.global_position = player_ship.global_position + Vector3(70, 0, -20)  # 70m to the right and 20m ahead
 	target_ship.global_position.y = 0
 	target_ship.rotation_degrees.y = 180  # face the other way of the player (positive z)

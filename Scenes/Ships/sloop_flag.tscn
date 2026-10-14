@@ -1,12 +1,14 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://clj5dhqj4qt7q"]
 
-[ext_resource type="Shader" path="res://Assets/Shaders/flag.gdshader" id="1_shader"]
+[ext_resource type="Shader" uid="uid://bhnlx1d66rhcd" path="res://Assets/Shaders/flag.gdshader" id="1_shader"]
+[ext_resource type="Texture2D" uid="uid://483vuby63b5x" path="res://Assets/Textures/Flags/jolly_roger.png" id="2_jolly"]
+[ext_resource type="Script" uid="uid://dh4r1342wmtsj" path="res://Scripts/sloop_flag.gd" id="3_script"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_flag"]
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_flag"]
-seamless = true
 noise = SubResource("FastNoiseLite_flag")
+seamless = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_flag"]
 render_priority = 0
@@ -15,6 +17,7 @@ shader_parameter/noise_map = SubResource("NoiseTexture2D_flag")
 shader_parameter/noise_stretch = Vector2(-0.2, -0.1)
 shader_parameter/scroll_speed = Vector2(0.3, 0)
 shader_parameter/depth_warp = 0.5
+shader_parameter/flag_texture = ExtResource("2_jolly")
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_flag"]
 material = SubResource("ShaderMaterial_flag")
@@ -41,16 +44,17 @@ height = 0.18
 radial_segments = 12
 rings = 8
 
-[node name="SloopFlag" type="Node3D"]
+[node name="SloopFlag" type="Node3D" unique_id=1228041555]
+script = ExtResource("3_script")
 
-[node name="Flag" type="MeshInstance3D" parent="."]
+[node name="Flag" type="MeshInstance3D" parent="." unique_id=1288333153]
 transform = Transform3D(1, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0)
 mesh = SubResource("PlaneMesh_flag")
 
-[node name="Flagpole" type="MeshInstance3D" parent="."]
+[node name="Flagpole" type="MeshInstance3D" parent="." unique_id=55472262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.2, 0)
 mesh = SubResource("CylinderMesh_pole")
 
-[node name="Knob" type="MeshInstance3D" parent="Flagpole"]
+[node name="Knob" type="MeshInstance3D" parent="Flagpole" unique_id=1792161025]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.42, 0)
 mesh = SubResource("SphereMesh_knob")

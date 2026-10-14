@@ -31,6 +31,7 @@ func _ready() -> void:
 	# navy ships dont carry crates
 	for ship in reinforcements.get_children():
 		ship.get_node('Cargos').visible = false
+		ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 
 	# crewmate stands next to the crates thats left
 	crewmate.position = Vector3(-0.3, 0.66, 2.9)

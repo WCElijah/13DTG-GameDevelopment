@@ -1,0 +1,16 @@
+extends Node3D
+
+
+@export var flag_texture: Texture2D
+
+
+func _ready() -> void:
+	if flag_texture:
+		set_flag(flag_texture)
+
+
+func set_flag(texture: Texture2D):
+	# we need to override the material cuz otherwise it would share its textures across mltiple ships
+	var material = $Flag.get_active_material(0).duplicate()
+	material.set_shader_parameter("flag_texture", texture)
+	$Flag.material_override = material

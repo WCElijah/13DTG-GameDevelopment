@@ -21,5 +21,7 @@ void vertex() {
 
 
 void fragment() {
-	ALBEDO = texture(flag_texture, UV).rgb;
+	vec4 flag_colour = texture(flag_texture, UV);
+	// see-through parts of the image show as white cloth instead of black
+	ALBEDO = mix(vec3(1.0), flag_colour.rgb, flag_colour.a);
 }

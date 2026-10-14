@@ -31,6 +31,7 @@ func _ready() -> void:
 	for ship in reinforcements.get_children():
 		ship.visible = false
 		ship.get_node('Cargos').visible = false
+		ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 	reinforcements.get_child(0).visible = true  # the first ship is already chasing us
 
 	rocks.position.z = player_ship.position.z + ship_front_z - player_ship_speed * time_until_rock_hit

@@ -24,8 +24,10 @@ func _ready() -> void:
 	# navy ships dont carry crates
 	for ship in blocking_ships.get_children():
 		ship.get_node('Cargos').visible = false
+		ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 	for ship in chasing_ships.get_children():
 		ship.get_node('Cargos').visible = false
+		ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 
 	# the ship is full of water after the keep level minigame so it sits lower
 	player_ship.float_height = 0.0

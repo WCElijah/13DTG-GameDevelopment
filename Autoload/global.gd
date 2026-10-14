@@ -11,6 +11,8 @@ var is_ship_cam_mode = false
 
 var camera_tween = null
 
+const NAVY_FLAG = preload("res://Assets/Textures/Flags/world_government.webp")
+
 
 # signals
 signal freelook_button_pressed
