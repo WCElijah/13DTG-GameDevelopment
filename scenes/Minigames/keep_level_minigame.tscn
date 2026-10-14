@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_yugqf"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_bri08"]
 [ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://scenes/pause_menu.tscn" id="pause_menu"]
+[ext_resource type="PackedScene" path="res://scenes/game_over.tscn" id="game_over"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_q4m2d"]
 panorama = ExtResource("4_bri08")
@@ -81,6 +82,8 @@ offset_bottom = 70.0
 value = 100.0
 
 [node name="PauseMenu" parent="." instance=ExtResource("pause_menu")]
+
+[node name="GameOver" parent="." instance=ExtResource("game_over")]
 
 [connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
 [connection signal="timeout" from="MinigameTimer" to="." method="_on_minigame_timer_timeout"]

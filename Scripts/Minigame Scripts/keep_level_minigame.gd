@@ -45,6 +45,8 @@ func _process(delta: float) -> void:
 	# handle taking damage
 	if abs(current_ship_angle) > angle_where_water_comes_in:
 		ship_bar.value -= ship_dps * delta
+		if ship_bar.value <= 0:
+			$GameOver.show_game_over()
 
 	# update time left
 	time_label.text = 'Time Left: ' + str(round(minigame_timer.time_left))

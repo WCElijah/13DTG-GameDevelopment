@@ -8,6 +8,7 @@ extends Node3D
 @export var circles_per_volley = 9
 @export var circle_spacing = 12.0  # metres between the middle of each circle
 @export var canon_shot_indicator_scene: PackedScene
+@export var lives = 3  # how many shots the ship can take before game over
 
 @onready var player_ship = $PlayerShip
 @onready var water = $WaterPlane
@@ -16,6 +17,7 @@ extends Node3D
 @onready var minigame_timer = $MinigameTimer
 
 @onready var time_label = $MinigameUI/TimeLabel
+@onready var lives_label = $MinigameUI/LivesLabel
 
 var next_scene = 'res://scenes/Story Scenes/supplies_cutscene.tscn'
 
@@ -23,6 +25,7 @@ var next_scene = 'res://scenes/Story Scenes/supplies_cutscene.tscn'
 func _ready() -> void:
 	# setup ui
 	top_camera.current = true
+	lives_label.text = 'Lives left: ' + str(lives)
 
 
 func _process(delta: float) -> void:
@@ -74,6 +77,10 @@ func _on_volley_timer_timeout() -> void:
 
 func _on_hit_box_area_entered(area: Area3D) -> void:
 	area.queue_free()  # remove the circle so it can't hit the ship again
+	lives -= 1
+	lives_label.text = 'Lives left: ' + str(lives)
+	if lives <= 0:
+		$GameOver.show_game_over()
 
 
 func _on_minigame_timer_timeout() -> void:
