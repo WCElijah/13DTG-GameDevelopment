@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
 [ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://Scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
 [ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://Scenes/Ships/Binary Models/sloop.tres" id="5_ntg5b"]
-[ext_resource type="PackedScene" uid="uid://cg1wx7j7626qu" path="res://Assets/Blender Model Exports/cratebox.glb" id="6_crate"]
+[ext_resource type="PackedScene" path="res://scenes/crate.tscn" id="6_crate"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mr86w"]
 
@@ -62,21 +62,27 @@ mesh = ExtResource("5_ntg5b")
 
 [node name="Crate1" parent="Cargos" unique_id=1764146024 instance=ExtResource("6_crate")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -1.4, 1.1, 2.4)
+supply_type = "food"
 
 [node name="Crate2" parent="Cargos" unique_id=1482017092 instance=ExtResource("6_crate")]
 transform = Transform3D(0.445621, 0, 0.062628, 0, 0.45, 0, -0.062628, 0, 0.445621, -1.4, 1.1, 3.3)
+supply_type = "water"
 
 [node name="Crate3" parent="Cargos" unique_id=2124840368 instance=ExtResource("6_crate")]
 transform = Transform3D(0.440166, 0, -0.09356, 0, 0.45, 0, 0.09356, 0, 0.440166, -1.4, 1.93, 2.85)
+supply_type = "food"
 
 [node name="Crate4" parent="Cargos" unique_id=1362549960 instance=ExtResource("6_crate")]
 transform = Transform3D(0.448288, 0, 0.03922, 0, 0.45, 0, -0.03922, 0, 0.448288, 1.4, 1.1, 2.6)
+supply_type = "gunpowder"
 
 [node name="Crate5" parent="Cargos" unique_id=1244952112 instance=ExtResource("6_crate")]
 transform = Transform3D(0.447535, 0, -0.047038, 0, 0.45, 0, 0.047038, 0, 0.447535, 1.4, 1.1, 3.5)
+supply_type = "gunpowder"
 
 [node name="Crate6" parent="Cargos" unique_id=1250362001 instance=ExtResource("6_crate")]
 transform = Transform3D(0.422862, 0, 0.153909, 0, 0.45, 0, -0.153909, 0, 0.422862, 0.3, 1.1, 3)
+supply_type = "gunpowder"
 
 [node name="CenterPoint" type="Marker3D" parent="." unique_id=1453763177]
 
