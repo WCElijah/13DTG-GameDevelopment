@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_sloop"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_sky"]
 [ext_resource type="PackedScene" uid="uid://2di54rlca4iu" path="res://scenes/canon_shot_indicator.tscn" id="5_marker"]
+[ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://scenes/pause_menu.tscn" id="pause_menu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sky"]
 panorama = ExtResource("4_sky")
@@ -74,6 +75,8 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 theme_override_font_sizes/font_size = 26
 horizontal_alignment = 2
+
+[node name="PauseMenu" parent="." instance=ExtResource("pause_menu")]
 
 [connection signal="area_entered" from="PlayerShip/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="timeout" from="VolleyTimer" to="." method="_on_volley_timer_timeout"]

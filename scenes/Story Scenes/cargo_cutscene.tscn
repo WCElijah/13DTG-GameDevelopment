@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ci8jkijvw5jhy" path="res://Trialing 3/Exports/captain.glb" id="4_captain"]
 [ext_resource type="PackedScene" uid="uid://dt8v2k4o7b62k" path="res://Trialing 3/Exports/crewmate.glb" id="5_crewmate"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="6_sky"]
+[ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://scenes/pause_menu.tscn" id="pause_menu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sky"]
 panorama = ExtResource("6_sky")
@@ -98,3 +99,5 @@ theme_override_font_sizes/font_size = 32
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="PauseMenu" parent="." instance=ExtResource("pause_menu")]

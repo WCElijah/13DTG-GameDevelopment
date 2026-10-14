@@ -59,11 +59,11 @@ func play_cutscene():
 	# hit rocks
 	Global.move_camera(camera, Vector3(-20, 5, -20), Vector3(-2, 1, -16), 0)
 	Global.move_camera(camera, Vector3(-16, 4, -14), Vector3(-2, 1, -12), time_until_rock_hit)
-	await get_tree().create_timer(time_until_rock_hit).timeout
+	await get_tree().create_timer(time_until_rock_hit, false).timeout
 	
 	# roll ship cuz of rocks
 	roll_ship(-14, 0.6)  # tip the right side down
-	await get_tree().create_timer(0.4).timeout
+	await get_tree().create_timer(0.4, false).timeout
 
 	# crates falloff
 	Global.move_camera(camera, Vector3(15, 4, 4), Vector3(0, 1, 4), 0)
@@ -72,28 +72,28 @@ func play_cutscene():
 	
 	# tracking the falling crates 
 	Global.move_camera(camera, Vector3(12, 5, 2), Vector3(2, 0, 30), 3)
-	await get_tree().create_timer(1.2).timeout
+	await get_tree().create_timer(1.2, false).timeout
 	player_ship.set_physics_process(true)
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 
 	# looking back atthe dropped crates
 	Global.move_camera(camera, Vector3(2.2, 2.6, 2), Vector3(1, 0.5, 60), 0)
 	Global.move_camera(camera, Vector3(2.1, 2.6, 2.4), Vector3(1, 0.5, 60), 4)
 	Global.say(dialogue_label, 'Crewmate: "We lost half the cargo, Captain."')
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	
 	Global.move_camera(camera, Vector3(-2, 2, 3.9), Vector3(-1.2, 2.1, 6.8), 0)
 	Global.move_camera(camera, Vector3(-1.8, 2.1, 4.5), Vector3(-1.2, 2.1, 6.8), 3.5)
 	Global.say(dialogue_label, 'Captain: "Keep running."')
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(3.5, false).timeout
 
 	# crewmate checks the canon and finds out they cant fire
 	crewmate.position = Vector3(1.3, 0.64, -1.33)  # stand behind ShipCanon3
 	Global.move_camera(camera, Vector3(-0.5, 1.6, -3.8), Vector3(1.8, 1.0, -1.2), 0)
 	Global.move_camera(camera, Vector3(-0.3, 1.6, -3.4), Vector3(1.8, 1.0, -1.2), 4.5)
 	Global.say(dialogue_label, 'Crewmate: "The powder went over with the crates. We can\'t fire."')
-	await get_tree().create_timer(4.5).timeout
+	await get_tree().create_timer(4.5, false).timeout
 
 	# more navy ships closing in from behind
 	Global.hide_dialogue(dialogue_label)
@@ -101,7 +101,7 @@ func play_cutscene():
 	Global.move_camera(camera, Vector3(2, 5.5, 19), Vector3(5, 3, 120), 4)
 	for ship in reinforcements.get_children():
 		ship.visible = true
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(3.5, false).timeout
 
 	get_tree().change_scene_to_file(next_scene)
 
@@ -119,7 +119,7 @@ func crates_fall_off():
 		crate.position.x += 1.5
 		floating_crates.append(crate)
 		
-	await get_tree().create_timer(1.0).timeout
+	await get_tree().create_timer(1.0, false).timeout
 
 
 func roll_ship(angle, duration):

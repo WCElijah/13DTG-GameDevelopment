@@ -53,37 +53,37 @@ func _process(delta: float) -> void:
 func play_cutscene():
 	Global.move_camera(camera, Vector3(-16, 7, -12), Vector3(0, 1.5, 10), 0)
 	Global.move_camera(camera, Vector3(-15, 5, 2), Vector3(0, 1, 6), 4)
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	Global.move_camera(camera, Vector3(1, 2.6, 0.2), Vector3(-1.4, 1.2, 2.9), 0)
 	Global.move_camera(camera, Vector3(0.8, 2.4, 0.8), Vector3(-1.4, 1.2, 2.9), 4.5)
 	Global.say(dialogue_label, 'Crewmate: "This is all the food and water we have left."')
-	await get_tree().create_timer(4.5).timeout
+	await get_tree().create_timer(4.5, false).timeout
 
 	Global.move_camera(camera, Vector3(-2, 2, 3.9), Vector3(-1.2, 2.1, 6.8), 0)
 	Global.move_camera(camera, Vector3(-1.8, 2.1, 4.5), Vector3(-1.2, 2.1, 6.8), 3.5)
 	Global.say(dialogue_label, 'Captain: "How long will it last?"')
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(3.5, false).timeout
 
 	Global.move_camera(camera, Vector3(1.2, 2.2, 1.6), Vector3(-0.3, 1.6, 2.9), 0)
 	Global.move_camera(camera, Vector3(1, 2.2, 2), Vector3(-0.3, 1.6, 2.9), 3.5)
 	Global.say(dialogue_label, 'Crewmate: "Three days. Maybe four."')
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(3.5, false).timeout
 
 	# make the ship sway form one side to the other
 	Global.move_camera(camera, Vector3(-12, 2, 3), Vector3(0, 0.5, 3), 0)
 	roll_ship(-10, 0.8)
 	Global.say(dialogue_label, 'Crewmate: "And she\'s taking on water, Captain."')
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2, false).timeout
 	roll_ship(0, 1.5)  # level out again
-	await get_tree().create_timer(1.5).timeout
+	await get_tree().create_timer(1.5, false).timeout
 	player_ship.set_physics_process(true)
 
 	# navy still behind us
 	Global.hide_dialogue(dialogue_label)
 	Global.move_camera(camera, Vector3(2, 5, 17), Vector3(5, 3, 120), 0)
 	Global.move_camera(camera, Vector3(2, 5.5, 19), Vector3(5, 3, 120), 4)
-	await get_tree().create_timer(3.5).timeout
+	await get_tree().create_timer(3.5, false).timeout
 
 	get_tree().change_scene_to_file(next_scene)
 

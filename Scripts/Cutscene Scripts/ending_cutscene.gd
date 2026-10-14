@@ -45,25 +45,25 @@ func play_cutscene():
 	# from the side, the way ahead is blocked
 	Global.move_camera(camera, Vector3(14, 4, 12), Vector3(0, 3, -70), 0)
 	Global.move_camera(camera, Vector3(12, 4, 6), Vector3(0, 3, -70), 5)
-	await get_tree().create_timer(5).timeout
+	await get_tree().create_timer(5, false).timeout
 
 	# close on the captain
 	Global.move_camera(camera, Vector3(-2, 2, 3.9), Vector3(-1.2, 2.1, 6.8), 0)
 	Global.move_camera(camera, Vector3(-1.8, 2.1, 4.5), Vector3(-1.2, 2.1, 6.8), 4)
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	# looking back, the chasing ships are catching up (same shot as the end of the other cutscenes)
 	Global.move_camera(camera, Vector3(2, 5, 17), Vector3(5, 3, 120), 0)
 	Global.move_camera(camera, Vector3(2, 5.5, 19), Vector3(5, 3, 120), 4)
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	# zoom out from above to show there is nowhere left to go
 	Global.move_camera(camera, Vector3(0, 10, 35), Vector3(0, 0, 10), 0)
 	Global.move_camera(camera, Vector3(0, 130, 100), Vector3(0, 0, 10), 12)
-	await get_tree().create_timer(9).timeout
+	await get_tree().create_timer(9, false).timeout
 
 	Global.say(dialogue_label, 'Nobody remembers why it started.')
-	await get_tree().create_timer(4).timeout
+	await get_tree().create_timer(4, false).timeout
 
 	# the game ends here so close it before the chasing ships reach us
 	get_tree().quit()
