@@ -2,6 +2,7 @@ extends Node3D
 
 
 @export var flag_texture: Texture2D
+@export var sail_logos: Node3D  
 
 
 func _ready() -> void:
@@ -14,3 +15,7 @@ func set_flag(texture: Texture2D):
 	var material = $Flag.get_active_material(0).duplicate()
 	material.set_shader_parameter("flag_texture", texture)
 	$Flag.material_override = material
+
+	if sail_logos:
+		for logo in sail_logos.get_children():
+			logo.texture = texture

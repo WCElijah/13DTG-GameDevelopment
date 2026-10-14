@@ -1,11 +1,12 @@
 [gd_scene format=3 uid="uid://yugqfo0dm6jh"]
 
 [ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
-[ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://Scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
-[ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://Scenes/Ships/Binary Models/sloop.tres" id="5_ntg5b"]
-[ext_resource type="PackedScene" path="res://scenes/crate.tscn" id="6_crate"]
-[ext_resource type="PackedScene" path="res://scenes/Ships/sloop_flag.tscn" id="7_flag"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
+[ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
+[ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://scenes/Ships/Binary Models/Sloop.tres" id="5_ntg5b"]
+[ext_resource type="PackedScene" uid="uid://dfr0kn5aip63p" path="res://scenes/crate.tscn" id="6_crate"]
+[ext_resource type="PackedScene" uid="uid://clj5dhqj4qt7q" path="res://scenes/Ships/sloop_flag.tscn" id="7_flag"]
+[ext_resource type="Texture2D" uid="uid://kywxaqbwkvrk" path="res://Assets/Textures/Flags/jolly_roger_sail.png" id="8_sail_logo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_mr86w"]
 
@@ -85,8 +86,26 @@ supply_type = "gunpowder"
 transform = Transform3D(0.422862, 0, 0.153909, 0, 0.45, 0, -0.153909, 0, 0.422862, 0.3, 1.1, 3)
 supply_type = "gunpowder"
 
-[node name="SloopFlag" parent="." instance=ExtResource("7_flag")]
+[node name="SloopFlag" parent="." node_paths=PackedStringArray("sail_logos") instance=ExtResource("7_flag")]
 transform = Transform3D(0, 0, -2, 0, 2, 0, 2, 0, 0, 0, 37.2, -3.45)
+sail_logos = NodePath("../SailLogos")
+
+[node name="SailLogos" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.4, 4)
+
+[node name="RightSide" type="Sprite3D" parent="SailLogos"]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.16, 0, 0)
+pixel_size = 0.03
+shaded = true
+texture = ExtResource("8_sail_logo")
+double_sided = false
+
+[node name="LeftSide" type="Sprite3D" parent="SailLogos"]
+transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.16, 0, 0)
+pixel_size = 0.03
+shaded = true
+texture = ExtResource("8_sail_logo")
+double_sided = false
 
 [node name="CenterPoint" type="Marker3D" parent="." unique_id=1453763177]
 
