@@ -1,8 +1,9 @@
 extends Node3D
 
 @export var ship_speed = 10.0
+@export var speed_increase_per_volley = 2.0  # the ship sails this much faster after every volley, so the game gets harder
 @export var turn_speed = 60.0
-@export var max_rotation = 80.0  # the ship can't turn further than this to either side, so it never sails backwards
+@export var max_rotation = 45.0  # the ship can't turn further than this to either side, so it never sails backwards
 @export var volley_distance = 45.0  # how far ahead of the ship each row of circles appears
 @export var circles_per_volley = 9
 @export var circle_spacing = 12.0  # metres between the middle of each circle
@@ -34,8 +35,9 @@ func _process(delta: float) -> void:
 	# limit how much the shpi can turn to either sides
 	player_ship.rotation_degrees.y = clamp(player_ship.rotation_degrees.y, -max_rotation, max_rotation)
 
-	# handle movement forward, in the direction the ship is facing
-	player_ship.position += -player_ship.transform.basis.z * ship_speed * delta
+	# handle movement forward and sidewards
+	player_ship.position.z -= ship_speed * delta
+	player_ship.position.x += -player_ship.transform.basis.z.x * ship_speed * delta
 
 	# camera stays above the ship, its height is set in the scene
 	top_camera.global_position.x = player_ship.global_position.x
@@ -65,6 +67,9 @@ func _on_volley_timer_timeout() -> void:
 			add_child(marker)
 			marker.global_position = Vector3(first_circle_x_pos + circle_index * circle_spacing, 0, volley_z_pos)
 			marker.global_position.y = water.get_height(marker.global_position)
+
+	# speed up after each volley so the next one comes quicker
+	ship_speed += speed_increase_per_volley
 
 
 func _on_hit_box_area_entered(area: Area3D) -> void:
