@@ -2,33 +2,17 @@
 
 [ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
 [ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
-[ext_resource type="ArrayMesh" uid="uid://co4eb81y3it66" path="res://scenes/Ships/Binary Models/wheel.tres" id="2_xuhp6"]
 [ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://scenes/Ships/Binary Models/Sloop.tres" id="5_ntg5b"]
 [ext_resource type="PackedScene" uid="uid://dfr0kn5aip63p" path="res://scenes/crate.tscn" id="6_crate"]
 [ext_resource type="PackedScene" uid="uid://clj5dhqj4qt7q" path="res://scenes/Ships/sloop_flag.tscn" id="7_flag"]
 [ext_resource type="Texture2D" uid="uid://kywxaqbwkvrk" path="res://Assets/Textures/Flags/jolly_roger_sail.png" id="8_sail_logo"]
 
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mr86w"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_2eikk"]
 size = Vector3(8.168098, 8.710133, 4)
 
-[node name="Sloop" type="Node3D" unique_id=1430013140 node_paths=PackedStringArray("wheel_model_node", "canons_node", "ship_mesh") groups=["ships"]]
+[node name="Sloop" type="Node3D" unique_id=1430013140 node_paths=PackedStringArray("ship_mesh") groups=["ships"]]
 script = ExtResource("1_7mach")
-wheel_model_node = NodePath("WheelModel")
-canons_node = NodePath("Canons")
 ship_mesh = NodePath("Model")
-
-[node name="WheelModel" type="Node3D" parent="." unique_id=1382954128]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 1.1564589, 5.7812405)
-
-[node name="Wheel" type="MeshInstance3D" parent="WheelModel" unique_id=1057960340]
-transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -1, 2.220446e-16, 0, 0, 0)
-mesh = ExtResource("2_xuhp6")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="WheelModel" unique_id=1816741841]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0617905, 0)
-mesh = SubResource("CapsuleMesh_mr86w")
 
 [node name="Canons" type="Node3D" parent="." unique_id=805703799]
 
@@ -64,7 +48,6 @@ mesh = ExtResource("5_ntg5b")
 
 [node name="Crate1" parent="Cargos" unique_id=1764146024 instance=ExtResource("6_crate")]
 transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -1.4, 1.1, 2.4)
-supply_type = "food"
 
 [node name="Crate2" parent="Cargos" unique_id=1482017092 instance=ExtResource("6_crate")]
 transform = Transform3D(0.445621, 0, 0.062628, 0, 0.45, 0, -0.062628, 0, 0.445621, -1.4, 1.1, 3.3)
@@ -72,7 +55,6 @@ supply_type = "water"
 
 [node name="Crate3" parent="Cargos" unique_id=2124840368 instance=ExtResource("6_crate")]
 transform = Transform3D(0.440166, 0, -0.09356, 0, 0.45, 0, 0.09356, 0, 0.440166, -1.4, 1.93, 2.85)
-supply_type = "food"
 
 [node name="Crate4" parent="Cargos" unique_id=1362549960 instance=ExtResource("6_crate")]
 transform = Transform3D(0.448288, 0, 0.03922, 0, 0.45, 0, -0.03922, 0, 0.448288, 1.4, 1.1, 2.6)
@@ -86,26 +68,26 @@ supply_type = "gunpowder"
 transform = Transform3D(0.422862, 0, 0.153909, 0, 0.45, 0, -0.153909, 0, 0.422862, 0.3, 1.1, 3)
 supply_type = "gunpowder"
 
-[node name="SloopFlag" parent="." node_paths=PackedStringArray("sail_logos") instance=ExtResource("7_flag")]
+[node name="SloopFlag" parent="." unique_id=1858864235 node_paths=PackedStringArray("sail_logos") instance=ExtResource("7_flag")]
 transform = Transform3D(0, 0, -2, 0, 2, 0, 2, 0, 0, 0, 37.2, -3.45)
 sail_logos = NodePath("../SailLogos")
 
-[node name="SailLogos" type="Node3D" parent="."]
+[node name="SailLogos" type="Node3D" parent="." unique_id=605887159]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.4, 4)
 
-[node name="RightSide" type="Sprite3D" parent="SailLogos"]
+[node name="RightSide" type="Sprite3D" parent="SailLogos" unique_id=484445590]
 transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 0.16, 0, 0)
 pixel_size = 0.03
 shaded = true
-texture = ExtResource("8_sail_logo")
 double_sided = false
+texture = ExtResource("8_sail_logo")
 
-[node name="LeftSide" type="Sprite3D" parent="SailLogos"]
+[node name="LeftSide" type="Sprite3D" parent="SailLogos" unique_id=751416667]
 transform = Transform3D(0, 0, -1, 0, 1, 0, 1, 0, 0, -0.16, 0, 0)
 pixel_size = 0.03
 shaded = true
-texture = ExtResource("8_sail_logo")
 double_sided = false
+texture = ExtResource("8_sail_logo")
 
 [node name="CenterPoint" type="Marker3D" parent="." unique_id=1453763177]
 
