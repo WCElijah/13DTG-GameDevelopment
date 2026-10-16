@@ -27,6 +27,7 @@ func _ready() -> void:
 		ship.visible = false
 		ship.get_node('SloopFlag').set_flag(Global.NAVY_FLAG)
 	
+	$BGMPlayer.play()
 	play_cutscene()
 
 
@@ -64,7 +65,8 @@ func play_cutscene():
 		await get_tree().process_frame
 	if is_instance_valid(ball):
 		ball.queue_free()
-
+	$SFXPlayer.play()
+	
 	# ship starts sinking
 	Global.move_camera(camera, Vector3(25, 8, 30), trader_ship.position + Vector3(0, 2, 0), 0)
 	Global.move_camera(camera, Vector3(28, 9, 34), trader_ship.position + Vector3(0, 2, 0), 5.5)

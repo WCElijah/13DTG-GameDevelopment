@@ -52,7 +52,8 @@ func _process(delta: float) -> void:
 
 	# update time left
 	time_label.text = 'Time Left: ' + str(round(minigame_timer.time_left))
-
+	
+	
 
 func _on_volley_timer_timeout() -> void:
 	var volley_z_pos = player_ship.global_position.z - volley_distance
@@ -70,7 +71,8 @@ func _on_volley_timer_timeout() -> void:
 			add_child(marker)
 			marker.global_position = Vector3(first_circle_x_pos + circle_index * circle_spacing, 0, volley_z_pos)
 			marker.global_position.y = water.get_height(marker.global_position)
-
+	$SFXPlayer.stop()
+	$SFXPlayer.play()
 	# speed up after each volley so the next one comes quicker
 	ship_speed += speed_increase_per_volley
 

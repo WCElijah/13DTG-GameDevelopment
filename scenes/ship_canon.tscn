@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdek5o8ygrpdb" path="res://Scripts/ship_canon.gd" id="1_jioh0"]
 [ext_resource type="PackedScene" uid="uid://cgo61qrx62wa6" path="res://Assets/Blender Model Exports/Canon/canon_rigged.glb" id="2_rigged"]
+[ext_resource type="AudioStream" uid="uid://bp12bxj5by6vv" path="res://Assets/Audios/cannon-fire-shot-sound-effect_MkA0t7jY.mp3" id="3_6qedu"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_srga4"]
 resource_name = "CanonWood"
@@ -90,12 +91,15 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.82
 
 [node name="CanonRigged" parent="Model/HorizontalPivot" unique_id=1584203317 instance=ExtResource("2_rigged")]
 
-[node name="Cart" parent="Model/HorizontalPivot/CanonRigged/CanonRig/Skeleton3D/Root" parent_id_path=PackedInt32Array(1584203317, 879498283) index="0" unique_id=1315582484]
+[node name="Cart" parent="Model/HorizontalPivot/CanonRigged/CanonRig/Skeleton3D/Root" parent_id_path=PackedInt32Array(1584203317, 397006115) index="0" unique_id=2146595409]
 visible = false
 
 [node name="Cart" type="MeshInstance3D" parent="Model" unique_id=597689243]
 transform = Transform3D(0.96201926, 0, -0.0016042872, 0, 0.047226463, 0, 0.0045166523, 0, 0.34170336, -0.6427546, -0.67523974, -0.0030177138)
 mesh = SubResource("ArrayMesh_mnn3c")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=169039775]
+stream = ExtResource("3_6qedu")
 
 [connection signal="timeout" from="cooldownTimer" to="." method="_on_cooldown_timer_timeout"]
 

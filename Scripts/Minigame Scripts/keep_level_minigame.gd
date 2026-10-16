@@ -44,6 +44,8 @@ func _process(delta: float) -> void:
 
 	# handle taking damage
 	if abs(current_ship_angle) > angle_where_water_comes_in:
+		$SFXPlayer.stop()
+		$SFXPlayer.play()
 		ship_bar.value -= ship_dps * delta
 		if ship_bar.value <= 0:
 			$GameOver.show_game_over()

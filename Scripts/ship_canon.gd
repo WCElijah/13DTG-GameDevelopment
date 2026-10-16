@@ -3,6 +3,7 @@ extends Node3D
 const CANON_BALL = preload("res://Scenes/canon_ball.tscn")
 @onready var timer: Timer = $cooldownTimer
 @onready var animation_player: AnimationPlayer = $Model/HorizontalPivot/CanonRigged/AnimationPlayer
+@onready var audio_player: AudioStreamPlayer = $AudioStreamPlayer
 
 var canShoot = true
 
@@ -33,6 +34,7 @@ func _on_cooldown_timer_timeout() -> void:
 
 func shoot_canon():
 	if canShoot:
+		audio_player.play()
 		timer.start()
 		canShoot = false
 

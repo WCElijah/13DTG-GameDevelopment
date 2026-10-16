@@ -2,10 +2,12 @@
 
 [ext_resource type="Script" uid="uid://cx66mky2flsoa" path="res://Scripts/Minigame Scripts/keep_level_minigame.gd" id="1_k3lvl"]
 [ext_resource type="PackedScene" uid="uid://ffedgrnwubn1" path="res://Trialing/water_plane.tscn" id="2_ffedg"]
-[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://scenes/Ships/sloop.tscn" id="3_yugqf"]
+[ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://Scenes/Ships/sloop.tscn" id="3_yugqf"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_bri08"]
-[ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://scenes/pause_menu.tscn" id="pause_menu"]
-[ext_resource type="PackedScene" path="res://scenes/game_over.tscn" id="game_over"]
+[ext_resource type="AudioStream" uid="uid://cfrkwdexue60w" path="res://Assets/Audios/01_exploring_the_ocean.wav" id="7_01qrv"]
+[ext_resource type="AudioStream" uid="uid://c15rlr85biurr" path="res://Assets/Audios/sound-effect-minecraft-damage_JsZ7VbL7.mp3" id="8_pn1ih"]
+[ext_resource type="PackedScene" uid="uid://cx0aba74cl7rq" path="res://scenes/game_over.tscn" id="game_over"]
+[ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://Scenes/pause_menu.tscn" id="pause_menu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_q4m2d"]
 panorama = ExtResource("4_bri08")
@@ -81,9 +83,16 @@ offset_right = 410.0
 offset_bottom = 70.0
 value = 100.0
 
-[node name="PauseMenu" parent="." instance=ExtResource("pause_menu")]
+[node name="PauseMenu" parent="." unique_id=474198503 instance=ExtResource("pause_menu")]
 
-[node name="GameOver" parent="." instance=ExtResource("game_over")]
+[node name="GameOver" parent="." unique_id=955469674 instance=ExtResource("game_over")]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1478542609]
+stream = ExtResource("7_01qrv")
+autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=572570021]
+stream = ExtResource("8_pn1ih")
 
 [connection signal="timeout" from="RollTimer" to="." method="_on_roll_timer_timeout"]
 [connection signal="timeout" from="MinigameTimer" to="." method="_on_minigame_timer_timeout"]

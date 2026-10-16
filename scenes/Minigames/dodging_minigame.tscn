@@ -5,7 +5,9 @@
 [ext_resource type="PackedScene" uid="uid://yugqfo0dm6jh" path="res://Scenes/Ships/sloop.tscn" id="3_sloop"]
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_sky"]
 [ext_resource type="PackedScene" uid="uid://2di54rlca4iu" path="res://Scenes/canon_shot_indicator.tscn" id="5_marker"]
-[ext_resource type="PackedScene" uid="uid://cx0aba74cl7rq" path="res://scenes/game_over.tscn" id="game_over"]
+[ext_resource type="AudioStream" uid="uid://ccs1g4onsxj1w" path="res://Assets/Audios/05_stranded_in_the_ocean.wav" id="8_3bpig"]
+[ext_resource type="AudioStream" uid="uid://bp12bxj5by6vv" path="res://Assets/Audios/cannon-fire-shot-sound-effect_MkA0t7jY.mp3" id="9_xyk2d"]
+[ext_resource type="PackedScene" uid="uid://cx0aba74cl7rq" path="res://Scenes/game_over.tscn" id="game_over"]
 [ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://Scenes/pause_menu.tscn" id="pause_menu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_sky"]
@@ -94,6 +96,13 @@ horizontal_alignment = 2
 [node name="PauseMenu" parent="." unique_id=1255999707 instance=ExtResource("pause_menu")]
 
 [node name="GameOver" parent="." unique_id=1030270874 instance=ExtResource("game_over")]
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1549511368]
+stream = ExtResource("8_3bpig")
+autoplay = true
+
+[node name="SFXPlayer" type="AudioStreamPlayer" parent="." unique_id=94970101]
+stream = ExtResource("9_xyk2d")
 
 [connection signal="area_entered" from="PlayerShip/HitBox" to="." method="_on_hit_box_area_entered"]
 [connection signal="timeout" from="VolleyTimer" to="." method="_on_volley_timer_timeout"]

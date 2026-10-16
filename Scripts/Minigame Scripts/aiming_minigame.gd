@@ -41,6 +41,7 @@ func _ready() -> void:
 	time_label.visible = false
 	sail_camera.current = true
 	update_score()
+	$BGMPlayer.play()
 
 
 func _process(delta: float) -> void:
@@ -144,6 +145,7 @@ func fire():
 func on_hit_box_area_entered(area):
 	# check if it is ball
 	if area.get_parent() == ball:
+		$SFXPlayer.play()
 		ball.queue_free()
 		hits += 1
 		update_score()

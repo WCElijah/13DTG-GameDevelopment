@@ -62,6 +62,7 @@ func play_cutscene():
 	await get_tree().create_timer(time_until_rock_hit, false).timeout
 	
 	# roll ship cuz of rocks
+	$SFXPlayer.play()
 	roll_ship(-14, 0.6)  # tip the right side down
 	await get_tree().create_timer(0.4, false).timeout
 
@@ -118,7 +119,10 @@ func crates_fall_off():
 		crate.reparent(self)
 		crate.position.x += 1.5
 		floating_crates.append(crate)
-		
+		$SFXPlayer.stop()
+		$SFXPlayer.stream = load("res://Assets/Audios/falling-in-water-sound-effect-no-copyright_zmtk44xk.mp3")
+		$SFXPlayer.play()
+
 	await get_tree().create_timer(1.0, false).timeout
 
 
