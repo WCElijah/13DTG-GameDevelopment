@@ -113,4 +113,5 @@ stream = ExtResource("6_gtk67")
 
 [node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1747769064]
 stream = ExtResource("7_gtk67")
+volume_db = -10.491
 autoplay = true

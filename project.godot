@@ -17,9 +17,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-DebugMenu="*uid://cggqb75a8w8r"
+DebugMenu="uid://cggqb75a8w8r"
 Global="*uid://co48wr5yvpacv"
-Dialogic="*uid://ds2q0uclmolvu"
+Dialogic="uid://ds2q0uclmolvu"
 
 [dialogic]
 
