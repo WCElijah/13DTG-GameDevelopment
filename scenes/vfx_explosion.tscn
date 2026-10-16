@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://ba6vljlu0n27o"]
 
-[ext_resource type="Material" uid="uid://30gkggd86fsn" path="res://assets/Shaders/explosions/material_explosion_cloud.tres" id="1_rpsoc"]
-[ext_resource type="Shader" uid="uid://6mm6k82j2ck1" path="res://assets/Shaders/explosions/streaks_shader.tres" id="2_iwslv"]
-[ext_resource type="Texture2D" uid="uid://ck3y0485a824h" path="res://assets/Textures/Explosions/T_vfx_hit122.jpg" id="3_iwslv"]
+[ext_resource type="Material" uid="uid://30gkggd86fsn" path="res://Assets/Shaders/explosions/material_explosion_cloud.tres" id="1_rpsoc"]
+[ext_resource type="Shader" uid="uid://6mm6k82j2ck1" path="res://Assets/Shaders/explosions/streaks_shader.tres" id="2_iwslv"]
+[ext_resource type="Texture2D" uid="uid://ck3y0485a824h" path="res://Assets/Textures/Explosions/T_vfx_hit122.jpg" id="3_iwslv"]
 
 [sub_resource type="Curve" id="Curve_k2xjm"]
 _data = [Vector2(0.5190476, 0), 0.0, -0.1097465, 0, 0, Vector2(1, 1), -0.19662917, 0.0, 0, 0]

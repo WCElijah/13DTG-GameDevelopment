@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://cplk3yw2w0xkx"]
 
-[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://scripts/base_hostile_ship.gd" id="1_8m1t8"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_3h5ry"]
-[ext_resource type="ArrayMesh" uid="uid://xbxxcafvheqh" path="res://scenes/Ships/Binary Models/majestic_voyage_ship.tres" id="2_oufoa"]
+[ext_resource type="Script" uid="uid://cloewropnnf2x" path="res://Scripts/base_hostile_ship.gd" id="1_8m1t8"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_3h5ry"]
+[ext_resource type="ArrayMesh" uid="uid://xbxxcafvheqh" path="res://Scenes/Ships/Binary Models/majestic_voyage_ship.tres" id="2_oufoa"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_oufoa"]
 size = Vector3(0.712857, 1.458408, 1.9987409)

@@ -10,9 +10,9 @@ extends Node3D
 
 @onready var dialogue_label = $DialogueUI/DialogueLabel
 
-@onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
+@onready var vfx_explosion = preload("res://Scenes/vfx_explosion.tscn")
 
-var next_scene = "res://scenes/Minigames/aiming_minigame.tscn"  # remember t ochange ts LATER 
+var next_scene = "res://Scenes/Minigames/aiming_minigame.tscn"  # remember t ochange ts LATER 
 
 @export var reinforcement_starting_distance := 60.0  # how far back the ships start before sailing in
 

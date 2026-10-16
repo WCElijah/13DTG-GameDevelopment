@@ -18,10 +18,10 @@ extends Node3D
 @onready var time_label = $MinigameUI/TimeLabel
 @onready var score_label = $MinigameUI/ScoreLabel
 
-@onready var sloop_tscn = preload("res://scenes/Ships/sloop.tscn")
-@onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
+@onready var sloop_tscn = preload("res://Scenes/Ships/sloop.tscn")
+@onready var vfx_explosion = preload("res://Scenes/vfx_explosion.tscn")
 
-var next_scene = "res://scenes/Story Scenes/cargo_cutscene.tscn"
+var next_scene = "res://Scenes/Story Scenes/cargo_cutscene.tscn"
 
 
 # internal variables

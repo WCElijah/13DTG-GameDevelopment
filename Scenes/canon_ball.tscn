@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://taresg05778i"]
 
-[ext_resource type="Script" uid="uid://dvvuqclp44yp3" path="res://scripts/canon_ball.gd" id="1_bohru"]
+[ext_resource type="Script" uid="uid://dvvuqclp44yp3" path="res://Scripts/canon_ball.gd" id="1_bohru"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_rst13"]
 radius = 0.056

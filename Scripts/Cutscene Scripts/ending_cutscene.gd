@@ -52,7 +52,7 @@ func play_cutscene():
 	Global.move_camera(camera, Vector3(-1.8, 2.1, 4.5), Vector3(-1.2, 2.1, 6.8), 4)
 	await get_tree().create_timer(4, false).timeout
 
-	# looking back, the chasing ships are catching up (same shot as the end of the other cutscenes)
+	# looking back, the chasing ships are catching up (same shot as the end of the other cutScenes)
 	Global.move_camera(camera, Vector3(2, 5, 17), Vector3(5, 3, 120), 0)
 	Global.move_camera(camera, Vector3(2, 5.5, 19), Vector3(5, 3, 120), 4)
 	await get_tree().create_timer(4, false).timeout

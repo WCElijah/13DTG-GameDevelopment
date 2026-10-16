@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://yugqfo0dm6jh"]
 
 [ext_resource type="Script" uid="uid://c4rhdf6jq3mxr" path="res://Scripts/base_player_ship.gd" id="1_7mach"]
-[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://scenes/ship_canon.tscn" id="2_qyfov"]
-[ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://scenes/Ships/Binary Models/Sloop.tres" id="5_ntg5b"]
-[ext_resource type="PackedScene" uid="uid://dfr0kn5aip63p" path="res://scenes/crate.tscn" id="6_crate"]
-[ext_resource type="PackedScene" uid="uid://clj5dhqj4qt7q" path="res://scenes/Ships/sloop_flag.tscn" id="7_flag"]
+[ext_resource type="PackedScene" uid="uid://byjn8nk2r5qp0" path="res://Scenes/ship_canon.tscn" id="2_qyfov"]
+[ext_resource type="ArrayMesh" uid="uid://b4pk45jkjcgak" path="res://Scenes/Ships/Binary Models/Sloop.tres" id="5_ntg5b"]
+[ext_resource type="PackedScene" uid="uid://dfr0kn5aip63p" path="res://Scenes/crate.tscn" id="6_crate"]
+[ext_resource type="PackedScene" uid="uid://clj5dhqj4qt7q" path="res://Scenes/Ships/sloop_flag.tscn" id="7_flag"]
 [ext_resource type="Texture2D" uid="uid://kywxaqbwkvrk" path="res://Assets/Textures/Flags/jolly_roger_sail.png" id="8_sail_logo"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_2eikk"]

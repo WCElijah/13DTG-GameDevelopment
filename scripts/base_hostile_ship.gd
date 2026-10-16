@@ -28,7 +28,7 @@ var shooting_distance
 var shooting_exit_distance
 
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
-@onready var health_ui = preload("res://scenes/health_ui.tscn")
+@onready var health_ui = preload("res://Scenes/health_ui.tscn")
 
 # convex decompisition
 @export var ship_mesh: MeshInstance3D

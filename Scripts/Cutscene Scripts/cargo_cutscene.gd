@@ -20,7 +20,7 @@ extends Node3D
 
 var floating_crates = []  # crates that have hit the water
 var ship_front_z = -11.0  # distance btwn the center of the ship and the front of the hull
-var next_scene = 'res://scenes/Minigames/dodging_minigame.tscn'
+var next_scene = 'res://Scenes/Minigames/dodging_minigame.tscn'
 
 
 func _ready() -> void:

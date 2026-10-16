@@ -3,7 +3,7 @@ extends RigidBody3D
 @export var speed: float = 35
 @onready var gravity: float = ProjectSettings.get_setting("physics/3d/default_gravity")
 
-@onready var vfx_explosion = preload("res://scenes/vfx_explosion.tscn")
+@onready var vfx_explosion = preload("res://Scenes/vfx_explosion.tscn")
 
 
 func _physics_process(delta: float) -> void:

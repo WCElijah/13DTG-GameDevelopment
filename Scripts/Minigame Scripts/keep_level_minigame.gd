@@ -13,7 +13,7 @@ extends Node3D
 @onready var time_label = $MinigameUI/TimeLabel
 @onready var ship_bar = $MinigameUI/HullBar
 
-var next_scene = 'res://scenes/Story Scenes/ending_cutscene.tscn'
+var next_scene = 'res://Scenes/Story Scenes/ending_cutscene.tscn'
 
 # internal variables
 var current_ship_angle = 0.0  # how far the ship is rolled in degrees, positive is to the left

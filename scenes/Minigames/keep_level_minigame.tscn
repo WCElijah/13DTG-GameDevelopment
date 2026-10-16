@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bri08lg01bho3" path="res://Assets/Paranoma/kloppenheim_06_puresky_4k.exr" id="4_bri08"]
 [ext_resource type="AudioStream" uid="uid://cfrkwdexue60w" path="res://Assets/Audios/01_exploring_the_ocean.wav" id="7_01qrv"]
 [ext_resource type="AudioStream" uid="uid://c15rlr85biurr" path="res://Assets/Audios/sound-effect-minecraft-damage_JsZ7VbL7.mp3" id="8_pn1ih"]
-[ext_resource type="PackedScene" uid="uid://cx0aba74cl7rq" path="res://scenes/game_over.tscn" id="game_over"]
+[ext_resource type="PackedScene" uid="uid://cx0aba74cl7rq" path="res://Scenes/game_over.tscn" id="game_over"]
 [ext_resource type="PackedScene" uid="uid://btgh1csr4k4fp" path="res://Scenes/pause_menu.tscn" id="pause_menu"]
 
 [sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_q4m2d"]

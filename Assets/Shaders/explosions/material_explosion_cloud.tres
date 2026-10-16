@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" format=3 uid="uid://30gkggd86fsn"]
 
-[ext_resource type="Shader" uid="uid://bcpk532dodcsl" path="res://assets/Shaders/explosions/cloud_explosion.tres" id="1_8y38k"]
+[ext_resource type="Shader" uid="uid://bcpk532dodcsl" path="res://Assets/Shaders/explosions/cloud_explosion.tres" id="1_8y38k"]
 
 [resource]
 render_priority = 0
